@@ -181,13 +181,15 @@ class AccountAssetTableViewController: UITableViewController {
         if Authenticated.account == nil {
             return
         }
-        NeoScan().getClaimableGAS(address: (Authenticated.account?.address)!) {result in
+        NeoClient.sharedMain.getClaims(address: (Authenticated.account?.address)!) {result in
             switch result {
             case .failure:
                 return
-            case .success(let claimable):
+            case .success(let claims):
+                self.claims = claims
+                let amount: Double = Double(claims.totalUnspentClaim) / 100000000.0
                 DispatchQueue.main.async {
-                    self.showClaimableGASAmount(amount: claimable.unclaimed)
+                    self.showClaimableGASAmount(amount: amount)
                 }
             }
         }
