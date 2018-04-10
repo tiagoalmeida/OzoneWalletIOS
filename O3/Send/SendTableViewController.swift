@@ -12,6 +12,7 @@ import NeoSwift
 import Lottie
 import KeychainAccess
 import SwiftTheme
+import Crashlytics
 
 class SendTableViewController: UITableViewController, AddressSelectDelegate, QRScanDelegate {
 
@@ -103,6 +104,10 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
 
                         O3HUD.stop {
                             self.transactionCompleted = completed ?? false
+                            Answers.logCustomEvent(withName: "Token Asset Sent",
+                                                   customAttributes: [
+                                                    "Asset Name": assetName,
+                                                    "Amount": amount])
                             self.performSegue(withIdentifier: "segueToTransactionComplete", sender: nil)
                         }
 
@@ -131,6 +136,12 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
                     Authenticated.account?.sendAssetTransaction(asset: assetId, amount: amount, toAddress: toAddress) { completed, _ in
                         O3HUD.stop {
                             self.transactionCompleted = completed ?? false
+                            if self.transactionCompleted {
+                                Answers.logCustomEvent(withName: "Native Asset Sent",
+                                                       customAttributes: [
+                                                        "Asset Name": assetName,
+                                                        "Amount": amount])
+                            }
                             self.performSegue(withIdentifier: "segueToTransactionComplete", sender: nil)
                         }
                     }

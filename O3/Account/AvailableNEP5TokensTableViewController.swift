@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class AvailableNEP5TokensTableViewController: UITableViewController {
 
@@ -90,10 +91,18 @@ class AvailableNEP5TokensTableViewController: UITableViewController {
         if UserDefaultsManager.selectedNEP5Token![token.tokenHash] != nil {
             UserDefaultsManager.selectedNEP5Token?.removeValue(forKey: token.tokenHash)
             NotificationCenter.default.post(name: Notification.Name("AddedNewToken"), object: nil)
+            Answers.logCustomEvent(withName: "Added New Token",
+                                   customAttributes: ["Token Name": token.name,
+                                                      "Num Tokens": UserDefaultsManager.selectedNEP5Token?.keys.count,
+                                                      "Which Tokens": UserDefaultsManager.selectedNEP5Token?.description])
             cell.accessoryType = .none
         } else {
             UserDefaultsManager.selectedNEP5Token![token.tokenHash] = token
             NotificationCenter.default.post(name: Notification.Name("AddedNewToken"), object: nil)
+            Answers.logCustomEvent(withName: "Removed Token",
+                                   customAttributes: ["Token Name": token.name,
+                                                      "Num Tokens": UserDefaultsManager.selectedNEP5Token?.keys.count,
+                                                      "Which Tokens": UserDefaultsManager.selectedNEP5Token?.description])
             cell.accessoryType = .checkmark
 
         }

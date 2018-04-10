@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import DeckTransition
+import Crashlytics
+
 class ContactsTableViewController: UITableViewController, AddressAddDelegate {
 
     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
@@ -141,6 +143,8 @@ class ContactsTableViewController: UITableViewController, AddressAddDelegate {
             let textfield = alert.textFields?.first
             toUpdate.nickName = textfield?.text?.trim()
             try? UIApplication.appDelegate.persistentContainer.viewContext.save()
+            Answers.logCustomEvent(withName: "Contact Added",
+                                   customAttributes: ["Total Contacts": contacts.count + 1])
             self.tableView.reloadData()
         }
         alert.addAction(save)

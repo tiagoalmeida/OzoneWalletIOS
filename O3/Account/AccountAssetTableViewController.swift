@@ -11,6 +11,7 @@ import NeoSwift
 import PKHUD
 import Cache
 import SwiftTheme
+import Crashlytics
 
 class AccountAssetTableViewController: UITableViewController {
 
@@ -32,6 +33,7 @@ class AccountAssetTableViewController: UITableViewController {
     var tokensCache = [NEP5Token: Decimal]()
     var cachedNEOBalance: Int = 0
     var cachedGASBalance: Double = 0.0
+    var mostRecentClaimAmount = 0.0
 
     func initiateCache() {
         if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
@@ -97,7 +99,8 @@ class AccountAssetTableViewController: UITableViewController {
                 }
                 return
             }
-
+            Answers.logCustomEvent(withName: "Gas Claimed",
+                             customAttributes: ["Amount": self.mostRecentClaimAmount])
             DispatchQueue.main.async {
                 //HUD something to notify user that claim succeeded
                 //done claiming
@@ -187,9 +190,9 @@ class AccountAssetTableViewController: UITableViewController {
                 return
             case .success(let claims):
                 self.claims = claims
-                let amount: Double = Double(claims.totalUnspentClaim) / 100000000.0
+                self.mostRecentClaimAmount = Double(claims.totalUnspentClaim) / 100000000.0
                 DispatchQueue.main.async {
-                    self.showClaimableGASAmount(amount: amount)
+                    self.showClaimableGASAmount(amount: self.mostRecentClaimAmount)
                 }
             }
         }
