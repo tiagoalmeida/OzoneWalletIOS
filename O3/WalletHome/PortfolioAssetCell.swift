@@ -45,14 +45,15 @@ class PortfolioAssetCell: UITableViewCell {
                     fatalError("undefined data set")
             }
             assetTitleLabel.text = assetName
-            assetAmountLabel.text = amount.description
 
             let precision = referenceCurrency == .btc ? Precision.btc : Precision.usd
             let referencePrice = referenceCurrency == .btc ? latestPrice.averageBTC : latestPrice.average
             let referenceFirstPrice = referenceCurrency == .btc ? firstPrice.averageBTC : firstPrice.average
 
-            assetFiatPriceLabel.text = referencePrice.string(precision)
-            assetFiatAmountLabel.text = (referencePrice * Double(amount)).string(precision)
+            assetAmountLabel.text = amount.string(8, removeTrailing: true)
+            let removeTrailing = referenceCurrency == .btc
+            assetFiatPriceLabel.text = referencePrice.string(precision, removeTrailing: removeTrailing)
+            assetFiatAmountLabel.text = (referencePrice * Double(amount)).string(precision, removeTrailing: removeTrailing)
             //format USD properly
             if referenceCurrency == .usd {
                 assetFiatPriceLabel.text = Fiat(amount: Float(referencePrice)).formattedString()

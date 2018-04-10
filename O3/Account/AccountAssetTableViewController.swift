@@ -202,7 +202,7 @@ class AccountAssetTableViewController: UITableViewController {
             guard let cell = self.tableView.cellForRow(at: indexPath) as? UnclaimedGASTableViewCell else {
                 return
             }
-            cell.amountLabel.text = amount.string(8)
+            cell.amountLabel.text = amount.string(8, removeTrailing: true)
 
             //only enable button if latestClaimDate is more than 5 minutes
             let latestClaimDateInterval: Double = UserDefaults.standard.double(forKey: "lastetClaimDate")
