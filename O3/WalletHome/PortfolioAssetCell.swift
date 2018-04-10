@@ -51,12 +51,17 @@ class PortfolioAssetCell: UITableViewCell {
             let referenceFirstPrice = referenceCurrency == .btc ? firstPrice.averageBTC : firstPrice.average
 
             assetAmountLabel.text = amount.string(8, removeTrailing: true)
-            let removeTrailing = referenceCurrency == .btc
-            assetFiatPriceLabel.text = referencePrice.string(precision, removeTrailing: removeTrailing)
-            assetFiatAmountLabel.text = (referencePrice * Double(amount)).string(precision, removeTrailing: removeTrailing)
+            if referenceCurrency == .btc {
+                assetFiatAmountLabel.text = "₿"+latestPrice.averageBTC.string(Precision.btc, removeTrailing: true)
+            } else {
+                assetFiatAmountLabel.text = Fiat(amount: Float(referencePrice) * Float(amount)).formattedString()
+            }
+
             //format USD properly
             if referenceCurrency == .usd {
                 assetFiatPriceLabel.text = Fiat(amount: Float(referencePrice)).formattedString()
+            } else {
+                assetFiatPriceLabel.text = "₿"+referencePrice.string(precision, removeTrailing: referenceCurrency == .btc)
             }
 
             assetPercentChangeLabel.text = String.percentChangeStringShort(latestPrice: latestPrice, previousPrice: firstPrice,
