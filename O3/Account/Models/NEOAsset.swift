@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum AssetType: Int {
+enum AssetType: Int, Codable {
     case nativeAsset = 0
     case nep5Token
 }
 
-struct TransferableAsset {
+struct TransferableAsset: Codable {
     var assetID: String!
     var name: String!
     var symbol: String!

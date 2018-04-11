@@ -18,18 +18,11 @@ class PreCreateWalletViewController: UIViewController {
         self.title = "Create a Wallet"
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         setNeedsStatusBarAppearanceUpdate()
-
-        //if user already have an o3 wallet address we then show that creating wallet will overwrite the existing wallet
-        if UserDefaultsManager.o3WalletAddress != nil {
-
-        }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToWelcome" {
-            //create a new wallet
             Authenticated.account = Account()
         }
     }
-
 }

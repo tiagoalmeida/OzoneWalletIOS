@@ -64,12 +64,17 @@ class TransactionCell: UITableViewCell {
 
     var data: TransactionData? {
         didSet {
+            if data?.toAddress ?? "" == Authenticated.account?.address ?? "" {
+                amountLabel.theme_textColor = O3Theme.positiveGainColorPicker
+                amountLabel.text = data?.amount.stringWithSign((data?.precision)!)
+            } else {
+                amountLabel.theme_textColor = O3Theme.negativeLossColorPicker
+                amountLabel.text = data?.amount.stringWithSign((data?.precision)! * -1)
+            }
             assetLabel.text = data?.asset.uppercased()
-            amountLabel.text = data?.amount.stringWithSign((data?.precision)!)
             transactionTimeLabel?.text = "Block: " + String(data?.date ?? 0)
             toAddressLabel.text = "To: " + getAddressAlias(address: data?.toAddress ?? "")
             fromAddressLabel.text = "From: " + getAddressAlias(address: data?.fromAddress ?? "")
-            amountLabel.theme_textColor = (data?.toAddress ?? "" == Authenticated.account?.address ?? "" ) ? O3Theme.positiveGainColorPicker : O3Theme.negativeLossColorPicker
         }
     }
 }

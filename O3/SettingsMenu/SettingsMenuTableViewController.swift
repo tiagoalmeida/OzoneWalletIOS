@@ -11,8 +11,9 @@ import KeychainAccess
 import UIKit
 import SwiftTheme
 import KeychainAccess
+import WebBrowser
 
-class SettingsMenuTableViewController: UITableViewController, HalfModalPresentable {
+class SettingsMenuTableViewController: UITableViewController, HalfModalPresentable, WebBrowserDelegate {
     @IBOutlet weak var showPrivateKeyView: UIView!
     @IBOutlet weak var contactView: UIView!
     @IBOutlet weak var networkView: UIView!
@@ -23,7 +24,9 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     @IBOutlet weak var currencyCell: UITableViewCell!
     @IBOutlet weak var contactCell: UITableViewCell!
     @IBOutlet weak var logoutCell: UITableViewCell!
+    @IBOutlet weak var supportCell: UITableViewCell!
 
+    @IBOutlet weak var supportView: UIView!
     @IBOutlet weak var currencyView: UIView!
     @IBOutlet weak var themeView: UIView!
     @IBOutlet weak var privateKeyLabel: UILabel!
@@ -34,6 +37,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     @IBOutlet weak var themeLabel: UILabel!
     @IBOutlet weak var logoutLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var supportLabel: UILabel!
 
     var netString = UserDefaultsManager.network == .test ? "Network: Test Network": "Network: Main Network" {
         didSet {
@@ -62,7 +66,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     }
 
     func setThemedElements() {
-        let themedTitleLabels = [privateKeyLabel, watchOnlyLabel, netLabel, contactLabel, themeLabel, currencyLabel, logoutLabel, versionLabel]
+        let themedTitleLabels = [privateKeyLabel, watchOnlyLabel, netLabel, contactLabel, themeLabel, currencyLabel, logoutLabel, versionLabel, supportLabel]
         let themedCells = [networkCell, themeCell, privateKeyCell, watchOnlyCell, currencyCell, contactCell, logoutCell]
         for cell in themedCells {
             cell?.contentView.theme_backgroundColor = O3Theme.backgroundColorPicker
@@ -84,6 +88,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
         navigationItem.rightBarButtonItem = rightBarButton
         showPrivateKeyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showPrivateKey)))
         contactView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(sendMail)))
+        supportView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openSupportForum)))
         themeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeTheme)))
         setNetLabel()
         setThemeLabel()
@@ -135,6 +140,23 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
         }
     }
 
+    @objc func openSupportForum() {
+        let webBrowserViewController = WebBrowserViewController()
+
+        webBrowserViewController.delegate = self
+        webBrowserViewController.isToolbarHidden = true
+        webBrowserViewController.title = ""
+        webBrowserViewController.isShowURLInNavigationBarWhenLoading = false
+        webBrowserViewController.barTintColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.backgroundColor: Theme.dark.backgroundColor
+        webBrowserViewController.tintColor = Theme.light.primaryColor
+        webBrowserViewController.isShowPageTitleInNavigationBar = false
+        webBrowserViewController.loadURLString("https://community.o3.network")
+        maximizeToFullScreen(allowReverse: false)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.navigationController?.pushViewController(webBrowserViewController, animated: true)
+        }
+    }
+
     @IBAction func closeTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -178,7 +200,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     //properly implement cell did tap
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 6 {
+        if indexPath.row == 7 {
             OzoneAlert.confirmDialog(message: "Logging out will remove the private key from your device. You will need to restore it from your backup to reenter the application.", cancelTitle: "Cancel", confirmTitle: "Log out", didCancel: {
 
             }, didConfirm: {

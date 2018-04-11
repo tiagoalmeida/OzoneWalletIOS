@@ -29,10 +29,15 @@ class WelcomeTableViewController: UITableViewController {
             do {
                 try keychain
                     .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: .userPresence)
-                    .authenticationPrompt("You already have an account on the device. Registering a new one will delete all private key information from your device. Authenticate to delete and generate a new account.")
+                    .authenticationPrompt("")
                     .set((Authenticated.account?.wif)!, key: "ozonePrivateKey")
             } catch _ {
-                DispatchQueue.main.async { self.navigationController?.popViewController(animated: true) }
+                DispatchQueue.main.async {
+                    OzoneAlert.alertDialog(message: "Something went wrong, make sure your passcode is set", dismissTitle: "OK") {
+                        Authenticated.account = nil
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
             }
         }
     }

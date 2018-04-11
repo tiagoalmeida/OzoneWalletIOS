@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import DeckTransition
 import SwiftTheme
+import Crashlytics
 
 class O3TabBarController: UITabBarController {
     var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
@@ -108,9 +109,12 @@ class O3TabBarController: UITabBarController {
     @objc func tappedSettingsTab() {
        self.performSegue(withIdentifier: "segueToSettings", sender: nil)
     }
-
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let index = tabBar.items?.index(of: item) else { return }
+        let tabTappedMessages = ["Portfolio", "Wallet", "Center Button", "News", "Settings" ]
+        Answers.logCustomEvent(withName: "Tab Tapped",
+                               customAttributes: ["Tab Name": tabTappedMessages[index]])
+
         if index == 4 {
            self.performSegue(withIdentifier: "segueToSettings", sender: nil)
         }

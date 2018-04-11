@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import NeoSwift
+import Crashlytics
 
 class NetworkTableViewController: UITableViewController, NetworkSeedCellDelegate {
     var testNodes = (NEONetworkMonitor.sharedInstance.network?.testNet.nodes)!
@@ -94,6 +95,10 @@ class NetworkTableViewController: UITableViewController, NetworkSeedCellDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             OzoneAlert.confirmDialog(message: "Selecting this seed will switch network management to manual mode.", cancelTitle: "Cancel", confirmTitle: "Confirm", didCancel: {}) {
+
+                Answers.logCustomEvent(withName: "Network Node Set",
+                                       customAttributes: ["Network Node": self.tableNodes[indexPath.row].URL])
+
                 UserDefaultsManager.seed = self.tableNodes[indexPath.row].URL
                 UserDefaultsManager.useDefaultSeed = false
                 DispatchQueue.main.async { tableView.reloadData() }

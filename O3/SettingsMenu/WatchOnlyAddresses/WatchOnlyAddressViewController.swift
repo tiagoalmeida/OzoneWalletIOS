@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Channel
+import Crashlytics
 
 class WatchOnlyAddressViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddressAddDelegate, AddAddressCellDelegate, HalfModalPresentable {
     @IBOutlet weak var tableView: UITableView!
@@ -137,6 +138,8 @@ class WatchOnlyAddressViewController: UIViewController, UITableViewDelegate, UIT
             let textfield = alert.textFields?.first
             toUpdate.nickName = textfield?.text?.trim()
             try? UIApplication.appDelegate.persistentContainer.viewContext.save()
+            Answers.logCustomEvent(withName: "Watch Address Added",
+                                   customAttributes: ["Total Watch Addresses": self.watchAddresses.count + 1])
             self.tableView.reloadData()
         }
         alert.addAction(save)

@@ -158,4 +158,16 @@ class UserDefaultsManager {
             }
         }
     }
+
+    private static let numClaimsKey = "numClaimsKey"
+    static var numClaims: Int {
+        get {
+            let intValue = UserDefaults.standard.integer(forKey: numClaimsKey)
+            return intValue
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: numClaimsKey)
+            UserDefaults.standard.synchronize()
+        }
+    }
 }

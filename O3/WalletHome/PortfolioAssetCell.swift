@@ -58,10 +58,10 @@ class PortfolioAssetCell: UITableViewCell {
             }
 
             //format USD properly
-            if referenceCurrency == .usd {
-                assetFiatPriceLabel.text = Fiat(amount: Float(referencePrice)).formattedString()
-            } else {
+            if referenceCurrency == .btc {
                 assetFiatPriceLabel.text = "₿"+referencePrice.string(precision, removeTrailing: referenceCurrency == .btc)
+            } else {
+                assetFiatPriceLabel.text = Fiat(amount: Float(referencePrice)).formattedString()
             }
 
             assetPercentChangeLabel.text = String.percentChangeStringShort(latestPrice: latestPrice, previousPrice: firstPrice,

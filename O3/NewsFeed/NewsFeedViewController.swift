@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Kingfisher
 import WebBrowser
+import Crashlytics
 
 class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -97,9 +98,14 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         if item?.link == nil {
             return
         }
+        Answers.logContentView(withName: "NewsFeed Item View",
+                                       contentType: "NEO News Today",
+                                       contentId: item?.title ?? "",
+                                       customAttributes: nil)
+
         let webBrowserViewController = WebBrowserViewController()
         webBrowserViewController.hidesBottomBarWhenPushed = true
-        webBrowserViewController.tintColor = Theme.light.primaryColor
+        //webBrowserViewController.tintColor = Theme.light.primaryColor
         webBrowserViewController.loadURLString((item?.link)!)
         self.navigationController?.pushViewController(webBrowserViewController, animated: true)
     }
@@ -112,6 +118,11 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         guard let featureItem = featureData?.features[indexPath.row] else {
             fatalError("Undefined Selection Behavior")
         }
+        Answers.logContentView(withName: "Featured Item View",
+                               contentType: featureItem.category,
+                               contentId: featureItem.title,
+                               customAttributes: nil)
+
         if let link = URL(string: featureItem.actionURL) {
             let webBrowserViewController = WebBrowserViewController()
             webBrowserViewController.tintColor = Theme.light.primaryColor
