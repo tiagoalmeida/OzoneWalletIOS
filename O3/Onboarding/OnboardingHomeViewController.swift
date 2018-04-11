@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import NeoSwift
 import SwiftTheme
+import LocalAuthentication
 
 class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -70,21 +71,24 @@ class OnboardingViewController: UIViewController, UICollectionViewDelegate, UICo
     }
 
     @IBAction func loginButtonTapped(_ sender: Any) {
-        //if UserDefaultsManager.launchedBefore == true {
-            performSegue(withIdentifier: "segueToLogin", sender: nil)
+        if !LAContext().canEvaluatePolicy(.deviceOwnerAuthentication, error: nil) {
+            OzoneAlert.alertDialog(message: "You'll need to set as passcode on your device before logging in. This is ensures that your wallet remains secure", dismissTitle: "OK") {}
             return
-        //}
-       // UserDefaultsManager.launchedBefore = true
-       // performSegue(withIdentifier: "firstTimeLogin", sender: nil)
+        }
+        performSegue(withIdentifier: "segueToLogin", sender: nil)
     }
 
     @IBAction func createNewWalletButtonTapped(_ sender: Any) {
         //if user doesn't have wallet we then create one
+        if !LAContext().canEvaluatePolicy(.deviceOwnerAuthentication, error: nil) {
+            OzoneAlert.alertDialog(message: "You'll need to set as passcode on your device before creating a wallet. This is ensures that your wallet remains secure", dismissTitle: "OK") {}
+            return
+        }
         if UserDefaultsManager.o3WalletAddress == nil {
+            Authenticated.account = Account()
             performSegue(withIdentifier: "segueToWelcome", sender: nil)
             return
         }
-       // UserDefaultsManager.launchedBefore = true
         performSegue(withIdentifier: "preCreateWallet", sender: nil)
     }
 

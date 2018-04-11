@@ -24,12 +24,4 @@ class PreCreateWalletViewController: UIViewController {
 
         }
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueToWelcome" {
-            //create a new wallet
-            Authenticated.account = Account()
-        }
-    }
-
 }
