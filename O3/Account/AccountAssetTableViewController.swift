@@ -158,6 +158,7 @@ class AccountAssetTableViewController: UITableViewController {
             }
             return
         }
+
         //to be able to claim. we need to send the entire NEO to ourself.
         Authenticated.account?.sendAssetTransaction(asset: AssetId.neoAssetId, amount: Double(self.neoBalance!), toAddress: (Authenticated.account?.address)!) { completed, _ in
             if completed == false {
@@ -184,7 +185,8 @@ class AccountAssetTableViewController: UITableViewController {
         if Authenticated.account == nil {
             return
         }
-        NeoClient.sharedMain.getClaims(address: (Authenticated.account?.address)!) {result in
+
+        Authenticated.account?.neoClient.getClaims(address: (Authenticated.account?.address)!) { result in
             switch result {
             case .failure:
                 return
@@ -321,6 +323,7 @@ class AccountAssetTableViewController: UITableViewController {
         guard let address =  Authenticated.account?.address else {
             return
         }
+
         NeoClient(seed: UserDefaultsManager.seed).getTokenBalanceUInt(token.tokenHash, address: address) { result in
             switch result {
             case .failure:
