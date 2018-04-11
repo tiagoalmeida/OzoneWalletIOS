@@ -12,6 +12,7 @@ import PKHUD
 import Cache
 import SwiftTheme
 import Crashlytics
+import StoreKit
 
 class AccountAssetTableViewController: UITableViewController {
 
@@ -107,7 +108,12 @@ class AccountAssetTableViewController: UITableViewController {
                 HUD.hide()
 
                 DispatchQueue.main.async {
-                    OzoneAlert.alertDialog(message: "Your claim has succeeded, it may take a few minutes to be reflected in your transaction history. You can claim again after 5 minutes", dismissTitle: "Got it") { }
+                    OzoneAlert.alertDialog(message: "Your claim has succeeded, it may take a few minutes to be reflected in your transaction history. You can claim again after 5 minutes", dismissTitle: "Got it") {
+                        UserDefaultsManager.numClaims += 1
+                        if UserDefaultsManager.numClaims == 1 || UserDefaultsManager.numClaims % 10 == 0 {
+                            SKStoreReviewController.requestReview()
+                        }
+                    }
                 }
 
                 //save latest claim time interval here to limit user to only claim every 5 minutes

@@ -39,7 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "networkKey": "main",
             "usedDefaultSeedKey": false,
             "selectedThemeKey": Theme.light.rawValue,
-            "referenceCurrencyKey": Currency.usd.rawValue
+            "referenceCurrencyKey": Currency.usd.rawValue,
+            "numClaimsKey": 0
         ]
         UserDefaults.standard.register(defaults: userDefaultsDefaults)
     }

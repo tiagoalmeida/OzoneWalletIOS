@@ -32,7 +32,11 @@ class WelcomeTableViewController: UITableViewController {
                     .authenticationPrompt("You already have an account on the device. Registering a new one will delete all private key information from your device. Authenticate to delete and generate a new account.")
                     .set((Authenticated.account?.wif)!, key: "ozonePrivateKey")
             } catch _ {
-                DispatchQueue.main.async { self.navigationController?.popViewController(animated: true) }
+                DispatchQueue.main.async {
+                    OzoneAlert.alertDialog(message: "You'll need to set as passcode on your device before creating a wallet. This is ensures that your wallet remains secure", dismissTitle: "OK") {
+                            self.navigationController?.popViewController(animated: true)
+                    }
+                }
             }
         }
     }

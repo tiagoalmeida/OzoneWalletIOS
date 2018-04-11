@@ -13,7 +13,7 @@ import SwiftTheme
 import KeychainAccess
 import WebBrowser
 
-class SettingsMenuTableViewController: UITableViewController, HalfModalPresentable {
+class SettingsMenuTableViewController: UITableViewController, HalfModalPresentable, WebBrowserDelegate {
     @IBOutlet weak var showPrivateKeyView: UIView!
     @IBOutlet weak var contactView: UIView!
     @IBOutlet weak var networkView: UIView!
@@ -142,9 +142,15 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
 
     @objc func openSupportForum() {
         let webBrowserViewController = WebBrowserViewController()
-        webBrowserViewController.hidesBottomBarWhenPushed = true
-        webBrowserViewController.barTintColor = Theme.dark.backgroundColor
-        webBrowserViewController.loadURLString("https://community.o3.network/?ref=mobile")
+
+        webBrowserViewController.delegate = self
+        webBrowserViewController.isToolbarHidden = true
+        webBrowserViewController.title = ""
+        webBrowserViewController.isShowURLInNavigationBarWhenLoading = false
+        webBrowserViewController.barTintColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.backgroundColor: Theme.dark.backgroundColor
+        webBrowserViewController.tintColor = Theme.light.primaryColor
+        webBrowserViewController.isShowPageTitleInNavigationBar = false
+        webBrowserViewController.loadURLString("https://community.o3.network")
         maximizeToFullScreen(allowReverse: false)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.navigationController?.pushViewController(webBrowserViewController, animated: true)
