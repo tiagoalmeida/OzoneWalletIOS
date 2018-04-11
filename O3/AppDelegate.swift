@@ -70,7 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        #if DEBUG
+        print("DEBUG BUILD")
+        #else
         Fabric.with([Crashlytics.self])
+        #endif
         self.registerDefaults()
         self.setupChannel()
         self.setupReachability()
