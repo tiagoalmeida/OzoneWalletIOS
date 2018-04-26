@@ -34,7 +34,7 @@ class PortfolioAssetCell: UITableViewCell {
         assetFiatPriceLabel.theme_textColor = O3Theme.lightTextColorPicker
         super.awakeFromNib()
     }
-
+    
     var data: PortfolioAssetCell.Data? {
         didSet {
             guard let assetName = data?.assetName,
@@ -49,7 +49,6 @@ class PortfolioAssetCell: UITableViewCell {
             let precision = referenceCurrency == .btc ? Precision.btc : Precision.usd
             let referencePrice = referenceCurrency == .btc ? latestPrice.averageBTC : latestPrice.average
             let referenceFirstPrice = referenceCurrency == .btc ? firstPrice.averageBTC : firstPrice.average
-
             assetAmountLabel.text = amount.string(8, removeTrailing: true)
             if referenceCurrency == .btc {
                 assetFiatAmountLabel.text = "₿"+latestPrice.averageBTC.string(Precision.btc, removeTrailing: true)

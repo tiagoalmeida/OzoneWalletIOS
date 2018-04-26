@@ -11,3 +11,5 @@ binary "https://raw.githubusercontent.com/Building42/Specs/master/Carthage/Fabri
 binary "https://raw.githubusercontent.com/Building42/Specs/master/Carthage/Crashlytics.json"
 github "jiecao-fm/SwiftTheme"
 github "teambition/WebBrowser"
+github "Marxon13/M13Checkbox"
+github "airbnb/lottie-ios" "master"

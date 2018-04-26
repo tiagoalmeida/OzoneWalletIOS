@@ -81,6 +81,7 @@ class AccountAssetTableViewController: UITableViewController {
     @objc func reloadAllData() {
         loadAccountState()
         loadClaimableGAS()
+        self.tableView.reloadData()
     }
 
     @objc func reloadNEP5TokensSection() {

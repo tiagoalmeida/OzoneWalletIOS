@@ -183,6 +183,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     }
 
     func performLogoutCleanup() {
+        O3Cache.clear()
         try? Keychain(service: "network.o3.neo.wallet").remove("ozonePrivateKey")
         Authenticated.account = nil
         UserDefaultsManager.o3WalletAddress = nil
@@ -201,7 +202,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 7 {
-            OzoneAlert.confirmDialog(message: "Logging out will remove the private key from your device. You will need to restore it from your backup to reenter the application.", cancelTitle: "Cancel", confirmTitle: "Log out", didCancel: {
+            OzoneAlert.confirmDialog(message: "Logging out will remove the private key from your device. Please make sure you already back it up or write it down. You will need to restore it from your backup to reenter the application.", cancelTitle: "Cancel", confirmTitle: "Log out", didCancel: {
 
             }, didConfirm: {
                 self.performLogoutCleanup()

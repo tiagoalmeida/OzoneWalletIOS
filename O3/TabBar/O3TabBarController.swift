@@ -78,6 +78,11 @@ class O3TabBarController: UITabBarController {
         present(modal, animated: true, completion: nil)
     }
 
+    func tokenSaleTapped() {
+        let modal = UIStoryboard(name: "TokenSale", bundle: nil).instantiateInitialViewController() as? UINavigationController
+        present(modal!, animated: true, completion: nil)
+    }
+
     @IBAction func tappedLeftBarButtonItem(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -98,6 +103,13 @@ class O3TabBarController: UITabBarController {
         }
         actionSheet.addAction(receive)
 
+        let tokenSale = UIAlertAction(title: "Token Sale", style: .default) { _ in
+            self.tokenSaleTapped()
+        }
+        if O3Cache.gasBalance() > 0 || O3Cache.neoBalance() > 0 {
+            actionSheet.addAction(tokenSale)
+        }
+
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
 
         }
@@ -109,6 +121,7 @@ class O3TabBarController: UITabBarController {
     @objc func tappedSettingsTab() {
        self.performSegue(withIdentifier: "segueToSettings", sender: nil)
     }
+    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let index = tabBar.items?.index(of: item) else { return }
         let tabTappedMessages = ["Portfolio", "Wallet", "Center Button", "News", "Settings" ]

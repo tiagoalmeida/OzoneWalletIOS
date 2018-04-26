@@ -27,9 +27,8 @@ class AssetSelectorTableViewController: UITableViewController {
     var selectedNEP5Tokens: [String: NEP5Token] = [:]
 
     var assets: [String: TransferableAsset]! = [:]
-    var transferableNEO: TransferableAsset! = TransferableAsset(assetID: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO", assetType: AssetType.nativeAsset, decimal: 0, balance: 0.0)
-
-    var transferableGAS: TransferableAsset! = TransferableAsset(assetID: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS", assetType: AssetType.nativeAsset, decimal: 0, balance: 0.0)
+    var transferableNEO: TransferableAsset! = TransferableAsset.NEO()
+    var transferableGAS: TransferableAsset! = TransferableAsset.GAS()
 
     func addThemedElements() {
         applyNavBarTheme()

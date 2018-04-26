@@ -19,7 +19,7 @@ class PreCreateWalletViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         setNeedsStatusBarAppearanceUpdate()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToWelcome" {
             Authenticated.account = Account()

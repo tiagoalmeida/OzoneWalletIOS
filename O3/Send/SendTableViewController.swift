@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import NeoSwift
-import Lottie
 import KeychainAccess
 import SwiftTheme
 import Crashlytics
