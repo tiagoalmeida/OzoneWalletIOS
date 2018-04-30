@@ -13,7 +13,7 @@ class NumberOnlyUITextField: NoActionUITextField, UITextFieldDelegate {
     override func awakeFromNib() {
         delegate = self
     }
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if range.location == 0 && string.hasPrefix("0") {
             return false

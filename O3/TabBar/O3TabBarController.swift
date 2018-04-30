@@ -93,24 +93,24 @@ class O3TabBarController: UITabBarController {
     @objc func menuButtonAction(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let send = UIAlertAction(title: "Send", style: .default) { _ in
+        let send = UIAlertAction(title: TabbarStrings.sendTitle, style: .default) { _ in
             self.sendTapped()
         }
         actionSheet.addAction(send)
 
-        let receive = UIAlertAction(title: "Receive", style: .default) { _ in
+        let receive = UIAlertAction(title: TabbarStrings.receiveTitle, style: .default) { _ in
             self.receivedTapped()
         }
         actionSheet.addAction(receive)
 
-        let tokenSale = UIAlertAction(title: "Token Sale", style: .default) { _ in
+        let tokenSale = UIAlertAction(title: TabbarStrings.tokenSalesTitle, style: .default) { _ in
             self.tokenSaleTapped()
         }
         if O3Cache.gasBalance() > 0 || O3Cache.neoBalance() > 0 {
             actionSheet.addAction(tokenSale)
         }
 
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let cancel = UIAlertAction(title: OzoneAlert.cancelNegativeConfirmString, style: .cancel) { _ in
 
         }
         actionSheet.addAction(cancel)
@@ -121,7 +121,7 @@ class O3TabBarController: UITabBarController {
     @objc func tappedSettingsTab() {
        self.performSegue(withIdentifier: "segueToSettings", sender: nil)
     }
-    
+
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let index = tabBar.items?.index(of: item) else { return }
         let tabTappedMessages = ["Portfolio", "Wallet", "Center Button", "News", "Settings" ]

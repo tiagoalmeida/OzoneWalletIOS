@@ -12,19 +12,19 @@ class TokenSaleTransactionInfoTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel?
     @IBOutlet var ValueLabel: UILabel?
-    
+
     struct TokenSaleTransactionItem {
         var title: String
         var value: String
     }
-    
+
     var info: TokenSaleTransactionItem! {
-        didSet{
+        didSet {
             titleLabel?.text = info.title
             ValueLabel?.text = info.value
         }
     }
-    
+
     override func awakeFromNib() {
         titleLabel?.theme_textColor = O3Theme.lightTextColorPicker
         ValueLabel?.theme_textColor = O3Theme.titleColorPicker

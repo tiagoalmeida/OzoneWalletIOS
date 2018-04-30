@@ -16,7 +16,7 @@ extension Double {
         let stringWithTrailing = formatter.string(from: self as NSNumber) ?? "\(self)"
         return stringWithTrailing
     }
-    
+
     func stringWithSign(_ precision: Int) -> String {
         let formatter = NumberFormatter()
         formatter.negativeFormat = "- #,##0.00"

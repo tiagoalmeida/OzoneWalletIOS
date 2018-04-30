@@ -1,0 +1,201 @@
+
+/* Class = "UILabel"; text = "KRW"; ObjectID = "0zz-po-y7r"; */
+"0zz-po-y7r.text" = "KRW";
+
+/* Class = "UILabel"; text = "Seed4.cityOfZion"; ObjectID = "2Kx-xS-T4t"; */
+"2Kx-xS-T4t.text" = "Seed4.cityOfZion";
+
+/* Class = "UILabel"; text = " ($)"; ObjectID = "4BW-YL-8bQ"; */
+"4BW-YL-8bQ.text" = " ($)";
+
+/* Class = "UIViewController"; title = "Private Key"; ObjectID = "4nu-8p-E2h"; */
+"4nu-8p-E2h.title" = "Private Key";
+
+/* Class = "UILabel"; text = "Network: MainNet"; ObjectID = "5bw-KM-Kj0"; */
+"5bw-KM-Kj0.text" = "Network: MainNet";
+
+/* Class = "UINavigationItem"; title = "Portfolio"; ObjectID = "5vG-EF-lAG"; */
+"5vG-EF-lAG.title" = "Portfolio";
+
+/* Class = "UILabel"; text = "Peers: 100"; ObjectID = "7fl-ph-FRW"; */
+"7fl-ph-FRW.text" = "Peers: 100";
+
+/* Class = "UILabel"; text = "Need Support?"; ObjectID = "7kd-fQ-mpp"; */
+"7kd-fQ-mpp.text" = "Need Support?";
+
+/* Class = "UILabel"; text = "CNY"; ObjectID = "8wt-f9-fQh"; */
+"8wt-f9-fQh.text" = "CNY";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "AQ8-bo-eK5"; */
+"AQ8-bo-eK5.text" = "Address";
+
+/* Class = "UIButton"; normalTitle = "All"; ObjectID = "AhI-vW-BaF"; */
+"AhI-vW-BaF.normalTitle" = "All";
+
+/* Class = "UILabel"; text = "AUD"; ObjectID = "B1I-Kb-0JI"; */
+"B1I-Kb-0JI.text" = "AUD";
+
+/* Class = "UIButton"; normalTitle = "3M"; ObjectID = "BNe-mO-iaG"; */
+"BNe-mO-iaG.normalTitle" = "3M";
+
+/* Class = "UILabel"; text = "Block: 124,124"; ObjectID = "BP8-br-A3Y"; */
+"BP8-br-A3Y.text" = "Block: 124,124";
+
+/* Class = "UILabel"; text = "Bittrex Wallet"; ObjectID = "DOJ-Y3-rfF"; */
+"DOJ-Y3-rfF.text" = "Bittrex Wallet";
+
+/* Class = "UIButton"; normalTitle = "Main Network"; ObjectID = "Dl2-y0-dHz"; */
+"Dl2-y0-dHz.normalTitle" = "Main Network";
+
+/* Class = "UILabel"; text = "O3 WALLET"; ObjectID = "EaX-BB-Mbg"; */
+"EaX-BB-Mbg.text" = "O3 WALLET";
+
+/* Class = "UILabel"; text = "Watch-only address"; ObjectID = "F6B-dL-e29"; */
+"F6B-dL-e29.text" = "Watch-only address";
+
+/* Class = "UILabel"; text = "dsa8vASvnm39nfdsgfdsgsf"; ObjectID = "GaY-1w-dVz"; */
+"GaY-1w-dVz.text" = "dsa8vASvnm39nfdsgfdsgsf";
+
+/* Class = "UILabel"; text = "RUB"; ObjectID = "GhF-ey-Wzd"; */
+"GhF-ey-Wzd.text" = "RUB";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "HsJ-5u-S5J"; */
+"HsJ-5u-S5J.normalTitle" = "Add";
+
+/* Class = "UILabel"; text = " (₽)"; ObjectID = "IUW-5m-DOI"; */
+"IUW-5m-DOI.text" = " (₽)";
+
+/* Class = "UILabel"; text = "Contact"; ObjectID = "JnV-5q-g4u"; */
+"JnV-5q-g4u.text" = "Contact";
+
+/* Class = "UILabel"; text = "USD"; ObjectID = "KDi-jq-URU"; */
+"KDi-jq-URU.text" = "USD";
+
+/* Class = "UIButton"; normalTitle = "1M"; ObjectID = "KPv-83-Pw0"; */
+"KPv-83-Pw0.normalTitle" = "1M";
+
+/* Class = "UIButton"; normalTitle = "6H"; ObjectID = "KsM-vb-KhS"; */
+"KsM-vb-KhS.normalTitle" = "6H";
+
+/* Class = "UIButton"; normalTitle = "1W"; ObjectID = "LKV-fj-4Lo"; */
+"LKV-fj-4Lo.normalTitle" = "1W";
+
+/* Class = "UILabel"; text = "EUR"; ObjectID = "Lph-y9-tQp"; */
+"Lph-y9-tQp.text" = "EUR";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "M8c-Sw-rMF"; */
+"M8c-Sw-rMF.text" = "0";
+
+/* Class = "UILabel"; text = "GAS"; ObjectID = "PYs-DW-p4o"; */
+"PYs-DW-p4o.text" = "GAS";
+
+/* Class = "UILabel"; text = "Log out"; ObjectID = "Pqq-De-3i3"; */
+"Pqq-De-3i3.text" = "Log out";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "QCb-HN-KWk"; */
+"QCb-HN-KWk.text" = "0";
+
+/* Class = "UILabel"; text = "CAD"; ObjectID = "QQI-9n-ieW"; */
+"QQI-9n-ieW.text" = "CAD";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "Rdm-P6-a6m"; */
+"Rdm-P6-a6m.title" = "Item";
+
+/* Class = "UILabel"; text = "(€)"; ObjectID = "Rj1-mK-nnp"; */
+"Rj1-mK-nnp.text" = "(€)";
+
+/* Class = "UILabel"; text = "(₩)"; ObjectID = "Sjz-Mk-j64"; */
+"Sjz-Mk-j64.text" = "(₩)";
+
+/* Class = "UIButton"; normalTitle = "1M"; ObjectID = "SmA-oL-BYF"; */
+"SmA-oL-BYF.normalTitle" = "1M";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "T9x-76-qgS"; */
+"T9x-76-qgS.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "Default Seed"; ObjectID = "Tg3-Tt-FPX"; */
+"Tg3-Tt-FPX.normalTitle" = "Default Seed";
+
+/* Class = "UILabel"; text = "Currency: USD"; ObjectID = "VAd-JC-Q5E"; */
+"VAd-JC-Q5E.text" = "Currency: USD";
+
+/* Class = "UILabel"; text = " (¥)"; ObjectID = "Vrq-F2-gEO"; */
+"Vrq-F2-gEO.text" = " (¥)";
+
+/* Class = "UILabel"; text = "O3 Wallet Version 0.1"; ObjectID = "We1-HS-Cs2"; */
+"We1-HS-Cs2.text" = "O3 Wallet Version 0.1";
+
+/* Class = "UIButton"; normalTitle = "6H"; ObjectID = "X6C-PK-jNe"; */
+"X6C-PK-jNe.normalTitle" = "6H";
+
+/* Class = "UILabel"; text = "GBP"; ObjectID = "XDR-Iv-PVz"; */
+"XDR-Iv-PVz.text" = "GBP";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "XTy-W3-5ZZ"; */
+"XTy-W3-5ZZ.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "3M"; ObjectID = "Xpt-cZ-bQa"; */
+"Xpt-cZ-bQa.normalTitle" = "3M";
+
+/* Class = "UILabel"; text = "Nickname"; ObjectID = "aav-6Z-GHP"; */
+"aav-6Z-GHP.text" = "Nickname";
+
+/* Class = "UILabel"; text = " (£)"; ObjectID = "bDt-8Z-00j"; */
+"bDt-8Z-00j.text" = " (£)";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "cZJ-C0-HQd"; */
+"cZJ-C0-HQd.title" = "Item";
+
+/* Class = "UIViewController"; title = "Watch Only Addresses"; ObjectID = "gsm-Iy-3wB"; */
+"gsm-Iy-3wB.title" = "Watch Only Addresses";
+
+/* Class = "UILabel"; text = " ($)"; ObjectID = "i2I-8Z-A6E"; */
+"i2I-8Z-A6E.text" = " ($)";
+
+/* Class = "UILabel"; text = "PrivateKey"; ObjectID = "jUd-Br-OcF"; */
+"jUd-Br-OcF.text" = "PrivateKey";
+
+/* Class = "UILabel"; text = "JPY"; ObjectID = "n09-au-T99"; */
+"n09-au-T99.text" = "JPY";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "n8p-hl-5CU"; */
+"n8p-hl-5CU.text" = "0";
+
+/* Class = "UILabel"; text = "Watch Only Addresses let you monitor your portfolio in an isolated environment. Although you won't be able to send from these addresses you will be able to check the balance"; ObjectID = "nEY-eP-iOI"; */
+"nEY-eP-iOI.text" = "Watch Only Addresses let you monitor your portfolio in an isolated environment. Although you won't be able to send from these addresses you will be able to check the balance";
+
+/* Class = "UILabel"; text = "(¥)"; ObjectID = "nfH-BX-FfY"; */
+"nfH-BX-FfY.text" = "(¥)";
+
+/* Class = "UILabel"; text = "My Private Key"; ObjectID = "o2f-oG-zrn"; */
+"o2f-oG-zrn.text" = "My Private Key";
+
+/* Class = "UIButton"; normalTitle = "24H"; ObjectID = "oQG-T9-FGk"; */
+"oQG-T9-FGk.normalTitle" = "24H";
+
+/* Class = "UIButton"; normalTitle = "Add Address"; ObjectID = "od2-zw-2au"; */
+"od2-zw-2au.normalTitle" = "Add Address";
+
+/* Class = "UIButton"; normalTitle = "24H"; ObjectID = "pLk-Y2-e6W"; */
+"pLk-Y2-e6W.normalTitle" = "24H";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "pir-ku-zcT"; */
+"pir-ku-zcT.title" = "Settings";
+
+/* Class = "UINavigationItem"; title = "NEO"; ObjectID = "qgB-Qp-qP6"; */
+"qgB-Qp-qP6.title" = "NEO";
+
+/* Class = "UILabel"; text = "Theme: Dark"; ObjectID = "ttz-PX-ZLR"; */
+"ttz-PX-ZLR.text" = "Theme: Dark";
+
+/* Class = "UILabel"; text = "($)"; ObjectID = "u8E-hV-M17"; */
+"u8E-hV-M17.text" = "($)";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "vaa-wU-j6b"; */
+"vaa-wU-j6b.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "ALL"; ObjectID = "zNK-oY-pqW"; */
+"zNK-oY-pqW.normalTitle" = "ALL";
+
+/* Class = "UIButton"; normalTitle = "1W"; ObjectID = "zy0-Ww-ldq"; */
+"zy0-Ww-ldq.normalTitle" = "1W";

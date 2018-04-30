@@ -88,6 +88,7 @@ class AssetDetailViewController: UIViewController, GraphPanDelegate, ScrollableG
 
     override func viewDidLoad() {
         addThemedElements()
+        setLocalizedStrings()
         super.viewDidLoad()
         setupGraphView()
         navigationItem.title = selectedAsset.uppercased()
@@ -200,5 +201,15 @@ class AssetDetailViewController: UIViewController, GraphPanDelegate, ScrollableG
             return 0
         }
         return priceHistory!.data.count
+    }
+
+    func setLocalizedStrings() {
+        fiveMinButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_6h", comment: "Interval Button on portfolio page, interval specifies SIX HOURS"), for: UIControlState())
+        fifteenMinButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_24h", comment: "Interval Button on portfolio page, interval specifies 24 HOURS"), for: UIControlState())
+        thirtyMinButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_1W", comment: "Interval Button on portfolio page, interval specifies 1 Week"), for: UIControlState())
+        sixtyMinButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_1M", comment: "Interval Button on portfolio page, interval specifies 1 Month"), for: UIControlState())
+        oneDayButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_3M", comment: "Interval Button on portfolio page, interval specifies 3 Months"), for: UIControlState())
+        allButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_ALL", comment: "Interval Button on portfolio page, interval specifies ALL of Time"), for: UIControlState())
+
     }
 }

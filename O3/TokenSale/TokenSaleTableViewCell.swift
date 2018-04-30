@@ -16,8 +16,10 @@ class TokenSaleTableViewCell: UITableViewCell {
     @IBOutlet weak var tokenSaleShortDescriptionLabel: UILabel!
     @IBOutlet weak var tokenSaleTimeLabel: UILabel!
     @IBOutlet weak var actionLabel: UILabel!
-    
+
+    @IBOutlet weak var liveStatusLabel: UILabel!
     override func awakeFromNib() {
+        liveStatusLabel.text = TokenSaleStrings.liveStatus
         tokenSaleNameLabel.theme_textColor = O3Theme.titleColorPicker
         tokenSaleTimeLabel.theme_textColor = O3Theme.lightTextColorPicker
         tokenSaleShortDescriptionLabel.theme_textColor = O3Theme.titleColorPicker
@@ -25,21 +27,21 @@ class TokenSaleTableViewCell: UITableViewCell {
         theme_backgroundColor = O3Theme.backgroundColorPicker
         super.awakeFromNib()
     }
-    
+
     struct TokenSaleData {
         var imageURL: String
         var name: String
         var shortDescription: String
         var time: Double
     }
-    
+
     var tokenSaleEndDate: Date?
     var countdownTimer: Timer?
     deinit {
         countdownTimer?.invalidate()
         countdownTimer = nil
     }
-    
+
     var tokenSaleData: TokenSaleData? {
         didSet {
             tokenSaleImageView.kf.setImage(with: URL(string: tokenSaleData?.imageURL ?? ""))
@@ -48,10 +50,10 @@ class TokenSaleTableViewCell: UITableViewCell {
             tokenSaleEndDate = Date(timeIntervalSince1970: Double((tokenSaleData?.time)!))
             countDownDate()
             countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDownDate), userInfo: nil, repeats: true)
-            
+
         }
     }
-    
+
     @objc func countDownDate() {
         let now = Date()
         let calendar = Calendar.current
@@ -61,15 +63,15 @@ class TokenSaleTableViewCell: UITableViewCell {
         formatter.calendar = calendar
         //if the sale ends then we invalidate the timer
         if tokenSaleEndDate! < now {
-            actionLabel.text = "Ended"
+            actionLabel.text = TokenSaleStrings.ended
             actionLabel.theme_textColor = O3Theme.negativeLossColorPicker
             countdownTimer?.invalidate()
             countdownTimer = nil
             return
         }
-        
+
         let string = formatter.string(from: now, to: tokenSaleEndDate!)!
-        tokenSaleTimeLabel.text = String(format:"Ends in %@", string)
+        tokenSaleTimeLabel.text = String(format: TokenSaleStrings.endsIn, string)
     }
-    
+
 }

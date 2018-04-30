@@ -16,17 +16,16 @@ enum AssetType: Int, Codable {
 }
 
 extension TransferableAsset {
-    
+
     var formattedBalanceString: String {
         let amountFormatter = NumberFormatter()
         amountFormatter.minimumFractionDigits = self.decimal
         amountFormatter.numberStyle = .decimal
         amountFormatter.locale = Locale.current
         amountFormatter.usesGroupingSeparator = true
-        return String(format:"%@", amountFormatter.string(from: NSDecimalNumber(decimal: self.balance))!)
+        return String(format: "%@", amountFormatter.string(from: NSDecimalNumber(decimal: self.balance))!)
     }
 }
-
 
 struct TransferableAsset: Codable {
     var assetID: String!
@@ -47,7 +46,7 @@ extension TransferableAsset {
             decimal: 0,
             balance: Decimal(O3Cache.neoBalance()))
     }
-    
+
     static func GAS() -> TransferableAsset {
         return TransferableAsset(
             assetID: NeoSwift.AssetId.gasAssetId.rawValue,

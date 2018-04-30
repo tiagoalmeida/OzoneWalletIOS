@@ -208,7 +208,7 @@ public class O3Client {
             case .success(let response):
                 let decoder = JSONDecoder()
                 guard let data = try? JSONSerialization.data(withJSONObject: response, options: .prettyPrinted),
-                    
+
                     let liveSales = try? decoder.decode(TokenSales.self, from: data) else {
                         return
                 }

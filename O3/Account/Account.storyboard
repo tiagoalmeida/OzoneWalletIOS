@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n0F-4W-k6A">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n0F-4W-k6A">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Avenir.ttc">
-            <string>Avenir-Book</string>
-            <string>Avenir-Heavy</string>
-            <string>Avenir-Medium</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Account-->
         <scene sceneID="0mf-aI-nXn">
@@ -127,7 +120,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Fuw-MK-zk1">
-                            <rect key="frame" x="0.0" y="284" width="375" height="80"/>
+                            <rect key="frame" x="0.0" y="240" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gm8-zz-UU2">
@@ -329,30 +322,6 @@
                                     <outlet property="titleLabel" destination="JW8-eN-YP0" id="vU2-C7-0T7"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" id="LVf-hs-3qA" customClass="HeaderTableViewCell" customModule="O3" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="240" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LVf-hs-3qA" id="4Ai-Ss-kwg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEP5 Tokens" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXB-By-v8C">
-                                            <rect key="frame" x="20" y="0.0" width="134.5" height="43.5"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
-                                            <color key="textColor" name="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="rXB-By-v8C" firstAttribute="top" secondItem="4Ai-Ss-kwg" secondAttribute="top" id="7Oi-u3-rCO"/>
-                                        <constraint firstItem="rXB-By-v8C" firstAttribute="leading" secondItem="4Ai-Ss-kwg" secondAttribute="leading" constant="20" id="HkH-FK-7cd"/>
-                                        <constraint firstAttribute="bottom" secondItem="rXB-By-v8C" secondAttribute="bottom" id="KWK-s0-bB3"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="titleLabel" destination="rXB-By-v8C" id="42L-PR-spj"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="sEU-p8-l0I" id="XT2-dc-lgJ"/>
@@ -361,6 +330,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Account" id="1c4-vr-c6c"/>
                     <connections>
+                        <outlet property="addNEP5Button" destination="gm8-zz-UU2" id="eV4-Em-rT3"/>
                         <segue destination="vIS-JT-BrR" kind="presentation" identifier="addTokens" id="ZC8-7Z-Vrl"/>
                     </connections>
                 </tableViewController>
@@ -577,6 +547,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addressInfoLabel" destination="3cP-Pl-93O" id="2Ke-u9-sa3"/>
                         <outlet property="addressLabel" destination="jc8-c0-b1X" id="KHk-FG-NPw"/>
                         <outlet property="qrCodeContainerView" destination="aMh-L3-48g" id="zlA-yi-ygl"/>
                         <outlet property="qrImageView" destination="bEW-sc-cCW" id="NBP-HR-Uon"/>
@@ -720,6 +691,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="addAddressButton" destination="b8i-Td-AwK" id="dJ3-PU-Xn3"/>
+                        <outlet property="addAddressDescriptionLabel" destination="3lo-SW-Rja" id="4Yg-gj-nl8"/>
                         <segue destination="plp-in-MTG" kind="show" identifier="segueToSendFromContacts" id="z6R-VB-6Ze"/>
                     </connections>
                 </tableViewController>

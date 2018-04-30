@@ -11,7 +11,7 @@ import Foundation
 public struct TokenSales: Codable {
     var live: [SaleInfo]
     var subscribeURL: String
-    
+
     enum CodingKeys: String, CodingKey {
         case live
         case subscribeURL
@@ -44,7 +44,7 @@ public struct TokenSales: Codable {
 
         //this field always false until we call check tokensale_status rpc
         var allowToParticipate: Bool = false
-        
+
         enum CodingKeys: String, CodingKey {
             case name
             case symbol
@@ -87,7 +87,7 @@ public struct TokenSales: Codable {
             let endTime: Double = try container.decode(Double.self, forKey: .endTime)
             let acceptingAssets: [AcceptingAsset] = try container.decode([AcceptingAsset].self, forKey: .acceptingAssets)
             let info: [InfoRow] = try container.decode([InfoRow].self, forKey: .info)
-            self.init(name: name,symbol: symbol, shortDescription: shortDescription, scriptHash: scriptHash, webURL: webURL, imageURL: imageURL,squareLogoURL: squareLogoURL, startTime: startTime, endTime: endTime, acceptingAssets: acceptingAssets, info: info)
+            self.init(name: name, symbol: symbol, shortDescription: shortDescription, scriptHash: scriptHash, webURL: webURL, imageURL: imageURL, squareLogoURL: squareLogoURL, startTime: startTime, endTime: endTime, acceptingAssets: acceptingAssets, info: info)
         }
 
         public struct AcceptingAsset: Codable {

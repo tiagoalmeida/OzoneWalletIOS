@@ -29,6 +29,10 @@ class WalletHeaderCollectionCell: UICollectionViewCell {
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var leftButton: UIButton!
 
+    let portfolioHeaderO3Wallet = NSLocalizedString("PORTFOLIO_O3_Wallet_Header", comment: "A header title on the portfolio screen, shows the displayed funds are located in the O3Wallet")
+    let portfolioHeaderCombinedHeader = NSLocalizedString("PORTFOLIO_Combined_Header", comment: "A header title on the portfolio screen, show the displayed funds are a combination of those store in O3 wallet and cold storage")
+    let portfolioHeaderColdStorageHeader = NSLocalizedString("PORTFOLIO_Cold_Storage_Header", comment: "A header title on the portfolio screen, show the displayed funds are inside cold storage")
+
     weak var delegate: WalletHeaderCellDelegate?
     var data: WalletHeaderCollectionCell.Data? {
         didSet {
@@ -41,15 +45,15 @@ class WalletHeaderCollectionCell: UICollectionViewCell {
             }
             switch portfolio {
             case .readOnly:
-                walletHeaderLabel.text = "O3 WALLET"
+                walletHeaderLabel.text = portfolioHeaderO3Wallet
                 leftButton.isHidden = true
                 rightButton.isHidden = false
             case .readOnlyAndWritable:
-                walletHeaderLabel.text = "COMBINED"
+                walletHeaderLabel.text = portfolioHeaderCombinedHeader
                 rightButton.isHidden = true
                 leftButton.isHidden = false
             default:
-                walletHeaderLabel.text = "COLD STORAGE"
+                walletHeaderLabel.text = portfolioHeaderColdStorageHeader
                 rightButton.isHidden = false
                 leftButton.isHidden = false
             }

@@ -89,7 +89,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRk-Jt-iyx">
                             <rect key="frame" x="179.5" y="0.0" width="59.5" height="44"/>
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                            <state key="normal" title="MAX">
+                            <state key="normal" title="100%">
                                 <color key="titleColor" name="lightThemePrimary"/>
                             </state>
                             <connections>

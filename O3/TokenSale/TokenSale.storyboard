@@ -143,6 +143,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="actionLabel" destination="RfO-Q3-eWN" id="01R-9w-A0W"/>
+                                    <outlet property="liveStatusLabel" destination="a6u-I7-peq" id="joN-lH-rR7"/>
                                     <outlet property="tokenSaleImageView" destination="37b-NX-ot5" id="vpQ-9f-5Nl"/>
                                     <outlet property="tokenSaleNameLabel" destination="h5V-N3-z7c" id="j32-z3-Umw"/>
                                     <outlet property="tokenSaleShortDescriptionLabel" destination="fsw-OV-rTu" id="64k-6J-fXK"/>
@@ -157,6 +158,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="whv-8Z-UX1"/>
                     <connections>
+                        <outlet property="getNotifiedDescriptionLabel" destination="Qft-K6-Wsi" id="1Jr-lN-VZ9"/>
+                        <outlet property="getNotifiedTitleLabel" destination="Xmh-ZK-0Ou" id="SKM-NQ-6ai"/>
                         <outlet property="subscribeButton" destination="7B6-LO-sn5" id="Hcy-dY-VBZ"/>
                         <segue destination="laS-zG-hbB" kind="show" identifier="segueToTokenSale" id="k26-YB-lKf"/>
                     </connections>
@@ -465,6 +468,7 @@
                                     <outlet property="neoContainerLabel" destination="gGi-4G-lFu" id="jAZ-wK-ETz"/>
                                     <outlet property="neoRateLabel" destination="T7c-BN-gQg" id="Rdb-bH-PrW"/>
                                     <outlet property="neoSelectorContainerView" destination="p2Y-nn-k9o" id="lsE-xu-p2E"/>
+                                    <outlet property="receiveTitleLabel" destination="Ley-B6-aNA" id="evc-Hz-6f2"/>
                                     <outlet property="tokenAmountLabel" destination="aqW-FB-1JF" id="6sl-Ov-U6r"/>
                                 </connections>
                             </tableViewCell>
@@ -740,8 +744,8 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Vcj-px-NiX">
                                 <rect key="frame" x="177" y="250" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending signed transaction to NEO blockchain..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-Tu-Qfj">
-                                <rect key="frame" x="44" y="340" width="287" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sending signed transaction to NEO blockchain..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-Tu-Qfj">
+                                <rect key="frame" x="44" y="339" width="287" height="18"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                                 <color key="textColor" name="grey"/>
                                 <nil key="highlightedColor"/>
@@ -760,6 +764,7 @@
                         <viewLayoutGuide key="safeArea" id="1cz-dq-LWF"/>
                     </view>
                     <connections>
+                        <outlet property="sendingProgressLabel" destination="dXN-Tu-Qfj" id="W42-hj-KNj"/>
                         <segue destination="IAl-PI-Y22" kind="show" identifier="success" id="hOH-jm-TDH"/>
                         <segue destination="ghj-3r-oTb" kind="show" identifier="error" id="pds-O4-I5u"/>
                     </connections>
@@ -924,9 +929,12 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="animationView" destination="RA3-ZO-r4J" id="LQz-kz-4aD"/>
+                        <outlet property="closeButton" destination="BW8-Cw-fcX" id="JB7-Cy-YSi"/>
+                        <outlet property="saveButton" destination="g6d-35-6bD" id="J5j-nn-REX"/>
                         <outlet property="statusLabel" destination="mb6-bm-mAf" id="AXD-v3-lHG"/>
                         <outlet property="tableView" destination="Pia-fE-HbE" id="sUD-lz-aaw"/>
                         <outlet property="transactionCardView" destination="Xqr-9M-Vh9" id="cRU-ME-QYm"/>
+                        <outlet property="transactionLabel" destination="U4D-LX-Rye" id="wgF-jk-PKA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="liE-Bn-kWK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -993,6 +1001,11 @@
                         <viewLayoutGuide key="safeArea" id="4qz-OF-N7u"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="closeButton" destination="16V-m5-OBn" id="Gk8-b3-rmF"/>
+                        <outlet property="contactButton" destination="vHp-km-pu4" id="p5U-Io-Fl0"/>
+                        <outlet property="errorDescriptionLabel" destination="4aX-eM-YSU" id="l4g-X8-GIy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTs-sk-tvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

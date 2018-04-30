@@ -9,10 +9,10 @@
 import UIKit
 
 class Money: NSObject {
-    
+
     var amount: Float = 0
     var locale: String!
-    
+
     init(amount: Float, locale: String) {
         self.amount = amount
         self.locale = locale
@@ -27,7 +27,7 @@ class Fiat: Money {
 
 extension Money {
     func formattedString() -> String {
-        
+
         //more than one billion
         if self.amount > 1000000000 {
             var n = Double(self.amount)
@@ -40,7 +40,7 @@ extension Money {
                 return formattedTipAmount + "B"
             }
         }
-        
+
         let amountNumber = NSNumber(value: self.amount)
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: self.locale)
@@ -50,7 +50,7 @@ extension Money {
         }
         return ""
     }
-    
+
     func formattedSignedString() -> String {
         let amountNumber = NSNumber(value: self.amount)
         let formatter = NumberFormatter()

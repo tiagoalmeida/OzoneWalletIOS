@@ -18,9 +18,9 @@ protocol ContributionCellDelegate: class {
 
 class ContributionTableViewCell: UITableViewCell {
     weak var delegate: ContributionCellDelegate?
-    
+
     var inputToolbar: AssetInputToolbar?
-    
+
     @IBOutlet weak var neoSelectorContainerView: UIView!
     @IBOutlet weak var gasSelectorContainerView: UIView!
     @IBOutlet weak var neoContainerLabel: UILabel!
@@ -28,25 +28,27 @@ class ContributionTableViewCell: UITableViewCell {
     @IBOutlet weak var neoRateLabel: UILabel!
     @IBOutlet weak var gasRateLabel: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var receiveTitleLabel: UILabel!
+
     @IBOutlet weak var amountTextField: UITextField! {
-        didSet{
+        didSet {
             inputToolbar = AssetInputToolbar()
             inputToolbar?.delegate = self
             amountTextField.inputAccessoryView = inputToolbar?.loadNib()
             amountTextField.inputAccessoryView?.theme_backgroundColor = O3Theme.backgroundColorPicker
-            
+
             var neo = TransferableAsset.NEO()
             neo.balance = Decimal(O3Cache.neoBalance())
             inputToolbar?.asset = neo
         }
     }
-    
+
     @IBOutlet weak var tokenAmountLabel: UILabel!
     @IBOutlet weak var acceptingAssetHint: UILabel!
-    
+
     var neoRateInfo: TokenSales.SaleInfo.AcceptingAsset?
     var gasRateInfo: TokenSales.SaleInfo.AcceptingAsset?
-    
+
     var tokenName: String! {
         didSet {
             neoRateLabel.text = "1 NEO = " + (neoRateInfo?.basicRate.string(0, removeTrailing: true) ?? "") + " " + tokenName
@@ -58,7 +60,7 @@ class ContributionTableViewCell: UITableViewCell {
             acceptingAssetHint.text = selectedAsset.symbol.uppercased()
         }
     }
-    
+
     func setThemedElements() {
         contentView.theme_backgroundColor = O3Theme.backgroundColorPicker
         theme_backgroundColor = O3Theme.backgroundColorPicker
@@ -66,17 +68,17 @@ class ContributionTableViewCell: UITableViewCell {
         amountTextField.theme_textColor = O3Theme.textFieldTextColorPicker
         amountTextField.theme_keyboardAppearance = O3Theme.keyboardPicker
     }
-    
+
     @IBAction func contributionAmountChanged(_ sender: Any) {
         //simple validation with number only field
         let amountString = amountTextField.text?.trim() ?? ""
         if amountString == "" {
-            tokenAmountLabel.text = String(format:"0 %@", tokenName)
+            tokenAmountLabel.text = String(format: "0 %@", tokenName)
             delegate?.setContributionAmount(amountString: amountString)
             delegate?.setTokenAmount(totalTokens: 0)
             return
         }
-        
+
         //formatter to format string to a proper numbers
         let amountFormatter = NumberFormatter()
         amountFormatter.minimumFractionDigits = 0
@@ -84,27 +86,27 @@ class ContributionTableViewCell: UITableViewCell {
         amountFormatter.numberStyle = .decimal
         amountFormatter.locale = Locale.current
         amountFormatter.usesGroupingSeparator = true
-        
+
         let amount = amountFormatter.number(from: (amountString.trim()))
-        
+
         if amount == nil {
             return
         }
-        
+
         //calculate the rate
         let rate = selectedAsset.symbol.lowercased() == "neo" ? neoRateInfo : gasRateInfo
         let totalTokens = amount!.doubleValue * (rate?.basicRate ?? 0)
-        
-        tokenAmountLabel.text = String(format:"%@ %@", amountFormatter.string(from: NSNumber(value:totalTokens))!, tokenName)
+
+        tokenAmountLabel.text = String(format: "%@ %@", amountFormatter.string(from: NSNumber(value: totalTokens))!, tokenName)
         delegate?.setContributionAmount(amountString: amountString)
         delegate?.setTokenAmount(totalTokens: totalTokens)
     }
-    
+
     //When switch between NEO/GAS
     @objc func setContributionAsset(_ sender: UITapGestureRecognizer) {
         DispatchQueue.main.async {
             self.amountTextField.resignFirstResponder()
-            
+
             //reset the field when switch the contributing asset
             self.amountTextField.text = ""
             if sender.view == self.neoSelectorContainerView {
@@ -116,39 +118,40 @@ class ContributionTableViewCell: UITableViewCell {
                 self.neoSelectorContainerView.borderColor = Theme.light.primaryColor
                 self.neoContainerLabel.textColor = Theme.light.primaryColor
                 self.neoRateLabel.textColor = Theme.light.primaryColor
-                
+
                 self.gasSelectorContainerView.borderColor = Theme.light.lightTextColor
                 self.gasContainerLabel.textColor = Theme.light.lightTextColor
                 self.gasRateLabel.textColor = Theme.light.lightTextColor
-                
+
                 self.delegate?.setContributionAsset(asset: TransferableAsset.NEO())
                 self.selectedAsset = TransferableAsset.NEO()
                 self.contributionAmountChanged(sender)
             } else {
-                
+
                 var gas = TransferableAsset.GAS()
                 gas.balance = Decimal(O3Cache.gasBalance())
                 self.inputToolbar?.asset = gas
-                
+
                 self.amountTextField.keyboardType = .decimalPad
-                
+
                 self.gasSelectorContainerView.borderColor = Theme.light.primaryColor
                 self.gasContainerLabel.textColor = Theme.light.primaryColor
                 self.gasRateLabel.textColor = Theme.light.primaryColor
-                
+
                 self.neoSelectorContainerView.borderColor = Theme.light.lightTextColor
                 self.neoContainerLabel.textColor = Theme.light.lightTextColor
                 self.neoRateLabel.textColor = Theme.light.lightTextColor
-                
+
                 self.delegate?.setContributionAsset(asset: TransferableAsset.GAS())
                 self.selectedAsset = TransferableAsset.GAS()
                 self.contributionAmountChanged(sender)
             }
         }
     }
-    
+
     override func awakeFromNib() {
         setThemedElements()
+        receiveTitleLabel.text = TokenSaleStrings.youWillReceiveTitle
         neoSelectorContainerView.isUserInteractionEnabled = true
         gasSelectorContainerView.isUserInteractionEnabled = true
         neoSelectorContainerView.addGestureRecognizer(
@@ -159,7 +162,7 @@ class ContributionTableViewCell: UITableViewCell {
     }
 }
 extension ContributionTableViewCell: AssetInputToolbarDelegate {
-    
+
     func maxAmountTapped(value: Decimal) {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
@@ -170,17 +173,17 @@ extension ContributionTableViewCell: AssetInputToolbarDelegate {
         amountTextField.text = balanceString
         contributionAmountChanged(amountTextField)
     }
-    
+
     func percentAmountTapped(value: Decimal) {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = selectedAsset.decimal
         formatter.numberStyle = .decimal
         formatter.usesGroupingSeparator = false
-        
+
         let balanceString = formatter.string(for: value)
         amountTextField.text = balanceString
         contributionAmountChanged(amountTextField)
     }
-    
+
 }

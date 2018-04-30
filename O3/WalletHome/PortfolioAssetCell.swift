@@ -34,7 +34,7 @@ class PortfolioAssetCell: UITableViewCell {
         assetFiatPriceLabel.theme_textColor = O3Theme.lightTextColorPicker
         super.awakeFromNib()
     }
-    
+
     var data: PortfolioAssetCell.Data? {
         didSet {
             guard let assetName = data?.assetName,

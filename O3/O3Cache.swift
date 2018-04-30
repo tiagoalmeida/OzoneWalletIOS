@@ -10,14 +10,14 @@ import Foundation
 import Cache
 
 class O3Cache {
-    
+
     static func clear() {
         if let storage = try? Storage(diskConfig: DiskConfig(name: "O3")) {
             try? storage.removeObject(forKey: "gasBalance")
             try? storage.removeObject(forKey: "neoBalance")
         }
     }
-    
+
     static func setNEOForSession(neoBalance: Int) {
         if let storage = try? Storage(diskConfig: DiskConfig(name: "O3")) {
             try? storage.setObject(neoBalance, forKey: "neoBalance")

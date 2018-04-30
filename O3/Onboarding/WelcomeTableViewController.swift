@@ -16,9 +16,13 @@ import SwiftTheme
 class WelcomeTableViewController: UITableViewController {
     @IBOutlet weak var privateKeyQR: UIImageView!
     @IBOutlet weak var privateKeyLabel: UILabel!
+    @IBOutlet weak var pleaseBackupWarning: UILabel!
+    @IBOutlet weak var privateKeyTitle: UILabel!
+    @IBOutlet weak var startButton: ShadowedButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setLocalizedStrings()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 1))
         self.privateKeyQR.image = UIImage(qrData: Authenticated.account?.wif ?? "", width: self.privateKeyQR.frame.width, height: self.privateKeyQR.frame.height)
@@ -33,7 +37,7 @@ class WelcomeTableViewController: UITableViewController {
                     .set((Authenticated.account?.wif)!, key: "ozonePrivateKey")
             } catch _ {
                 DispatchQueue.main.async {
-                    OzoneAlert.alertDialog(message: "Something went wrong, make sure your passcode is set", dismissTitle: "OK") {
+                    OzoneAlert.alertDialog(message: OnboardingStrings.keychainFailureError, dismissTitle: OzoneAlert.okPositiveConfirmString) {
                         Authenticated.account = nil
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -42,18 +46,14 @@ class WelcomeTableViewController: UITableViewController {
         }
     }
 
-    deinit {
-        print ("hello")
-    }
-
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
     @IBAction func startTapped(_ sender: Any) {
-        OzoneAlert.confirmDialog(message: "I confirm that I have read the warning text and have backed up my private key in another secure location.", cancelTitle: "Not yet.", confirmTitle: "Confirm", didCancel: {}) {
+        OzoneAlert.confirmDialog(message: OnboardingStrings.haveSavedPrivateKeyConfirmation, cancelTitle: OzoneAlert.notYetNegativeConfirmString, confirmTitle: OzoneAlert.confirmPositiveConfirmString, didCancel: {}) {
             DispatchQueue.main.async {
-                HUD.show(.labeledProgress(title: nil, subtitle: "Selecting best node..."))
+                HUD.show(.labeledProgress(title: nil, subtitle: OnboardingStrings.selectingBestNodeTitle))
                 DispatchQueue.global(qos: .background).async {
                     let bestNode = NEONetworkMonitor.autoSelectBestNode()
                     DispatchQueue.main.async {
@@ -68,5 +68,12 @@ class WelcomeTableViewController: UITableViewController {
                 }
             }
         }
+    }
+
+    func setLocalizedStrings() {
+        pleaseBackupWarning.text = OnboardingStrings.pleaseBackupWarning
+        privateKeyTitle.text = OnboardingStrings.privateKeyTitle
+        self.title = OnboardingStrings.welcomeTitle
+        startButton.setTitle(OnboardingStrings.startActionTitle, for: UIControlState())
     }
 }

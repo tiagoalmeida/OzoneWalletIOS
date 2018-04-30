@@ -15,6 +15,7 @@ import Crashlytics
 import StoreKit
 
 class AccountAssetTableViewController: UITableViewController {
+    @IBOutlet weak var addNEP5Button: UIButton!
 
     private enum sections: Int {
         case unclaimedGAS = 0
@@ -60,6 +61,7 @@ class AccountAssetTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setLocalizedStrings()
         addObservers()
         self.view.theme_backgroundColor = O3Theme.backgroundColorPicker
         self.tableView.theme_backgroundColor = O3Theme.backgroundColorPicker
@@ -109,7 +111,7 @@ class AccountAssetTableViewController: UITableViewController {
                 HUD.hide()
 
                 DispatchQueue.main.async {
-                    OzoneAlert.alertDialog(message: "Your claim has succeeded, it may take a few minutes to be reflected in your transaction history. You can claim again after 5 minutes", dismissTitle: "Got it") {
+                    OzoneAlert.alertDialog(message: AccountStrings.successfulClaimPrompt, dismissTitle: OzoneAlert.okPositiveConfirmString) {
                         UserDefaultsManager.numClaims += 1
                         if UserDefaultsManager.numClaims == 1 || UserDefaultsManager.numClaims % 10 == 0 {
                             SKStoreReviewController.requestReview()
@@ -150,7 +152,7 @@ class AccountAssetTableViewController: UITableViewController {
         //disable the button after tapped
         enableClaimButton(enable: false)
 
-        HUD.show(.labeledProgress(title: "Claiming GAS", subtitle: "This might take a little while..."))
+        HUD.show(.labeledProgress(title: AccountStrings.claimingInProgressTitle, subtitle: AccountStrings.claimingInProgressSubtitle))
 
         //select best node
         if let bestNode = NEONetworkMonitor.autoSelectBestNode() {
@@ -419,6 +421,11 @@ class AccountAssetTableViewController: UITableViewController {
             segue.destination.modalPresentationStyle = .custom
             segue.destination.transitioningDelegate = self.halfModalTransitioningDelegate
         }
+    }
+
+    func setLocalizedStrings() {
+        self.navigationController?.navigationBar.topItem?.title = AccountStrings.accountTitle
+        addNEP5Button.setTitle(AccountStrings.addNEP5Token, for: UIControlState())
     }
 }
 

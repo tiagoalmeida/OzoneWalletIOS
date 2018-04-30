@@ -16,6 +16,7 @@ class LoginToCurrentWalletViewController: UIViewController {
 
     @IBOutlet var loginButton: UIButton?
     @IBOutlet var mainImageView: UIImageView?
+    @IBOutlet weak var cancelButton: UIButton!
 
     func login() {
         let keychain = Keychain(service: "network.o3.neo.wallet")
@@ -23,7 +24,7 @@ class LoginToCurrentWalletViewController: UIViewController {
             do {
                 let key = try keychain
                     .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: .userPresence)
-                    .authenticationPrompt("Log in to your existing wallet stored on this device")
+                    .authenticationPrompt(OnboardingStrings.authenticationPrompt)
                     .get("ozonePrivateKey")
                 if key == nil {
                     return
@@ -55,15 +56,7 @@ class LoginToCurrentWalletViewController: UIViewController {
     override func viewDidLoad() {
         view.theme_backgroundColor = O3Theme.backgroundColorPicker
         super.viewDidLoad()
-        if #available(iOS 8.0, *) {
-            var error: NSError?
-            let hasTouchID = LAContext().canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error)
-            //if touchID is unavailable.
-            //change the caption of the button here.
-            if hasTouchID == false {
-                loginButton?.setTitle("Log in using passcode", for: .normal)
-            }
-        }
+        setLocalizedStrings()
         login()
     }
 
@@ -74,5 +67,20 @@ class LoginToCurrentWalletViewController: UIViewController {
     @IBAction func didTapCancel(_ sender: Any) {
         SwiftTheme.ThemeManager.setTheme(index: 2)
         UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Onboarding", bundle: nil).instantiateInitialViewController()
+    }
+
+    func setLocalizedStrings() {
+        cancelButton.setTitle(OzoneAlert.cancelNegativeConfirmString, for: UIControlState())
+        if #available(iOS 8.0, *) {
+            var error: NSError?
+            let hasTouchID = LAContext().canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error)
+            //if touchID is unavailable.
+            //change the caption of the button here.
+            if hasTouchID == false {
+                loginButton?.setTitle(OnboardingStrings.loginWithExistingPasscode, for: .normal)
+            } else {
+                loginButton?.setTitle(OnboardingStrings.loginWithExistingBiometric, for: .normal)
+            }
+        }
     }
 }

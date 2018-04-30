@@ -15,7 +15,7 @@ extension UIView {
         let shakeDuration = 0.05
         let shakeTransform = 6.0 as CGFloat
         var direction = 1.0 as CGFloat
-        
+
         for i in 0...maxShakes {
             UIView.animate(
                 withDuration: shakeDuration,
@@ -23,18 +23,18 @@ extension UIView {
                 options: .curveEaseIn,
                 animations: {
                     if i >= maxShakes {
-                        self.transform = CGAffineTransform.identity;
+                        self.transform = CGAffineTransform.identity
                     } else {
                         self.transform = CGAffineTransform(translationX: shakeTransform * direction, y: 0)
                     }
             },
                 completion: nil
             )
-            
-            direction *= -1;
+
+            direction *= -1
         }
     }
-    
+
     func embed(_ embeddedView: UIView) {
         self.addSubview(embeddedView)
         embeddedView.translatesAutoresizingMaskIntoConstraints = false

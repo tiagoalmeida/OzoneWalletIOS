@@ -39,23 +39,10 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var supportLabel: UILabel!
 
-    var netString = UserDefaultsManager.network == .test ? "Network: Test Network": "Network: Main Network" {
-        didSet {
-            self.setNetLabel()
-        }
-    }
-
-    var themeString = UserDefaultsManager.themeIndex == 0 ? "Theme: Classic": "Theme: Dark" {
+    var themeString = UserDefaultsManager.themeIndex == 0 ? SettingsStrings.classicTheme: SettingsStrings.darkTheme {
         didSet {
             self.setThemeLabel()
         }
-    }
-
-    func setNetLabel() {
-        guard let label = networkCell.viewWithTag(1) as? UILabel else {
-            fatalError("Undefined behavior with table view")
-        }
-        DispatchQueue.main.async { label.text = self.netString }
     }
 
     func setThemeLabel() {
@@ -82,6 +69,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
 
     override func viewDidLoad() {
         setThemedElements()
+        setLocalizedStrings()
         applyNavBarTheme()
         super.viewDidLoad()
         let rightBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "angle-up"), style: .plain, target: self, action: #selector(SettingsMenuTableViewController.maximize(_:)))
@@ -90,17 +78,16 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
         contactView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(sendMail)))
         supportView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openSupportForum)))
         themeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeTheme)))
-        setNetLabel()
         setThemeLabel()
 
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            self.versionLabel.text = String(format: "Version: %@", version)
+            self.versionLabel.text = String(format: SettingsStrings.versionLabel, version)
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        currencyLabel.text = "Currency: " + UserDefaultsManager.referenceFiatCurrency.rawValue.uppercased()
+        currencyLabel.text = String(format: SettingsStrings.currencyTitle, UserDefaultsManager.referenceFiatCurrency.rawValue.uppercased())
     }
 
     @objc func maximize(_ sender: Any) {
@@ -110,19 +97,19 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     @objc func changeTheme() {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let lightThemeAction = UIAlertAction(title: "Classic Theme", style: .default) { _ in
+        let lightThemeAction = UIAlertAction(title: SettingsStrings.classicTheme, style: .default) { _ in
             UserDefaultsManager.themeIndex = 0
             ThemeManager.setTheme(index: 0)
-            self.themeString = "Theme: Classic"
+            self.themeString = SettingsStrings.classicTheme
         }
 
-        let darkThemeAction = UIAlertAction(title: "Dark Theme", style: .default) { _ in
+        let darkThemeAction = UIAlertAction(title: SettingsStrings.darkTheme, style: .default) { _ in
             UserDefaultsManager.themeIndex = 1
             ThemeManager.setTheme(index: 1)
-            self.themeString = "Theme: Dark"
+            self.themeString = SettingsStrings.darkTheme
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: OzoneAlert.cancelNegativeConfirmString, style: .cancel) { _ in
         }
 
         optionMenu.addAction(lightThemeAction)
@@ -166,7 +153,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
         DispatchQueue.global().async {
             do {
                 let password = try keychain
-                    .authenticationPrompt("Authenticate to view your private key")
+                    .authenticationPrompt(SettingsStrings.authenticate)
                     .get("ozonePrivateKey")
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "segueToPrivateKey", sender: nil)
@@ -202,7 +189,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 7 {
-            OzoneAlert.confirmDialog(message: "Logging out will remove the private key from your device. Please make sure you already back it up or write it down. You will need to restore it from your backup to reenter the application.", cancelTitle: "Cancel", confirmTitle: "Log out", didCancel: {
+            OzoneAlert.confirmDialog(message: SettingsStrings.logoutWarning, cancelTitle: OzoneAlert.cancelNegativeConfirmString, confirmTitle: SettingsStrings.logout, didCancel: {
 
             }, didConfirm: {
                 self.performLogoutCleanup()
@@ -212,5 +199,19 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
             })
 
         }
+    }
+
+    func setLocalizedStrings() {
+        self.title = SettingsStrings.settingsTitle
+        privateKeyLabel.text = SettingsStrings.privateKeyTitle
+        watchOnlyLabel.text = SettingsStrings.watchOnlyTitle
+        netLabel.text = SettingsStrings.networkTitle
+        themeLabel.text = SettingsStrings.themeTitle
+        currencyLabel.text = SettingsStrings.currencyTitle + ": " + UserDefaultsManager.referenceFiatCurrency.rawValue.uppercased()
+        contactLabel.text = SettingsStrings.contactTitle
+        logoutLabel.text = SettingsStrings.logout
+        supportLabel.text = SettingsStrings.supportTitle
+        versionLabel.text = SettingsStrings.versionLabel
+
     }
 }
