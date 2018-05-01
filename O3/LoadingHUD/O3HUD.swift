@@ -46,7 +46,9 @@ class O3HUD: UIViewController {
     static func stop(completed: @escaping() -> Void) {
         DispatchQueue.main.async {
             sharedInstance.dismiss(animated: false) {
+                DispatchQueue.main.async {
                 completed()
+                }
             }
         }
     }

@@ -302,13 +302,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func setLocalizedStrings() {
-        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("PORTFOLIO_Portfolio_Title", comment: "Title of the portfolio page")
-        fiveMinButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_6h", comment: "Interval Button on portfolio page, interval specifies SIX HOURS"), for: UIControlState())
-        fifteenMinButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_24h", comment: "Interval Button on portfolio page, interval specifies 24 HOURS"), for: UIControlState())
-        thirtyMinButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_1W", comment: "Interval Button on portfolio page, interval specifies 1 Week"), for: UIControlState())
-        sixtyMinButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_1M", comment: "Interval Button on portfolio page, interval specifies 1 Month"), for: UIControlState())
-        oneDayButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_3M", comment: "Interval Button on portfolio page, interval specifies 3 Months"), for: UIControlState())
-        allButton.setTitle(NSLocalizedString("PORTFOLIO_Interval_Button_ALL", comment: "Interval Button on portfolio page, interval specifies ALL of Time"), for: UIControlState())
+        self.navigationController?.navigationBar.topItem?.title = PortfolioStrings.portfolio
+        fiveMinButton.setTitle(PortfolioStrings.sixHourInterval, for: UIControlState())
+        fifteenMinButton.setTitle(PortfolioStrings.oneDayInterval, for: UIControlState())
+        thirtyMinButton.setTitle(PortfolioStrings.oneWeekInterval, for: UIControlState())
+        sixtyMinButton.setTitle(PortfolioStrings.oneMonthInterval, for: UIControlState())
+        oneDayButton.setTitle(PortfolioStrings.oneMonthInterval, for: UIControlState())
+        allButton.setTitle(PortfolioStrings.allInterval, for: UIControlState())
     }
 }
 

@@ -43,8 +43,9 @@ class LoginToCurrentWalletViewController: UIViewController {
                             UserDefaultsManager.useDefaultSeed = false
                         }
                         O3HUD.stop {
-                            SwiftTheme.ThemeManager.setTheme(index: UserDefaultsManager.themeIndex)
-                            DispatchQueue.main.async { self.performSegue(withIdentifier: "loggedin", sender: nil) }
+                            DispatchQueue.main.async {
+                                SwiftTheme.ThemeManager.setTheme(index: UserDefaultsManager.themeIndex)
+                                self.performSegue(withIdentifier: "loggedin", sender: nil) }
                         }
                     }
                 }
