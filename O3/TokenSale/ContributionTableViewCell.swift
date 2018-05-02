@@ -30,6 +30,8 @@ class ContributionTableViewCell: UITableViewCell {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var receiveTitleLabel: UILabel!
 
+    @IBOutlet var neoSelectorWidthContraint: NSLayoutConstraint!
+    
     @IBOutlet weak var amountTextField: UITextField! {
         didSet {
             inputToolbar = AssetInputToolbar()
