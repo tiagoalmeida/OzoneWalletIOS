@@ -64,8 +64,8 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Non Fungible Tokens are Under Construction" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJq-O7-UxR">
                                 <rect key="frame" x="16" y="400" width="288" height="46.5"/>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                <color key="textColor" name="lightThemePrimary"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -82,6 +82,7 @@
                     </view>
                     <connections>
                         <outlet property="animationView" destination="xY6-qr-1wr" id="Tze-nX-asb"/>
+                        <outlet property="nftConstructionLabel" destination="tJq-O7-UxR" id="K39-QG-hrK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pnt-OQ-qO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
