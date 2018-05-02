@@ -207,7 +207,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
         watchOnlyLabel.text = SettingsStrings.watchOnlyTitle
         netLabel.text = SettingsStrings.networkTitle
         themeLabel.text = SettingsStrings.themeTitle
-        currencyLabel.text = SettingsStrings.currencyTitle + ": " + UserDefaultsManager.referenceFiatCurrency.rawValue.uppercased()
+        currencyLabel.text = SettingsStrings.currencyTitle + UserDefaultsManager.referenceFiatCurrency.rawValue.uppercased()
         contactLabel.text = SettingsStrings.contactTitle
         logoutLabel.text = SettingsStrings.logout
         supportLabel.text = SettingsStrings.supportTitle

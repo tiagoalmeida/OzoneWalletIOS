@@ -63,6 +63,7 @@
 		35B426D120984C4800957211 /* TokenGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B426D020984C4800957211 /* TokenGridCell.swift */; };
 		35B426D820998B6300957211 /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B426D720998B6300957211 /* UISearchBar.swift */; };
 		35B426DA209990BA00957211 /* NEP5TokenSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B426D9209990BA00957211 /* NEP5TokenSelectorTableViewCell.swift */; };
+		35B426DC2099A03300957211 /* panda1.json in Resources */ = {isa = PBXBuildFile; fileRef = 35B426DB2099A03300957211 /* panda1.json */; };
 		35DBABCA2098028D009BE767 /* PortfolioStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DBABC92098028D009BE767 /* PortfolioStrings.swift */; };
 		35E5F60C20283AA600D65BEA /* AddressBookEntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5F60B20283AA600D65BEA /* AddressBookEntryTableViewCell.swift */; };
 		35E5F60E20285CB800D65BEA /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5F60D20285CB800D65BEA /* Int.swift */; };
@@ -263,6 +264,7 @@
 		35B426D020984C4800957211 /* TokenGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenGridCell.swift; sourceTree = "<group>"; };
 		35B426D720998B6300957211 /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		35B426D9209990BA00957211 /* NEP5TokenSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NEP5TokenSelectorTableViewCell.swift; path = ../../../../../Downloads/NEP5TokenSelectorTableViewCell.swift; sourceTree = "<group>"; };
+		35B426DB2099A03300957211 /* panda1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = panda1.json; path = ../../../../../Downloads/panda1.json; sourceTree = "<group>"; };
 		35DBABC92098028D009BE767 /* PortfolioStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioStrings.swift; sourceTree = "<group>"; };
 		35E5F60B20283AA600D65BEA /* AddressBookEntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBookEntryTableViewCell.swift; sourceTree = "<group>"; };
 		35E5F60D20285CB800D65BEA /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 		35B426BD2098240B00957211 /* TokenSelection */ = {
 			isa = PBXGroup;
 			children = (
+				35B426DB2099A03300957211 /* panda1.json */,
 				35B426D9209990BA00957211 /* NEP5TokenSelectorTableViewCell.swift */,
 				35B426CE20983E6700957211 /* empty_status.json */,
 				35B426BE2098242600957211 /* TokenSelection.storyboard */,
@@ -895,6 +898,7 @@
 				75B6E5C21F6D4E8A00F53CA8 /* QR.storyboard in Resources */,
 				7520068E1F7FC56400D19B5F /* SendAssets.xcassets in Resources */,
 				35B426BC20980CC400957211 /* Main.storyboard in Resources */,
+				35B426DC2099A03300957211 /* panda1.json in Resources */,
 				6ED6001E1F76559E006760E6 /* LogoAssets.xcassets in Resources */,
 				75BEB2641F89FB8A00DC20E9 /* O3HUD.storyboard in Resources */,
 				6ED6001C1F76506B006760E6 /* SharedAssets.xcassets in Resources */,

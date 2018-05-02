@@ -81,7 +81,8 @@
 /* A warning given to the user to make sure that they have backed up their private key in a secure location. Also states that deletibg the passcode will delete the key from the device */
 "ONBOARDING_Please_Backup Warning" = "Please backup this private key in another secure location.\n\nIt is highly reccomended that you have a passcode set on your iPhone. Removing the passcode from your device will delete your private key from the keychain.";
 
-/* A title presented over the top of the private key, specifies WIF format. e.g. Your Private Key (WIF) */
+/* A title presented over the
+ of the private key, specifies WIF format. e.g. Your Private Key (WIF) */
 "ONBOARDING_Private_Key_title" = "Your Private Key (WIF)";
 
 /* Displayed when the app is waiting to connect to the network. It is finding the best NEO node to connect to */
@@ -181,7 +182,7 @@
 "SEND_Invalid_Amount_Error" = "Invalid Amount Entered";
 
 /* Error To display when the user is trying to send without enough balance */
-"SEND_Not_Enough_Balance_Error" = "You don't have enough %@. Your balance is %.8f";
+"SEND_Not_Enough_Balance_Error" = "You don't have enough %@. Your balance is %@";
 
 /* Error to display when the user is trying to send a token but does not have enough gas to make the invoke occur. It requires 0.00000001 GAS in the wallet in order to send a token */
 "SEND_Not_Enough_Gas_Token_Transfer" = "When Sending a NEP5 Token you must have at least 0.00000001 GAS in your wallet. This GAS is not used, but still required to be in your wallet.";
@@ -226,7 +227,7 @@
 "SETTINGS_Contact" = "Contact";
 
 /* Title for Currency Menu in Settings */
-"SETTINGS_Currency_Title" = "Currency: %@";
+"SETTINGS_Currency_Title" = "Currency";
 
 /* Error To display when user tries to add an invalid address */
 "SETTINGS_Invalid_Address" = "Invalid Address";

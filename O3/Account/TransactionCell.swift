@@ -71,9 +71,9 @@ class TransactionCell: UITableViewCell {
                 amountLabel.text = data?.amount.stringWithSign((data?.precision)! * -1)
             }
             assetLabel.text = data?.asset.uppercased()
-            transactionTimeLabel?.text = AccountStrings.blockPrefix + String(data?.date ?? 0)
-            toAddressLabel.text = AccountStrings.toPrefix + getAddressAlias(address: data?.toAddress ?? "")
-            fromAddressLabel.text = AccountStrings.fromPrefix + getAddressAlias(address: data?.fromAddress ?? "")
+            transactionTimeLabel?.text = String(format: AccountStrings.blockPrefix, String(data?.date ?? 0))
+            toAddressLabel.text = String(format: AccountStrings.toPrefix, getAddressAlias(address: data?.toAddress ?? ""))
+            fromAddressLabel.text = String(format: AccountStrings.fromPrefix, getAddressAlias(address: data?.fromAddress ?? ""))
             amountLabel.text = data?.amount.stringWithSign((data?.precision)!)
             amountLabel.theme_textColor = (data?.toAddress ?? "" == Authenticated.account?.address ?? "" ) ? O3Theme.positiveGainColorPicker : O3Theme.negativeLossColorPicker
         }

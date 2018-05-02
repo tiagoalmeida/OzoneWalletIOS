@@ -15,7 +15,7 @@ class NftSelectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let lottieView = LOTAnimationView(name: "empty_status")
+        let lottieView = LOTAnimationView(name: "panda1")
         lottieView.frame = animationView.bounds
         lottieView.loopAnimation = true
         animationView.addSubview(lottieView)

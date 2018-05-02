@@ -187,7 +187,7 @@ public class O3Client {
         #if PRIVATENET
         endpoint = "https://s3-ap-northeast-1.amazonaws.com/network.o3.cdn/data/nep5.private.json"
         #endif
-      
+
         sendRequest(endpoint, method: .GET, data: nil, noBaseURL: true) { result in
             switch result {
             case .failure(let error):

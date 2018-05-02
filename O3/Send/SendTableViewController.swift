@@ -88,7 +88,9 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
     func sendNEP5Token(tokenHash: String, assetName: String, amount: Double, toAddress: String) {
 
         DispatchQueue.main.async {
-            OzoneAlert.confirmDialog(message: SendStrings.sendConfirmationPrompt, cancelTitle: OzoneAlert.cancelNegativeConfirmString, confirmTitle: OzoneAlert.confirmPositiveConfirmString, didCancel: {}) {
+            OzoneAlert.confirmDialog(message: String(format: SendStrings.sendConfirmationPrompt, amount, assetName, toAddress),
+                                     cancelTitle: OzoneAlert.cancelNegativeConfirmString,
+                                     confirmTitle: OzoneAlert.confirmPositiveConfirmString, didCancel: {}) {
             let keychain = Keychain(service: "network.o3.neo.wallet")
                 do {
                     _ = try keychain
@@ -126,7 +128,9 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
 
     func sendNativeAsset(assetId: AssetId, assetName: String, amount: Double, toAddress: String) {
         DispatchQueue.main.async {
-            OzoneAlert.confirmDialog(message: SendStrings.sendConfirmationPrompt, cancelTitle: OzoneAlert.cancelNegativeConfirmString, confirmTitle: OzoneAlert.okPositiveConfirmString, didCancel: {}) {
+            OzoneAlert.confirmDialog(message: String(format: SendStrings.sendConfirmationPrompt, amount, assetName, toAddress),
+                                     cancelTitle: OzoneAlert.cancelNegativeConfirmString,
+                                     confirmTitle: OzoneAlert.okPositiveConfirmString, didCancel: {}) {
             let keychain = Keychain(service: "network.o3.neo.wallet")
                 do {
                     _ = try keychain

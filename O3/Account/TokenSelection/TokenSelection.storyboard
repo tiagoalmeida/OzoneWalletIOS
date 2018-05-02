@@ -55,11 +55,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xY6-qr-1wr">
-                                <rect key="frame" x="27.5" y="184" width="265" height="200"/>
+                                <rect key="frame" x="60" y="184" width="200" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="Boo-Y4-E0p"/>
-                                    <constraint firstAttribute="width" secondItem="xY6-qr-1wr" secondAttribute="height" multiplier="248:187" id="ETE-b9-lsh"/>
+                                    <constraint firstAttribute="width" secondItem="xY6-qr-1wr" secondAttribute="height" multiplier="1:1" id="ETE-b9-lsh"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Non Fungible Tokens are Under Construction" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJq-O7-UxR">
