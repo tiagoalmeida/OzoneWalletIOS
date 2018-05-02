@@ -468,6 +468,7 @@
                                     <outlet property="neoContainerLabel" destination="gGi-4G-lFu" id="jAZ-wK-ETz"/>
                                     <outlet property="neoRateLabel" destination="T7c-BN-gQg" id="Rdb-bH-PrW"/>
                                     <outlet property="neoSelectorContainerView" destination="p2Y-nn-k9o" id="lsE-xu-p2E"/>
+                                    <outlet property="neoSelectorWidthContraint" destination="jbW-mW-4ab" id="OES-I7-kdY"/>
                                     <outlet property="receiveTitleLabel" destination="Ley-B6-aNA" id="evc-Hz-6f2"/>
                                     <outlet property="tokenAmountLabel" destination="aqW-FB-1JF" id="6sl-Ov-U6r"/>
                                 </connections>

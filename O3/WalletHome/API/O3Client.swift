@@ -61,7 +61,7 @@ public class O3Client {
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "GET"
         request.setValue("application/json-rpc", forHTTPHeaderField: "Content-Type")
-
+        request.cachePolicy = .reloadIgnoringLocalCacheData
         if data != nil {
             guard let body = try? JSONSerialization.data(withJSONObject: data!, options: []) else {
                 completion(.failure(.invalidBodyRequest))
