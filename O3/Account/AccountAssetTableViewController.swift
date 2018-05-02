@@ -50,13 +50,13 @@ class AccountAssetTableViewController: UITableViewController {
     }
 
     func addObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadNEP5TokensSection), name: NSNotification.Name(rawValue: "halfModalDismissed"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadNEP5TokensSection), name: NSNotification.Name(rawValue: "tokenSelectorDismissed"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadCells), name: NSNotification.Name(rawValue: ThemeUpdateNotification), object: nil)
     }
 
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: ThemeUpdateNotification), object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "halfModalDismissed"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "tokenSelectiorDismissed"), object: nil)
     }
 
     override func viewDidLoad() {
@@ -287,7 +287,9 @@ class AccountAssetTableViewController: UITableViewController {
     }
 
     @IBAction func addNEP5TokensTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "addTokens", sender: nil)
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "addTokens", sender: nil)
+        }
     }
 
     // MARK: - Table view data source
@@ -411,16 +413,6 @@ class AccountAssetTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    // MARK: -
-    var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addTokens" {
-            self.halfModalTransitioningDelegate = HalfModalTransitioningDelegate(viewController: self, presentingViewController: segue.destination)
-            segue.destination.modalPresentationStyle = .custom
-            segue.destination.transitioningDelegate = self.halfModalTransitioningDelegate
-        }
     }
 
     func setLocalizedStrings() {

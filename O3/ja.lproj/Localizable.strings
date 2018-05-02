@@ -515,6 +515,15 @@
  A title to display while claiming is in progress*/
 "WALLET_Claim_In_Progress_Title" = "GASを取得中";
 
+/* Title for digital art and collectibles */
+"TOKENSelection_art_and_collectibles" = "TOKENSelection_art_and_collectibles"; /* NEW */
+
+/* Title for NEP5 Section of Tab */
+"TOKENSELECTION_nep5_title" = "TOKENSELECTION_nep5_title"; /* NEW */
+
+/* A title for the account screen */
+"WALLET_Account" = "WALLET_Account";
+
 /*NEW 
  A Message to display in the alert after the user hs successfully claimed their gas*/
 "WALLET_Claim_Succeeded_Prompt" = "GAS取得が正常に完了しました。トランザクション履歴に反映されるまで数分かかる場合があります。また、次のGAS取得は5分後に可能になります。";

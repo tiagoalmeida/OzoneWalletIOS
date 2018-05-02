@@ -405,6 +405,12 @@
 /* A title indicating how much the user will receive with a given contribution amount */
 "TOKENSALE_You_Will_receive_Title" = "TOKENSALE_You_Will_receive_Title";
 
+/* Title for digital art and collectibles */
+"TOKENSelection_art_and_collectibles" = "TOKENSelection_art_and_collectibles"; /* NEW */
+
+/* Title for NEP5 Section of Tab */
+"TOKENSELECTION_nep5_title" = "TOKENSELECTION_nep5_title"; /* NEW */
+
 /* A title for the account screen */
 "WALLET_Account" = "WALLET_Account";
 

@@ -74,6 +74,8 @@ class TransactionCell: UITableViewCell {
             transactionTimeLabel?.text = AccountStrings.blockPrefix + String(data?.date ?? 0)
             toAddressLabel.text = AccountStrings.toPrefix + getAddressAlias(address: data?.toAddress ?? "")
             fromAddressLabel.text = AccountStrings.fromPrefix + getAddressAlias(address: data?.fromAddress ?? "")
+            amountLabel.text = data?.amount.stringWithSign((data?.precision)!)
+            amountLabel.theme_textColor = (data?.toAddress ?? "" == Authenticated.account?.address ?? "" ) ? O3Theme.positiveGainColorPicker : O3Theme.negativeLossColorPicker
         }
     }
 }
