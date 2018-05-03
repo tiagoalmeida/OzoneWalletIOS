@@ -6,6 +6,9 @@
 /* Positive Response to an alert message, it is a positive action stating that they have read the alert and are confirming whatever action they are about to take */
 "ALERT_Confirm" = "Confirm";
 
+/* A text to display when the user is not connected to the internet */
+"ALERT_No_Internet" = "Uh oh! There is no internet connection. 😵"; /* NEW */
+
 /* Negative Response to an alert message, it is a negative action stating that they have not yet completed what they need to do */
 "ALERT_Not_Yet_Negative_Confirm" = "Not Yet";
 
@@ -412,7 +415,7 @@
 "TOKENSELECTION_nep5_title" = "NEP5 Tokens";
 
 /* Text to show that non fungible tokens are still under construction */
-"TOKENSELECTION_Under_Construction" = "TOKENSELECTION_Under_Construction"; /* NEW */
+"TOKENSELECTION_Under_Construction" = "TOKENSELECTION_Under_Construction";
 
 /* A title for the account screen */
 "WALLET_Account" = "Account";
