@@ -14,8 +14,9 @@ import SwiftTheme
 import Crashlytics
 
 class SendTableViewController: UITableViewController, AddressSelectDelegate, QRScanDelegate {
-
-    weak var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
+    // swiftlint:disable weak_delegate
+    var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
+    // swiftlint:enable weak_delegate
 
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var amountField: UITextField!

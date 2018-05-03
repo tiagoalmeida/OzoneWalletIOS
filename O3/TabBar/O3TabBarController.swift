@@ -13,7 +13,9 @@ import SwiftTheme
 import Crashlytics
 
 class O3TabBarController: UITabBarController {
-    weak var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
+    // swiftlint:disable weak_delegate
+    var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
+    // swiftlint:enable weak_delegate
 
     override func viewDidLoad() {
         super.viewDidLoad()

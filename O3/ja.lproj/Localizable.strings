@@ -1,639 +1,503 @@
+/* Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. */
 
-/*Created with Localizable Strings Merge, the swiss-army knife for iOS and OS X localization. 
- Negative Response to an alert message, it is a negative action stating that they want to cancel whatever their current action is*/
+/* Negative Response to an alert message, it is a negative action stating that they want to cancel whatever their current action is */
 "ALERT_Cancel" = "キャンセル";
 
-/*Positive Response to an alert message, it is a positive action stating that they have read the alert and are confirming whatever action they are about to take*/
+/* Positive Response to an alert message, it is a positive action stating that they have read the alert and are confirming whatever action they are about to take */
 "ALERT_Confirm" = "確認";
 
-/*Negative Response to an alert message, it is a negative action stating that they have not yet completed what they need to do*/
+/* Negative Response to an alert message, it is a negative action stating that they have not yet completed what they need to do */
 "ALERT_Not_Yet_Negative_Confirm" = "まだ";
 
-/*Positive Response to an alert message, it is a generic positive action replying ok to whatever the prompt is*/
+/* Positive Response to an alert message, it is a generic positive action replying ok to whatever the prompt is */
 "ALERT_OK" = "OK";
 
-/*Title for button when you add a contact to address book*/
+/* Title for button when you add a contact to address book */
 "CONTACTS_Add_Contact_Button_Title" = "アドレス追加";
 
-/*NEW 
- An informative description about what happens when you add a contact*/
+/* An informative description about what happens when you add a contact */
 "CONTACTS_Add_Contact_Description" = "アドレスを追加すると、アドレスを覚えていなくても世界中どこへでも資金を送金することができます。";
 
-/*NEW 
- A prompt asking if you are sure that you want to delete this contact*/
+/* A prompt asking if you are sure that you want to delete this contact */
 "CONTACTS_Are_You_Sure_To_Delete" = "このコンタクトを本当に削除しますか？";
 
-/*NEW 
- Title to copy address*/
+/* Title to copy address */
 "CONTACTS_Copy_Address" = "アドレスをコピー";
 
-/*NEW 
- Title to delete Contact*/
+/* Title to delete Contact */
 "CONTACTS_Delete" = "削除";
 
-/*NEW 
- Title for editing name of a contact*/
+/* Title for editing name of a contact */
 "CONTACTS_Edit_Name" = "名前の編集";
 
-/*NEW 
- Save Action for Contacts*/
+/* Save Action for Contacts */
 "CONTACTS_Save" = "保存";
 
-/*NEW 
- Title for sending to contact*/
+/* Title for sending to contact */
 "CONTACTS_Send_To" = "アドレスに送信";
 
-/*NEW 
- A title for error alert prompts*/
+/* A title for error alert prompts */
 "Error" = "エラー";
 
-/*NEW 
- Title of the news feed page*/
+/* Title of the news feed page */
 "NEWSFEED_News_Title" = "ニュースフィード";
 
-/*NEW 
- A prompt asking the user to please confirm that they have indeed backed up their private key in a secure location before continuing*/
+/* A prompt asking the user to please confirm that they have indeed backed up their private key in a secure location before continuing */
 "ONBARDING_Confirmed_Private_Key_Saved_Prompt" = "秘密鍵をオフラインの安全な場所にバックアップしたことを確認してください。";
 
-/*On authentication screen, when wallet already exists. Ask them to login using the specific type of authentication they have, e.g Login using TouchID*/
+/* On authentication screen, when wallet already exists. Ask them to login using the specific type of authentication they have, e.g Login using TouchID */
 "ONBOARDING Login_Button_Specifying_Biometric" = "TouchIDまたはFaceIDでログイン";
 
-/*On authentication screen, when wallet already exists. Ask them to login using the specific type of authentication they have, e.g Login using Passcode*/
+/* On authentication screen, when wallet already exists. Ask them to login using the specific type of authentication they have, e.g Login using Passcode */
 "ONBOARDING Login_Button_Specifying_PassCode" = "パスコードでログイン";
 
-/*Title For Creating a New Wallet in the onboarding flow*/
-"ONBOARDING_Create_New _Wallet" = "新しいウォレットの作成";
-
-/*Error message that is displayed when the user tries to Create a New Wallet without a passcode*/
-"ONBOARDING_Create_Wallet_No_Passcode_Error" = "新しいウォレットを作成するにはデバイスのパスコードの設定が必要です。これにより資産が常に安全に保たれます。";
-
-/*Prompt asking the user to authenticate themselves when they already have a wallet stored on device.*/
-"ONBOARDING_Existing_Wallet_Authentication_Prompt" = "デバイスに保存された既存のウォレットにログイン";
-
-/*Error message to display when the system fails to retrieve the private key from the keychain*/
-"ONBOARDING_Keychain_Failure_Error" = "キーチェーンからのデータ受信にエラーが発生しました。後ほどもう一度試すか我たちのチームに直接ご連絡ください。";
-
-/*Subtitle under the text field of the login controller. Explains what to do in textfield*/
-"ONBOARDING_Login_Input_Info_Title" = "NEO秘密鍵でウォレットにログイン";
-
-/*Error message that is displayed when the user tries to login without a passcode*/
-"ONBOARDING_Login_No_Passcode_Error" = "ログインするにはデバイスのパスコードの設定が必要です。これにより資産が常に安全に保たれます。";
-
-/*Title for all login items in the onboarding flow*/
-"ONBOARDING_Login_Title" = "ログイン";
-
-/*Welcome label to create a new wallet*/
-"ONBOARDING_New To O3?" = "初めてO3を使いますか？";
-
-/*A title presented over the top of the private key, specifies WIF format. e.g. Your Private Key (WIF)*/
-"ONBOARDING_Private_Key_title" = "あなたの秘密鍵（WIF）";
-
-/*Displayed when the app is waiting to connect to the network. It is finding the best NEO node to connect to*/
-"ONBOARDING_Selecting_Best_Node" = "最適なノードを選択しています...";
-
-/*Title to start the app after completing the onboarding*/
-"ONBOARDING_Start_Action_Title" = "始める";
-
-/*NEW 
- The first subtitle in the onboarding pages*/
-"ONBOARDING_Tutorial_Subtitle_One" = "ウォレットを手のひらで安全に管理する";
-
-/*The third subtitle in the onboarding pages*/
-"ONBOARDING_Tutorial_Subtitle_Three" = "GAS、NEO、NEP5トークンがすべてサポートされています。";
-
-/*The second subtitle in the onboarding pages*/
-"ONBOARDING_Tutorial_Subtitle_Two" = "あなたの秘密は最新のセキュリティ技術で保護されます。";
-
-/*The first title in the onboarding pages*/
-"ONBOARDING_Tutorial_Title_One" = "残高確認用アドレスを追加";
-
-/*The third title in the onboarding pages*/
-"ONBOARDING_Tutorial_Title_Three" = "送金、入金、報酬受取";
-
-/*The second title in the onboarding pages*/
-"ONBOARDING_Tutorial_Title_Two" = "資産を安全に管理";
-
-/*Title Welciming the user after successful wallet creation*/
-"ONBOARDING_Welcome" = "ようこそ！";
-
-/*A header title on the portfolio screen, show the displayed funds are inside cold storage*/
-"PORTFOLIO_Cold_Storage_Header" = "コールドストレージ";
-
-/*NEW 
- A header title on the portfolio screen, show the displayed funds are a combination of those store in O3 wallet and cold storage*/
-"PORTFOLIO_Combined_Header" = "結合済";
-
-/*NEW 
- Interval Button on portfolio page, interval specifies 1 Month*/
-"PORTFOLIO_Interval_Button_1M" = "1M";
-
-/*NEW 
- Interval Button on portfolio page, interval specifies 1 Week*/
-"PORTFOLIO_Interval_Button_1W" = "1W";
-
-/*NEW 
- Interval Button on portfolio page, interval specifies 24 HOURS*/
-"PORTFOLIO_Interval_Button_24h" = "24H";
-
-/*NEW 
- Interval Button on portfolio page, interval specifies 3 Months*/
-"PORTFOLIO_Interval_Button_3M" = "3M";
-
-/*NEW 
- Interval Button on portfolio page, interval specifies SIX HOURS*/
-"PORTFOLIO_Interval_Button_6h" = "6H";
-
-/*NEW 
- Interval Button on portfolio page, interval specifies ALL of Time*/
-"PORTFOLIO_Interval_Button_ALL" = "ALL";
-
-/*NEW 
- A header title on the portfolio screen, shows the displayed funds are located in the O3Wallet*/
-"PORTFOLIO_O3_Wallet_Header" = "O3ウォレット";
-
-/*NEW 
- Title of the portfolio page*/
-"PORTFOLIO_Portfolio_Title" = "ポートフォリオ";
-
-/*NEW 
- A title for the scan button in the send screen*/
-"SCAN_Button_Title" = "スキャン";
-
-/*NEW 
- A Title for the address book button in the send screen*/
-"SEND_Address_Button_Title" = "アドレス";
-
-/*NEW 
- Label title for the amount on the send screen*/
-"SEND_Amount_Label" = "送金";
-
-/*NEW 
- Label title for the asset field on the send screen*/
-"SEND_Asset_Label" = "資産";
-
-/*NEW 
- A prompt asking for user authentication before performing the send action*/
-"SEND_Authenticate_To_Send" = "送金には認証が必要です。";
-
-/*NEW 
- Title for button to close send screen after transaction completed*/
-"SEND_Close" = "閉じる";
-
-/*NEW 
- A confirmation dialog that asks the user to confirm the asset, amount, and recipient of their transaction*/
-"SEND_Confirmation_Prompt" = "本当に%@に%.8f %@を送金しますか？";
-
-/*NEW 
- Description to display when the transaction has failed to be submitted to the NEO blockchain*/
-"SEND_Created_Transaction_Failed_Description" = "エラーが発生しました。";
-
-/*NEW 
- Title to display when the transaction has failed to be submitted to the NEO blockchain*/
-"SEND_Created_Transaction_Failed_Title" = "後ほどもう一度お試しください。";
-
-/*NEW 
- Description to display when the transaction has successfuly been submitted to the NEO blockchain*/
-"SEND_Created_Transaction_Successfully_Description" = "トランザクションが処理されてから取引履歴に表示されます。";
-
-/*NEW 
- Title to display when the transaction has successfuly been submitted to the NEO blockchain*/
-"SEND_Created_Transaction_Successfully_Title" = "トランザクションが無事に作成されました。";
-
-/*NEW 
- Error to display when the user tries to send to an invalid NEO address*/
-"SEND_Invalid_Address_Error" = "無効なアドレスです";
-
-/*NEW 
- Error to display when the user tries to send an invalid amount*/
-"SEND_Invalid_Amount_Error" = "無効な金額が入力されています";
-
-/*NEW 
- Error To display when the user is trying to send without enough balance*/
-"SEND_Not_Enough_Balance_Error" = "十分な%@がありません。あなたの残高は%.8fです。";
-
-/*NEW 
- A title for the paste button in the send screen*/
-"SEND_Paste_Button_Title" = "貼り付け";
-
-/*NEW 
- A title for the Select Asset pull up menu*/
-"SEND_Select_Asset_Title" = "資産を選択";
-
-/*NEW 
- A title for the the selected asset label, before the user has selected any asset.*/
-"SEND_Selected_Asset_Title" = "資産を選択";
-
-/*NEW 
- A title indicating a send action*/
-"SEND_Send_Title" = "送金";
-
-/*NEW 
- A place holder text, indicating that the NEO Wallet Address should go in this text field*/
-"SEND_To_Address_Placeholder" = "NEOウォレットアドレス";
-
-/*NEW 
- Label title for the send to field on the send screen*/
-"SEND_To_Label" = "送金先";
-
-/*NEW 
- Title for add watch address button*/
-"SETTINGS_Add_Watch_Address" = "ウォッチアドレスを追加する";
-
-/*NEW 
- Label to describe an address input field*/
-"SETTINGS_Address_Label" = "アドレス";
-
-/*NEW 
- Prompt requesting user to authenticate before viewing sensitive information like private key*/
-"SETTINGS_Authenticate_To_View" = "秘密鍵を見るには認証が必要です。";
-
-/*NEW 
- String to describe a close action*/
-"SETTINGS_Close_Title" = "閉じる";
-
-/*NEW 
- Settings Menu Title For Contact*/
-"SETTINGS_Contact" = "コンタクト";
-
-/*NEW 
- Title for Currency Menu in Settings*/
-"SETTINGS_Currency_Title" = "通貨：%@";
-
-/*NEW 
- Error To display when user tries to add an invalid address*/
-"SETTINGS_Invalid_Address" = "無効なアドレス";
-
-/*NEW 
- Settings Menu Title for Logout*/
-"SETTINGS_Logout" = "ログアウト";
-
-/*NEW 
- Warning that appears when attempting to logout from settings*/
-"SETTINGS_Logout_Warning" = "ログアウトしたら秘密鍵がデバイスから削除されます。秘密鍵をバックアップまたは紙に書いて保存しているか確認してください。アプリケーションへの再度ログインには秘密鍵の再入力が必要です。";
-
-/*NEW 
- Settings Menu Title for Private Key*/
-"SETTINGS_My_Private_Key" = "自分の秘密鍵";
-
-/*NEW 
- Warning to display when the user decied to manually switch the network node that they are connected to*/
-"SETTINGS_Network_Switch_Warning" = "このノードを選択するとネットワーク管理がマニュアルモードに切り替わります。";
-
-/*NEW 
- Title for Network Screen In Settings*/
-"SETTINGS_Network_Title" = "ネットワーク";
-
-/*NEW 
- Lavel to describe a nickname input field*/
-"SETTINGS_Nickname_LAbel" = "ニックネーム";
-
-/*NEW 
- Title for Settings Menu*/
-"SETTINGS_Settings_Title" = "設定";
-
-/*NEW 
- Settings Mneu Title For Support*/
-"SETTINGS_Support" = "サポート";
-
-/*NEW 
- Settings Menu Title for Theme*/
-"SETTINGS_Theme" = "テーマ";
-
-/*NEW 
- Label For Classic Theme*/
-"SETTINGS_Theme_Classic" = "テーマ：クラシック";
-
-/*NEW 
- Label For Dark Theme*/
-"SETTINGS_Theme_Dark" = "テーマ：ダーク";
-
-/*NEW 
- Settings Menu Title For Version*/
-"SETTINGS_Version" = "%@版";
-
-/*NEW 
- Settings Menu Title For Watch Only Address*/
-"SETTINGS_Watch_Only_Address" = "残高確認用アドレス";
-
-/*NEW 
- A title for the Watch Only Address Title Screen*/
-"SETTINGS_Watch_Only_Address_Title" = "残高確認用アドレス";
-
-/*NEW 
- Title for receive action in tabbar*/
-"TABBAR_Receive_Action" = "入金";
-
-/*NEW 
- Title for send action in tabbar*/
-"TABBAR_Send_Action" = "送金";
-
-/*NEW 
- Title for Token Sale Action in tabbar*/
-"TABBAR_Token_Sale_Action" = "トークンセール";
-
-/*NEW 
- Displayed when xhecking the whitelist status of a participant*/
-"TOKENSALE_Checking_Status" = "ホワイトリストの状態を確認しています...";
-
-/*NEW 
- Text for close button to close the tokensale screen*/
-"TOKENSALE_Close" = "閉じる";
-
-/*NEW 
- Title for button to allow for contacting after ato kensale transaction fails*/
-"TOKENSALE_Contact_Title" = "O3のメンバーに連絡する";
-
-/*NEW 
- String showing that the token sale has already ended*/
-"TOKENSALE_Ended" = "終了";
-
-/*NEW 
- A string displaying how muc time is left in the token sale*/
-"TOKENSALE_Ends_In" = "%@後に終了";
-
-/*NEW 
- A title showing users can get notified about the latest token sales*/
-"TOKENSALE_Get_Notified_Title" = "通知をオンにする";
-
-/*NEW 
- Error that shows when the user tries to partcipate in a tokensale that has already ended*/
-"TOKENSALE_Has_Ended_Error" = "このトークンセールはすでに終了しました";
-
-/*NEW 
- String on the review screen describing that this transaction will have priority*/
-"TOKENSALE_Has_Priority_Label" = "プライオリティ(0.001GAS)";
-
-/*NEW 
- An error indicating the user has entered an invalid contribution amount*/
-"TOKENSALE_Invalid_Amount_Error" = "無効な金額です";
-
-/*NEW 
- Disclaimer text asking the user to aggree that they have read the agreement provided by the tokensale issuer*/
-"TOKENSALE_Issuer_Agreement" = "このトークンセールでのトークン発行者の同意書を読み、内容を理解しました。";
-
-/*NEW 
- A string showing that the displayed token sale is currently active*/
-"TOKENSALE_Live_Status" = "受付中";
-
-/*NEW 
- An error that shows when the user tries to contribute more than the max contribution amount*/
-"TOKENSALE_Max_Contribution_Error" = "%@の最大受付額は%@です";
-
-/*NEW 
- An error that show when the user tries to contribute less than the min contribution amount*/
-"TOKENSALE_Min_Contribution_Error" = "%@の最小受付額は%@です";
-
-/*NEW 
- An error when the user has not yet agreed to the tokensale disclaimers*/
-"TOKENSALE_Not_Agreed_To_Disclaimers Error" = "続けるには免責規定に同意してください。";
-
-/*NEW 
- An error indicating that the user does not have enough balance for the amount entered*/
-"TOKENSALE_Not_Enough_Balance_Error" = "十分な%@がありません。あなたの残高は%@です。";
-
-/*NEW 
- A string showing the user is not whitelisted for this tokensale*/
-"TOKENSALE_Not_WhiteListed" = "ホワイトリストに登録されていません。";
-
-/*NEW 
- An error to display when the user is not whitelisted for the tokensale*/
-"TOKENSALE_Not_Whitelisted_Error" = "まだこのトークンセールのホワイトリストに登録していないようです。トークン発行者のウェブサイトでホワイトリスト登録の方法を確認してください。";
-
-/*NEW 
- Disclaimer text asking the user to agree to the terms of the O3 Application. States that the user is interacting directly with the smart contract*/
-"TOKENSALE_O3_Agreement" = "ブロックチェーン上のスマートコントラクトに直接接続していることを理解しています。O3はいかなる資産預託を行っていません。";
-
-/*NEW 
- Text for the participate action*/
-"TOKENSALE_Participate" = "参加";
-
-/*NEW 
- A Dialog that shows explaining when, what is priority is tapped. Explains that priority allows your transactions to process faster on the blockchain*/
-"TOKENSALE_Priority_Explanation" = "プライオリティによりブロックへの到達が早くなります。トラフィック量の多いときは、プライオリティを付けることでトランザクションがブロックに到達する可能性が上がります。";
-
-/*NEW 
- Label showing priority. Also displays the gas cost for priority. This is fixed at 0.0011GAS*/
-"TOKENSALE_Priority_Label" = "プライオリティ（0.0011 GAS）";
-
-/*NEW 
- Label for the date in the token sale receipt in transaction success screen*/
-"TOKENSALE_Receipt_Date_Label" = "日付";
-
-/*NEW 
- Email Text For the receipt that the user can send to themselves*/
-"TOKENSALE_Receipt_Email_Full_Text" = "このレシートはあなたのトランザクションがNEOブロックチェーン上での処理に送信されたことを証明します。\n\nブロックチェーン上にて承認された場合は、資産があなたのウォレットから引かれ、トークン発行者がトークン配布の責任を負います。このトランザクションIDはトークンセール参加の証明になるものです。詳細は以下の通りです。\n\n日付：%@\nトークンセール名：%@\nトランザクションID：%@\n送金先：%@\n受取予定額：%@\n\nO3チーム\n\n";
-
-/*NEW 
- Label for the priority in the token sale receipt in transaction success screen*/
-"TOKENSALE_Receipt_Priority_Label" = "プライオリティ";
-
-/*NEW 
- Label for the receiving asset and amount in the token sale receipt in transaction success screen*/
-"TOKENSALE_Receipt_Receiving_Label" = "受取通貨";
-
-/*NEW 
- Label for the sending asset and amount in the token sale receipt in transaction success screen*/
-"TOKENSALE_Receipt_Sending_Label" = "送金通貨";
-
-/*NEW 
- Label for token sale name in the token sale receipt in transaction success screen*/
-"TOKENSALE_Receipt_Tokensale_Name_Label" = "トークンセール";
-
-/*NEW 
- Label for the transaction id in the token sale receipt in transaction success screen*/
-"TOKENSALE_Receipt_txid_Label" = "トランザクションID";
-
-/*NEW 
- A title for reviewing token sale participation buttton*/
-"TOKENSALE_Review_Button_Title" = "確認";
-
-/*NEW 
- An error occurs when the user tries to send the max amount of gas. This is due to a potential rounding error, ro prevent this, send slightly les than the max amount*/
-"TOKENSALE_Rounding_Error" = "GASを全額送金する場合は0.00000001GASを引いてください。エラーが発生しトランザクションが処理されない可能性があります。";
-
-/*NEW 
- Button title to save your receipt*/
-"TOKENSALE_save_button_title" = "保存";
-
-/*NEW 
- Description showing that the transaction is currently being submitted to the NEO blockchain*/
-"TOKENSALE_Sending_In_Progress" = "送信中";
-
-/*NEW 
- Button title for allowing users to subscribe to token sale news*/
-"TOKENSALE_Subscribe" = "購読する";
-
-/*NEW 
- Title text showing your tokensale transaction has been successfully submitted to the blockchain*/
-"TOKENSALE_Successful_Transaction_Title" = "トランザクションが正常に処理されました。";
-
-/*NEW 
- A title for the token sales screen*/
-"TOKENSALE_Token_Sales_Title" = "トークンセール";
-
-/*NEW 
- A Title for the transction receipt in the tokensale success*/
-"TOKENSALE_Transaction" = "トランザクション";
-
-/*NEW 
- A title for a button that directs the user to the tokensale website button*/
-"TOKENSALE_Website_Button_Title" = "ウェブサイト";
-
-/*NEW 
- Title Describing the send amount in the tokensale review screen*/
-"TOKENSALE_You_Are_Sending_Title" = "あなたが送金するのは";
-
-/*NEW 
- A title indicating how much the user will receive with a given contribution amount*/
-"TOKENSALE_You_Will_receive_Title" = "あなたが受け取るのは";
-
-/*NEW 
- A title for the account screen*/
-"WALLET_Account" = "アカウント";
-
-/*NEW 
- A title for the button which allows you to add a NEP-5 Token to your wallet*/
-"WALLET_Add_NEP5_Token" = "NEP5トークンの追加";
-
-/*NEW 
- Title of assets tab in wallet screen*/
-"WALLET_Assets" = "資産状況";
-
-/*NEW 
- Prefix used to indicate the block number in the transaction history*/
-"WALLET_Block_Prefix" = "ブロック：%@";
-
-/*NEW 
- A Title for the claim Action*/
-"WALLET_Claim_Action" = "取得";
-
-/*NEW 
- A subtitle to display while claiming is in progress*/
-"WALLET_Claim_In_Progress_Subtitle" = "もう少しお待ちください";
-
-/*NEW 
- A title to display while claiming is in progress*/
-"WALLET_Claim_In_Progress_Title" = "GASを取得中";
-
-/* Title for digital art and collectibles */
-"TOKENSelection_art_and_collectibles" = "TOKENSelection_art_and_collectibles"; /* NEW */
-
-/* Title for NEP5 Section of Tab */
-"TOKENSELECTION_nep5_title" = "TOKENSELECTION_nep5_title"; /* NEW */
-
-/* A title for the account screen */
-"WALLET_Account" = "WALLET_Account";
-
-/*NEW 
- A Message to display in the alert after the user hs successfully claimed their gas*/
-"WALLET_Claim_Succeeded_Prompt" = "GAS取得が正常に完了しました。トランザクション履歴に反映されるまで数分かかる場合があります。また、次のGAS取得は5分後に可能になります。";
-
-/*NEW 
- Indicated that the transation in history originated from claim*/
-"WALLET_Claim_Transaction" = "取得";
-
-/*NEW 
- Title of Contacts tab in wallet screen*/
-"WALLET_Contacts" = "コンタクト";
-
-/*NEW 
- An action title for copying our address*/
-"WALLET_Copy_Address" = "アドレスをコピー";
-
-/*NEW 
- Prefix used in the transaction history to indicate where the transaction came from*/
-"WALLET_From_Prefix" = "送金元：%@";
-
-/*NEW 
- Informative text explaining you can store neo, gas, and nep-5 tokens using this address*/
-"WALLET_My_Address_Explanation" = "このアドレスを用いて取引所やウォレットからNEOやGAS、NEP5トークンを受け取ることができます。";
-
-/*NEW 
- Title of the My Address Page*/
-"WALLET_My_Address_Title" = "マイアドレス";
-
-/*NEW 
- Title for NEP-5 Tokens Selection View*/
-"WALLET_NEP5_Tokens" = "NEP5トークン";
-
-/*NEW 
- Done bar button item*/
-"WALLET_NEP_5_DONE" = "完了";
-
-/*NEW 
- String in transaction history indicating O3 Wallet*/
-"WALLET_O3_Wallet" = "O3ウォレット";
-
-/*NEW 
- An Action Title for saving your QR code*/
-"WALLET_Save_Qr_Action" = "QRコードの保存";
-
-/*NEW 
- A description to give more information about saving the address*/
-"WALLET_Saved_Description" = "画像は正常に保存されました";
-
-/*NEW 
- A title to display when you've successfully saved your wallet address qr code*/
-"WALLET_Saved_Title" = "保存完了";
-
-/*NEW 
- An action title for sharing O3*/
-"WALLET_Share" = "シェア";
-
-/*NEW 
- Prefix used in the transaction history to indicate where the transaction went to*/
-"WALLET_To_Prefix" = "送金先：%@";
-
-/*NEW 
- Title of Transactions tab in wallet screen*/
-"WALLET_Transactions" = "トランザクション";
-
-/*NEW 
- A title for Unclaimed Gas in the wallet*/
-"WALLET_Unclaimed_Gas_Title" = "未取得のGAS";
-
-/*NEW 
- Title to copy watch address*/
-"WATCH_ADDRESS_Copy_Address" = "アドレスをコピー";
-
-/*NEW 
- Title to delete Watch Address*/
-"WATCH_ADDRESS_Delete" = "消去";
-
-/*NEW 
- A prompt asking for user confirmation to delete the watch address*/
-"WATCH_ADDRESS_Delete_Confirmation" = "このアドレスを本当に削除しますか？";
-
-/*NEW 
- Title for editing name of a watch address*/
-"WATCH_ADDRESS_Edit_Name" = "名前を編集";
-
-/*NEW 
- Save Action for Watch Addresses*/
-"WATCH_ADDRESS_Save" = "保存";
-
-/*When the user tries to create a new wallet, but they already have one saved on the devicve, this explanation/warning is given to the user*/
+/* When the user tries to create a new wallet, but they already have one saved on the devicve, this explanation/warning is given to the user */
 "ONBOARDING_Already_Have_Wallet_Explanation" = "既にデバイス上に既存のウォレットがあるようです。\n\n新しいウォレットを作る際、新しい秘密鍵が既存のウォレットに上書きされます。秘密鍵がバックアップされていることを確認して下さい。";
 
-/*A warning given to the user to make sure that they have backed up their private key in a secure location. Also states that deletibg the passcode will delete the key from the device*/
+/* Title For Creating a New Wallet in the onboarding flow */
+"ONBOARDING_Create_New _Wallet" = "新しいウォレットの作成";
+
+/* Error message that is displayed when the user tries to Create a New Wallet without a passcode */
+"ONBOARDING_Create_Wallet_No_Passcode_Error" = "新しいウォレットを作成するにはデバイスのパスコードの設定が必要です。これにより資産が常に安全に保たれます。";
+
+/* Prompt asking the user to authenticate themselves when they already have a wallet stored on device. */
+"ONBOARDING_Existing_Wallet_Authentication_Prompt" = "デバイスに保存された既存のウォレットにログイン";
+
+/* Error message to display when the system fails to retrieve the private key from the keychain */
+"ONBOARDING_Keychain_Failure_Error" = "キーチェーンからのデータ受信にエラーが発生しました。後ほどもう一度試すか我たちのチームに直接ご連絡ください。";
+
+/* Subtitle under the text field of the login controller. Explains what to do in textfield */
+"ONBOARDING_Login_Input_Info_Title" = "NEO秘密鍵でウォレットにログイン";
+
+/* Error message that is displayed when the user tries to login without a passcode */
+"ONBOARDING_Login_No_Passcode_Error" = "ログインするにはデバイスのパスコードの設定が必要です。これにより資産が常に安全に保たれます。";
+
+/* Title for all login items in the onboarding flow */
+"ONBOARDING_Login_Title" = "ログイン";
+
+/* Welcome label to create a new wallet */
+"ONBOARDING_New To O3?" = "初めてO3を使いますか？";
+
+/* A warning given to the user to make sure that they have backed up their private key in a secure location. Also states that deletibg the passcode will delete the key from the device */
 "ONBOARDING_Please_Backup Warning" = "別の安全な場所に秘密鍵をバックアップして下さい。\n\nあなたのiPhoneにパスコードを設定することを強くお勧めします。あなたのデバイスからパスコードを削除すると、秘密鍵がキーチェーンから削除されます。";
 
-/*NEW 
- Error to display when the user is trying to send a token but does not have enough gas to make the invoke occur. It requires 0.00000001 GAS in the wallet in order to send a token*/
+/* A title presented over the top of the private key, specifies WIF format. e.g. Your Private Key (WIF) */
+"ONBOARDING_Private_Key_title" = "あなたの秘密鍵（WIF）";
+
+/* Displayed when the app is waiting to connect to the network. It is finding the best NEO node to connect to */
+"ONBOARDING_Selecting_Best_Node" = "最適なノードを選択しています...";
+
+/* Title to start the app after completing the onboarding */
+"ONBOARDING_Start_Action_Title" = "始める";
+
+/* The first subtitle in the onboarding pages */
+"ONBOARDING_Tutorial_Subtitle_One" = "ウォレットを手のひらで安全に管理する";
+
+/* The third subtitle in the onboarding pages */
+"ONBOARDING_Tutorial_Subtitle_Three" = "GAS、NEO、NEP5トークンがすべてサポートされています。";
+
+/* The second subtitle in the onboarding pages */
+"ONBOARDING_Tutorial_Subtitle_Two" = "あなたの秘密は最新のセキュリティ技術で保護されます。";
+
+/* The first title in the onboarding pages */
+"ONBOARDING_Tutorial_Title_One" = "残高確認用アドレスを追加";
+
+/* The third title in the onboarding pages */
+"ONBOARDING_Tutorial_Title_Three" = "送金、入金、報酬受取";
+
+/* The second title in the onboarding pages */
+"ONBOARDING_Tutorial_Title_Two" = "資産を安全に管理";
+
+/* Title Welciming the user after successful wallet creation */
+"ONBOARDING_Welcome" = "ようこそ！";
+
+/* A header title on the portfolio screen, show the displayed funds are inside cold storage */
+"PORTFOLIO_Cold_Storage_Header" = "コールドストレージ";
+
+/* A header title on the portfolio screen, show the displayed funds are a combination of those store in O3 wallet and cold storage */
+"PORTFOLIO_Combined_Header" = "結合済";
+
+/* Interval Button on portfolio page, interval specifies 1 Month */
+"PORTFOLIO_Interval_Button_1M" = "1M";
+
+/* Interval Button on portfolio page, interval specifies 1 Week */
+"PORTFOLIO_Interval_Button_1W" = "1W";
+
+/* Interval Button on portfolio page, interval specifies 24 HOURS */
+"PORTFOLIO_Interval_Button_24h" = "24H";
+
+/* Interval Button on portfolio page, interval specifies 3 Months */
+"PORTFOLIO_Interval_Button_3M" = "3M";
+
+/* Interval Button on portfolio page, interval specifies SIX HOURS */
+"PORTFOLIO_Interval_Button_6h" = "6H";
+
+/* Interval Button on portfolio page, interval specifies ALL of Time */
+"PORTFOLIO_Interval_Button_ALL" = "ALL";
+
+/* A header title on the portfolio screen, shows the displayed funds are located in the O3Wallet */
+"PORTFOLIO_O3_Wallet_Header" = "O3ウォレット";
+
+/* Title of the portfolio page */
+"PORTFOLIO_Portfolio_Title" = "ポートフォリオ";
+
+/* A title for the scan button in the send screen */
+"SCAN_Button_Title" = "スキャン";
+
+/* A Title for the address book button in the send screen */
+"SEND_Address_Button_Title" = "アドレス";
+
+/* Label title for the amount on the send screen */
+"SEND_Amount_Label" = "送金";
+
+/* Label title for the asset field on the send screen */
+"SEND_Asset_Label" = "資産";
+
+/* A prompt asking for user authentication before performing the send action */
+"SEND_Authenticate_To_Send" = "送金には認証が必要です。";
+
+/* Title for button to close send screen after transaction completed */
+"SEND_Close" = "閉じる";
+
+/* A confirmation dialog that asks the user to confirm the asset, amount, and recipient of their transaction */
+"SEND_Confirmation_Prompt" = "本当に%@に%.8f %@を送金しますか？";
+
+/* Description to display when the transaction has failed to be submitted to the NEO blockchain */
+"SEND_Created_Transaction_Failed_Description" = "エラーが発生しました。";
+
+/* Title to display when the transaction has failed to be submitted to the NEO blockchain */
+"SEND_Created_Transaction_Failed_Title" = "後ほどもう一度お試しください。";
+
+/* Description to display when the transaction has successfuly been submitted to the NEO blockchain */
+"SEND_Created_Transaction_Successfully_Description" = "トランザクションが処理されてから取引履歴に表示されます。";
+
+/* Title to display when the transaction has successfuly been submitted to the NEO blockchain */
+"SEND_Created_Transaction_Successfully_Title" = "トランザクションが無事に作成されました。";
+
+/* Error to display when the user tries to send to an invalid NEO address */
+"SEND_Invalid_Address_Error" = "無効なアドレスです";
+
+/* Error to display when the user tries to send an invalid amount */
+"SEND_Invalid_Amount_Error" = "無効な金額が入力されています";
+
+/* Error To display when the user is trying to send without enough balance */
+"SEND_Not_Enough_Balance_Error" = "十分な%@がありません。あなたの残高は%.8fです。";
+
+/* Error to display when the user is trying to send a token but does not have enough gas to make the invoke occur. It requires 0.00000001 GAS in the wallet in order to send a token */
 "SEND_Not_Enough_Gas_Token_Transfer" = "NEP5トークンを送るのに、少なくとも0.00000001GASをウォレットに保有していないと送金できません。このGASは使用されませんが、ウォレットに常に保有している必要があります。";
 
-/*NEW 
- Error to display when the user is trying to send gas, but the amount they are sending is the max amount. The user can round down the gas amount a small amount to precent this error*/
+/* A title for the paste button in the send screen */
+"SEND_Paste_Button_Title" = "貼り付け";
+
+/* Error to display when the user is trying to send gas, but the amount they are sending is the max amount. The user can round down the gas amount a small amount to precent this error */
 "SEND_Rounding_Gas_Error" = "すべてのGASを送信する場合は、合計額から0.00000001を引いてください。これにより、エラーを回避しトランザクションが正常に処理されます。";
 
-/*NEW 
- Description under add address button that describes what a watch address is and how it will work in the app*/
+/* A title for the Select Asset pull up menu */
+"SEND_Select_Asset_Title" = "資産を選択";
+
+/* A title for the the selected asset label, before the user has selected any asset. */
+"SEND_Selected_Asset_Title" = "資産を選択";
+
+/* A title indicating a send action */
+"SEND_Send_Title" = "送金";
+
+/* A place holder text, indicating that the NEO Wallet Address should go in this text field */
+"SEND_To_Address_Placeholder" = "NEOウォレットアドレス";
+
+/* Label title for the send to field on the send screen */
+"SEND_To_Label" = "送金先";
+
+/* Title for add watch address button */
+"SETTINGS_Add_Watch_Address" = "ウォッチアドレスを追加する";
+
+/* Description under add address button that describes what a watch address is and how it will work in the app */
 "SETTINGS_Add_Watch_Description" = "残高確認用アドレスでは、隔離された環境でポートフォリオを確認できます。 このアドレスから送金することはできませんが、残高を確認することができます。";
 
-/*NEW 
- A detailed description about what will happen if the user signs up for the email list to get notified about token sales*/
+/* Label to describe an address input field */
+"SETTINGS_Address_Label" = "アドレス";
+
+/* Prompt requesting user to authenticate before viewing sensitive information like private key */
+"SETTINGS_Authenticate_To_View" = "秘密鍵を見るには認証が必要です。";
+
+/* String to describe a close action */
+"SETTINGS_Close_Title" = "閉じる";
+
+/* Settings Menu Title For Contact */
+"SETTINGS_Contact" = "コンタクト";
+
+/* Title for Currency Menu in Settings */
+"SETTINGS_Currency_Title" = "通貨：%@";
+
+/* Error To display when user tries to add an invalid address */
+"SETTINGS_Invalid_Address" = "無効なアドレス";
+
+/* Settings Menu Title for Logout */
+"SETTINGS_Logout" = "ログアウト";
+
+/* Warning that appears when attempting to logout from settings */
+"SETTINGS_Logout_Warning" = "ログアウトしたら秘密鍵がデバイスから削除されます。秘密鍵をバックアップまたは紙に書いて保存しているか確認してください。アプリケーションへの再度ログインには秘密鍵の再入力が必要です。";
+
+/* Settings Menu Title for Private Key */
+"SETTINGS_My_Private_Key" = "自分の秘密鍵";
+
+/* Warning to display when the user decied to manually switch the network node that they are connected to */
+"SETTINGS_Network_Switch_Warning" = "このノードを選択するとネットワーク管理がマニュアルモードに切り替わります。";
+
+/* Title for Network Screen In Settings */
+"SETTINGS_Network_Title" = "ネットワーク";
+
+/* Lavel to describe a nickname input field */
+"SETTINGS_Nickname_LAbel" = "ニックネーム";
+
+/* Title for Settings Menu */
+"SETTINGS_Settings_Title" = "設定";
+
+/* Settings Mneu Title For Support */
+"SETTINGS_Support" = "サポート";
+
+/* Settings Menu Title for Theme */
+"SETTINGS_Theme" = "テーマ";
+
+/* Label For Classic Theme */
+"SETTINGS_Theme_Classic" = "テーマ：クラシック";
+
+/* Label For Dark Theme */
+"SETTINGS_Theme_Dark" = "テーマ：ダーク";
+
+/* Settings Menu Title For Version */
+"SETTINGS_Version" = "%@版";
+
+/* Settings Menu Title For Watch Only Address */
+"SETTINGS_Watch_Only_Address" = "残高確認用アドレス";
+
+/* A title for the Watch Only Address Title Screen */
+"SETTINGS_Watch_Only_Address_Title" = "残高確認用アドレス";
+
+/* Title for receive action in tabbar */
+"TABBAR_Receive_Action" = "入金";
+
+/* Title for send action in tabbar */
+"TABBAR_Send_Action" = "送金";
+
+/* Title for Token Sale Action in tabbar */
+"TABBAR_Token_Sale_Action" = "トークンセール";
+
+/* Displayed when xhecking the whitelist status of a participant */
+"TOKENSALE_Checking_Status" = "ホワイトリストの状態を確認しています...";
+
+/* Text for close button to close the tokensale screen */
+"TOKENSALE_Close" = "閉じる";
+
+/* Title for button to allow for contacting after ato kensale transaction fails */
+"TOKENSALE_Contact_Title" = "O3のメンバーに連絡する";
+
+/* String showing that the token sale has already ended */
+"TOKENSALE_Ended" = "終了";
+
+/* A string displaying how muc time is left in the token sale */
+"TOKENSALE_Ends_In" = "%@後に終了";
+
+/* A detailed description about what will happen if the user signs up for the email list to get notified about token sales */
 "TOKENSALE_Get_Notified_Description" = "メーリングリストに登録すると、最新のトークンセールに関する情報が送信されます。メールアドレスが第三者に共有されることはありません。また、掲載されているすべてのトークンは事前にO3に確認されます。詐欺通貨の情報はもちろん送りません！";
 
-/*NEW 
- Description that shows when there is an error*/
+/* A title showing users can get notified about the latest token sales */
+"TOKENSALE_Get_Notified_Title" = "通知をオンにする";
+
+/* Error that shows when the user tries to partcipate in a tokensale that has already ended */
+"TOKENSALE_Has_Ended_Error" = "このトークンセールはすでに終了しました";
+
+/* String on the review screen describing that this transaction will have priority */
+"TOKENSALE_Has_Priority_Label" = "プライオリティ(0.001GAS)";
+
+/* An error indicating the user has entered an invalid contribution amount */
+"TOKENSALE_Invalid_Amount_Error" = "無効な金額です";
+
+/* Disclaimer text asking the user to aggree that they have read the agreement provided by the tokensale issuer */
+"TOKENSALE_Issuer_Agreement" = "このトークンセールでのトークン発行者の同意書を読み、内容を理解しました。";
+
+/* A string showing that the displayed token sale is currently active */
+"TOKENSALE_Live_Status" = "受付中";
+
+/* An error that shows when the user tries to contribute more than the max contribution amount */
+"TOKENSALE_Max_Contribution_Error" = "%@の最大受付額は%@です";
+
+/* An error that show when the user tries to contribute less than the min contribution amount */
+"TOKENSALE_Min_Contribution_Error" = "%@の最小受付額は%@です";
+
+/* An error when the user has not yet agreed to the tokensale disclaimers */
+"TOKENSALE_Not_Agreed_To_Disclaimers Error" = "続けるには免責規定に同意してください。";
+
+/* An error indicating that the user does not have enough balance for the amount entered */
+"TOKENSALE_Not_Enough_Balance_Error" = "十分な%@がありません。あなたの残高は%@です。";
+
+/* A string showing the user is not whitelisted for this tokensale */
+"TOKENSALE_Not_WhiteListed" = "ホワイトリストに登録されていません。";
+
+/* An error to display when the user is not whitelisted for the tokensale */
+"TOKENSALE_Not_Whitelisted_Error" = "まだこのトークンセールのホワイトリストに登録していないようです。トークン発行者のウェブサイトでホワイトリスト登録の方法を確認してください。";
+
+/* Disclaimer text asking the user to agree to the terms of the O3 Application. States that the user is interacting directly with the smart contract */
+"TOKENSALE_O3_Agreement" = "ブロックチェーン上のスマートコントラクトに直接接続していることを理解しています。O3はいかなる資産預託を行っていません。";
+
+/* Text for the participate action */
+"TOKENSALE_Participate" = "参加";
+
+/* A Dialog that shows explaining when, what is priority is tapped. Explains that priority allows your transactions to process faster on the blockchain */
+"TOKENSALE_Priority_Explanation" = "プライオリティによりブロックへの到達が早くなります。トラフィック量の多いときは、プライオリティを付けることでトランザクションがブロックに到達する可能性が上がります。";
+
+/* Label showing priority. Also displays the gas cost for priority. This is fixed at 0.0011GAS */
+"TOKENSALE_Priority_Label" = "プライオリティ（0.0011 GAS）";
+
+/* Label for the date in the token sale receipt in transaction success screen */
+"TOKENSALE_Receipt_Date_Label" = "日付";
+
+/* Email Text For the receipt that the user can send to themselves */
+"TOKENSALE_Receipt_Email_Full_Text" = "このレシートはあなたのトランザクションがNEOブロックチェーン上での処理に送信されたことを証明します。\n\nブロックチェーン上にて承認された場合は、資産があなたのウォレットから引かれ、トークン発行者がトークン配布の責任を負います。このトランザクションIDはトークンセール参加の証明になるものです。詳細は以下の通りです。\n\n日付：%@\nトークンセール名：%@\nトランザクションID：%@\n送金先：%@\n受取予定額：%@\n\nO3チーム\n\n";
+
+/* Label for the priority in the token sale receipt in transaction success screen */
+"TOKENSALE_Receipt_Priority_Label" = "プライオリティ";
+
+/* Label for the receiving asset and amount in the token sale receipt in transaction success screen */
+"TOKENSALE_Receipt_Receiving_Label" = "受取通貨";
+
+/* Label for the sending asset and amount in the token sale receipt in transaction success screen */
+"TOKENSALE_Receipt_Sending_Label" = "送金通貨";
+
+/* Label for token sale name in the token sale receipt in transaction success screen */
+"TOKENSALE_Receipt_Tokensale_Name_Label" = "トークンセール";
+
+/* Label for the transaction id in the token sale receipt in transaction success screen */
+"TOKENSALE_Receipt_txid_Label" = "トランザクションID";
+
+/* A title for reviewing token sale participation buttton */
+"TOKENSALE_Review_Button_Title" = "確認";
+
+/* An error occurs when the user tries to send the max amount of gas. This is due to a potential rounding error, ro prevent this, send slightly les than the max amount */
+"TOKENSALE_Rounding_Error" = "GASを全額送金する場合は0.00000001GASを引いてください。エラーが発生しトランザクションが処理されない可能性があります。";
+
+/* Button title to save your receipt */
+"TOKENSALE_save_button_title" = "保存";
+
+/* Description showing that the transaction is currently being submitted to the NEO blockchain */
+"TOKENSALE_Sending_In_Progress" = "送信中";
+
+/* Button title for allowing users to subscribe to token sale news */
+"TOKENSALE_Subscribe" = "購読する";
+
+/* Title text showing your tokensale transaction has been successfully submitted to the blockchain */
+"TOKENSALE_Successful_Transaction_Title" = "トランザクションが正常に処理されました。";
+
+/* A title for the token sales screen */
+"TOKENSALE_Token_Sales_Title" = "トークンセール";
+
+/* A Title for the transction receipt in the tokensale success */
+"TOKENSALE_Transaction" = "トランザクション";
+
+/* Description that shows when there is an error */
 "TOKENSALE_Transaction_Error_Description" = "トランザクションは処理されていません。スマートコントラクトがトランザクションを拒否した可能性があります。後ほどやり直すか、トークン発行者に直接お問い合わせ下さい。";
+
+/* A title for a button that directs the user to the tokensale website button */
+"TOKENSALE_Website_Button_Title" = "ウェブサイト";
+
+/* Title Describing the send amount in the tokensale review screen */
+"TOKENSALE_You_Are_Sending_Title" = "あなたが送金するのは";
+
+/* A title indicating how much the user will receive with a given contribution amount */
+"TOKENSALE_You_Will_receive_Title" = "あなたが受け取るのは";
+
+/* Title for digital art and collectibles */
+"TOKENSelection_art_and_collectibles" = "TOKENSelection_art_and_collectibles";
+
+/* Title for NEP5 Section of Tab */
+"TOKENSELECTION_nep5_title" = "TOKENSELECTION_nep5_title";
+
+/* Text to show that non fungible tokens are still under construction */
+"TOKENSELECTION_Under_Construction" = "TOKENSELECTION_Under_Construction"; /* NEW */
+
+/* A title for the account screen */
+"WALLET_Account" = "アカウント";
+
+/* A title for the button which allows you to add a NEP-5 Token to your wallet */
+"WALLET_Add_NEP5_Token" = "NEP5トークンの追加";
+
+/* Title of assets tab in wallet screen */
+"WALLET_Assets" = "資産状況";
+
+/* Prefix used to indicate the block number in the transaction history */
+"WALLET_Block_Prefix" = "ブロック：%@";
+
+/* A Title for the claim Action */
+"WALLET_Claim_Action" = "取得";
+
+/* A subtitle to display while claiming is in progress */
+"WALLET_Claim_In_Progress_Subtitle" = "もう少しお待ちください";
+
+/* A title to display while claiming is in progress */
+"WALLET_Claim_In_Progress_Title" = "GASを取得中";
+
+/* A Message to display in the alert after the user hs successfully claimed their gas */
+"WALLET_Claim_Succeeded_Prompt" = "GAS取得が正常に完了しました。トランザクション履歴に反映されるまで数分かかる場合があります。また、次のGAS取得は5分後に可能になります。";
+
+/* Indicated that the transation in history originated from claim */
+"WALLET_Claim_Transaction" = "取得";
+
+/* Title of Contacts tab in wallet screen */
+"WALLET_Contacts" = "コンタクト";
+
+/* An action title for copying our address */
+"WALLET_Copy_Address" = "アドレスをコピー";
+
+/* Prefix used in the transaction history to indicate where the transaction came from */
+"WALLET_From_Prefix" = "送金元：%@";
+
+/* Informative text explaining you can store neo, gas, and nep-5 tokens using this address */
+"WALLET_My_Address_Explanation" = "このアドレスを用いて取引所やウォレットからNEOやGAS、NEP5トークンを受け取ることができます。";
+
+/* Title of the My Address Page */
+"WALLET_My_Address_Title" = "マイアドレス";
+
+/* Title for NEP-5 Tokens Selection View */
+"WALLET_NEP5_Tokens" = "NEP5トークン";
+
+/* Done bar button item */
+"WALLET_NEP_5_DONE" = "完了";
+
+/* String in transaction history indicating O3 Wallet */
+"WALLET_O3_Wallet" = "O3ウォレット";
+
+/* An Action Title for saving your QR code */
+"WALLET_Save_Qr_Action" = "QRコードの保存";
+
+/* A description to give more information about saving the address */
+"WALLET_Saved_Description" = "画像は正常に保存されました";
+
+/* A title to display when you've successfully saved your wallet address qr code */
+"WALLET_Saved_Title" = "保存完了";
+
+/* An action title for sharing O3 */
+"WALLET_Share" = "シェア";
+
+/* Prefix used in the transaction history to indicate where the transaction went to */
+"WALLET_To_Prefix" = "送金先：%@";
+
+/* Title of Transactions tab in wallet screen */
+"WALLET_Transactions" = "トランザクション";
+
+/* A title for Unclaimed Gas in the wallet */
+"WALLET_Unclaimed_Gas_Title" = "未取得のGAS";
+
+/* Title to copy watch address */
+"WATCH_ADDRESS_Copy_Address" = "アドレスをコピー";
+
+/* Title to delete Watch Address */
+"WATCH_ADDRESS_Delete" = "消去";
+
+/* A prompt asking for user confirmation to delete the watch address */
+"WATCH_ADDRESS_Delete_Confirmation" = "このアドレスを本当に削除しますか？";
+
+/* Title for editing name of a watch address */
+"WATCH_ADDRESS_Edit_Name" = "名前を編集";
+
+/* Save Action for Watch Addresses */
+"WATCH_ADDRESS_Save" = "保存";
+

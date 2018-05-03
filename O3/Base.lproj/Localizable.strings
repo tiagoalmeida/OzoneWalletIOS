@@ -81,8 +81,7 @@
 /* A warning given to the user to make sure that they have backed up their private key in a secure location. Also states that deletibg the passcode will delete the key from the device */
 "ONBOARDING_Please_Backup Warning" = "Please backup this private key in another secure location.\n\nIt is highly reccomended that you have a passcode set on your iPhone. Removing the passcode from your device will delete your private key from the keychain.";
 
-/* A title presented over the
- of the private key, specifies WIF format. e.g. Your Private Key (WIF) */
+/* A title presented over the top of the private key, specifies WIF format. e.g. Your Private Key (WIF) */
 "ONBOARDING_Private_Key_title" = "Your Private Key (WIF)";
 
 /* Displayed when the app is waiting to connect to the network. It is finding the best NEO node to connect to */
@@ -407,10 +406,13 @@
 "TOKENSALE_You_Will_receive_Title" = "You Will Recieve";
 
 /* Title for digital art and collectibles */
-"TOKENSelection_art_and_collectibles" = "Art and Collectibles"; /* NEW */
+"TOKENSelection_art_and_collectibles" = "Art and Collectibles";
 
 /* Title for NEP5 Section of Tab */
-"TOKENSELECTION_nep5_title" = "NEP5 Tokens"; /* NEW */
+"TOKENSELECTION_nep5_title" = "NEP5 Tokens";
+
+/* Text to show that non fungible tokens are still under construction */
+"TOKENSELECTION_Under_Construction" = "TOKENSELECTION_Under_Construction"; /* NEW */
 
 /* A title for the account screen */
 "WALLET_Account" = "Account";
