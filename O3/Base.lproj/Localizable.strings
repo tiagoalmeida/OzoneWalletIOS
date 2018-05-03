@@ -211,7 +211,7 @@
 "SEND_To_Label" = "To";
 
 /* A generic add button title */
-"SETTINGS_Add_Button" = "Add"; /* NEW */
+"SETTINGS_Add_Button" = "Add";
 
 /* Title for add watch address button */
 "SETTINGS_Add_Watch_Address" = "Add Watch Address";
@@ -235,7 +235,7 @@
 "SETTINGS_Currency_Title" = "Currency";
 
 /* Title for Currency Menu, but does not include the type like USD or BTC */
-"SETTINGS_Currency_Title_No_Type" = "Currency"; /* NEW */
+"SETTINGS_Currency_Title_No_Type" = "Currency";
 
 /* Error To display when user tries to add an invalid address */
 "SETTINGS_Invalid_Address" = "Invalid Address";
@@ -409,7 +409,7 @@
 "TOKENSALE_Website_Button_Title" = "Website";
 
 /* A title for the button that gives additional information about what priority does */
-"TOKENSALE_What_Is_Priority" = "What is priority?"; /* NEW */
+"TOKENSALE_What_Is_Priority" = "What is priority?";
 
 /* Title Describing the send amount in the tokensale review screen */
 "TOKENSALE_You_Are_Sending_Title" = "You Are Sending";
