@@ -200,78 +200,85 @@ class HomeViewModel {
         }
     }
 
-    func fetchAssetBalances(address: String, isReadOnly: Bool) {
-        group.enter()
-        DispatchQueue.global().async {
-             NeoClient(seed: UserDefaultsManager.seed).getAccountState(for: address) { result in
+    func fetchNativeAssets(address: String, isReadOnly: Bool) {
+        NeoClient(seed: UserDefaultsManager.seed).getAccountState(for: address) { result in
+            switch result {
+            case .failure:
+                self.fetchNativeAssetsFromCache(isReadOnly: isReadOnly)
+                self.group.leave()
+            case .success(let accountState):
+                for asset in accountState.balances {
+                    var assetToAdd: TransferableAsset
+                    if asset.id.contains(NeoSwift.AssetId.neoAssetId.rawValue) {
+                        assetToAdd = TransferableAsset(assetID: NeoSwift.AssetId.neoAssetId.rawValue,
+                                                       name: "NEO",
+                                                       symbol: "NEO",
+                                                       assetType: AssetType.nativeAsset,
+                                                       decimal: 0,
+                                                       balance: Decimal(Double(asset.value) ?? 0))
+                        if !isReadOnly { O3Cache.setNEOForSession(neoBalance: Int(asset.value) ?? 0) }
+                    } else {
+                        assetToAdd = TransferableAsset(assetID: NeoSwift.AssetId.gasAssetId.rawValue,
+                                                       name: "GAS",
+                                                       symbol: "GAS",
+                                                       assetType: AssetType.nativeAsset,
+                                                       decimal: 8,
+                                                       balance: Decimal(Double(asset.value) ?? 0))
+                        if !isReadOnly { O3Cache.setGASForSession(gasBalance: Double(asset.value) ?? 0.0) }
+                    }
+                    if isReadOnly {
+                        self.addReadOnlyAsset(assetToAdd)
+                    } else {
+                        self.addWritableAsset(assetToAdd)
+                    }
+                }
+                self.group.leave()
+            }
+        }
+    }
+
+    func fetchTokenAssets(address: String, isReadOnly: Bool) {
+        for key in self.selectedNEP5Tokens.keys {
+            let token = self.selectedNEP5Tokens[key]!
+            self.group.enter()
+            NeoClient(seed: UserDefaultsManager.seed).getTokenBalanceUInt(token.tokenHash, address: address) { result in
                 switch result {
                 case .failure:
-                    self.fetchNativeAssetsFromCache(isReadOnly: isReadOnly)
-                    self.group.leave()
-                case .success(let accountState):
-                    for asset in accountState.balances {
-                        var assetToAdd: TransferableAsset
-                        if asset.id.contains(NeoSwift.AssetId.neoAssetId.rawValue) {
-                            assetToAdd = TransferableAsset(assetID: NeoSwift.AssetId.neoAssetId.rawValue,
-                                                               name: "NEO",
-                                                               symbol: "NEO",
-                                                               assetType: AssetType.nativeAsset,
-                                                               decimal: 0,
-                                                               balance: Decimal(Double(asset.value) ?? 0))
-                            if !isReadOnly { O3Cache.setNEOForSession(neoBalance: Int(asset.value) ?? 0) }
-                        } else {
-                            assetToAdd = TransferableAsset(assetID: NeoSwift.AssetId.gasAssetId.rawValue,
-                                                          name: "GAS",
-                                                          symbol: "GAS",
-                                                          assetType: AssetType.nativeAsset,
-                                                          decimal: 8,
-                                                          balance: Decimal(Double(asset.value) ?? 0))
-                            if !isReadOnly { O3Cache.setGASForSession(gasBalance: Double(asset.value) ?? 0.0) }
-                        }
+                    let cachedAsset = self.fetchTokenFromCache(token.tokenHash, isReadOnly: isReadOnly)
+                    if cachedAsset != nil {
                         if isReadOnly {
-                            self.addReadOnlyAsset(assetToAdd)
+                            self.addReadOnlyAsset(cachedAsset!)
                         } else {
-                            self.addWritableAsset(assetToAdd)
+                            self.addWritableAsset(cachedAsset!)
                         }
+                    }
+                    self.group.leave()
+                case .success(let balance):
+                    let balanceDecimal = Decimal(balance) / pow(10, token.decimal)
+                    let assetToAdd = TransferableAsset(assetID: token.tokenHash,
+                                                       name: token.name,
+                                                       symbol: token.symbol,
+                                                       assetType: AssetType.nep5Token,
+                                                       decimal: token.decimal,
+                                                       balance: balanceDecimal)
+                    if isReadOnly {
+                        self.addReadOnlyAsset(assetToAdd)
+                    } else {
+                        self.addWritableAsset(assetToAdd)
                     }
                     self.group.leave()
                 }
             }
         }
+    }
 
+    func fetchAssetBalances(address: String, isReadOnly: Bool) {
+        group.enter()
         DispatchQueue.global().async {
-            for key in self.selectedNEP5Tokens.keys {
-                let token = self.selectedNEP5Tokens[key]!
-                self.group.enter()
-                NeoClient(seed: UserDefaultsManager.seed).getTokenBalanceUInt(token.tokenHash, address: address) { result in
-                    switch result {
-                    case .failure:
-                        let cachedAsset = self.fetchTokenFromCache(token.tokenHash, isReadOnly: isReadOnly)
-                        if cachedAsset != nil {
-                            if isReadOnly {
-                                self.addReadOnlyAsset(cachedAsset!)
-                            } else {
-                                self.addWritableAsset(cachedAsset!)
-                            }
-                        }
-                        self.group.leave()
-                    case .success(let balance):
-                        let balanceDecimal = Decimal(balance) / pow(10, token.decimal)
-                        let assetToAdd = TransferableAsset(assetID: token.tokenHash,
-                                                                     name: token.name,
-                                                                     symbol: token.symbol,
-                                                                     assetType: AssetType.nep5Token,
-                                                                     decimal: token.decimal,
-                                                                     balance: balanceDecimal)
-                        if isReadOnly {
-                            self.addReadOnlyAsset(assetToAdd)
-                        } else {
-                            self.addWritableAsset(assetToAdd)
-                        }
-                        self.group.leave()
-                    }
-                }
-            }
+            self.fetchNativeAssets(address: address, isReadOnly: isReadOnly)
+        }
+        DispatchQueue.global().async {
+            self.fetchTokenAssets(address: address, isReadOnly: isReadOnly)
         }
     }
 

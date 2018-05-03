@@ -73,7 +73,6 @@
 		6E0BECCA2063B47A00FA0A03 /* WebBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0BECC82063B41200FA0A03 /* WebBrowser.framework */; };
 		6E0BECCB2063B47A00FA0A03 /* WebBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0BECC82063B41200FA0A03 /* WebBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6E1BBF7F1F77BEE30095F466 /* WalletHomeAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E1BBF7E1F77BEE30095F466 /* WalletHomeAssets.xcassets */; };
-		6E244EBD20858342001B4B22 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E244EBC20858342001B4B22 /* Lottie.framework */; };
 		6E244EBF208583F1001B4B22 /* TokenSaleSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E244EBE208583F1001B4B22 /* TokenSaleSubmitViewController.swift */; };
 		6E244EC020858AB8001B4B22 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E244EBC20858342001B4B22 /* Lottie.framework */; };
 		6E244EC120858AB8001B4B22 /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6E244EBC20858342001B4B22 /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -393,7 +392,6 @@
 				6E244EC020858AB8001B4B22 /* Lottie.framework in Frameworks */,
 				35494575203C030A00332E53 /* Tabman.framework in Frameworks */,
 				3549456D203BF1F700332E53 /* Pageboy.framework in Frameworks */,
-				6E244EBD20858342001B4B22 /* Lottie.framework in Frameworks */,
 				6E97C4B91F7FCB4000526FF0 /* DeckTransition.framework in Frameworks */,
 				35051B1C1FFDB10800F9AD30 /* Crashlytics.framework in Frameworks */,
 				35051B1D1FFDB10800F9AD30 /* Fabric.framework in Frameworks */,

@@ -13,7 +13,7 @@ import SwiftTheme
 import Crashlytics
 
 class O3TabBarController: UITabBarController {
-    var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
+    weak var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

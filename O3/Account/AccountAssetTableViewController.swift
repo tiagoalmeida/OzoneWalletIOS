@@ -93,7 +93,6 @@ class AccountAssetTableViewController: UITableViewController {
 
     func claimGas() {
         self.enableClaimButton(enable: false)
-        //refresh the amount of claimable gas
         self.loadClaimableGAS()
         Authenticated.account?.claimGas { _, error in
             if error != nil {
@@ -106,16 +105,11 @@ class AccountAssetTableViewController: UITableViewController {
             Answers.logCustomEvent(withName: "Gas Claimed",
                              customAttributes: ["Amount": self.mostRecentClaimAmount])
             DispatchQueue.main.async {
-                //HUD something to notify user that claim succeeded
-                //done claiming
                 HUD.hide()
-
-                DispatchQueue.main.async {
-                    OzoneAlert.alertDialog(message: AccountStrings.successfulClaimPrompt, dismissTitle: OzoneAlert.okPositiveConfirmString) {
-                        UserDefaultsManager.numClaims += 1
-                        if UserDefaultsManager.numClaims == 1 || UserDefaultsManager.numClaims % 10 == 0 {
-                            SKStoreReviewController.requestReview()
-                        }
+                OzoneAlert.alertDialog(message: AccountStrings.successfulClaimPrompt, dismissTitle: OzoneAlert.okPositiveConfirmString) {
+                    UserDefaultsManager.numClaims += 1
+                    if UserDefaultsManager.numClaims == 1 || UserDefaultsManager.numClaims % 10 == 0 {
+                        SKStoreReviewController.requestReview()
                     }
                 }
 
@@ -128,9 +122,7 @@ class AccountAssetTableViewController: UITableViewController {
                 //if claim succeeded then fire the timer to refresh claimable gas again.
                 self.refreshClaimableGasTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(AccountAssetTableViewController.loadClaimableGAS), userInfo: nil, repeats: true)
                 self.refreshClaimableGasTimer?.fire()
-
                 self.loadClaimableGAS()
-
             }
         }
     }
@@ -149,7 +141,6 @@ class AccountAssetTableViewController: UITableViewController {
             return
         }
         refreshClaimableGasTimer?.invalidate()
-        //disable the button after tapped
         enableClaimButton(enable: false)
 
         HUD.show(.labeledProgress(title: AccountStrings.claimingInProgressTitle, subtitle: AccountStrings.claimingInProgressSubtitle))
@@ -172,8 +163,6 @@ class AccountAssetTableViewController: UITableViewController {
         Authenticated.account?.sendAssetTransaction(asset: AssetId.neoAssetId, amount: Double(self.neoBalance!), toAddress: (Authenticated.account?.address)!) { completed, _ in
             if completed == false {
                 HUD.hide()
-                //HUD or something
-                //in case it's error we then enable the button again.
                 self.enableClaimButton(enable: true)
                 return
             }
@@ -182,7 +171,6 @@ class AccountAssetTableViewController: UITableViewController {
                 self.isClaiming = true
                 //disable button and invalidate the timer to refresh claimable GAS
                 self.refreshClaimableGasTimer?.invalidate()
-                //try to claim gas after 10 seconds
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                     self.claimGas()
                 }
@@ -211,7 +199,6 @@ class AccountAssetTableViewController: UITableViewController {
 
     func showClaimableGASAmount(amount: Double) {
         DispatchQueue.main.async {
-
             let indexPath = IndexPath(row: 0, section: sections.unclaimedGAS.rawValue)
             guard let cell = self.tableView.cellForRow(at: indexPath) as? UnclaimedGASTableViewCell else {
                 return
@@ -227,8 +214,6 @@ class AccountAssetTableViewController: UITableViewController {
             } else {
                 cell.claimButton.isEnabled = false
             }
-
-            //amount needs to be more than zero
             cell.claimButton.isEnabled = amount > 0
         }
     }
@@ -260,7 +245,6 @@ class AccountAssetTableViewController: UITableViewController {
                     cellGAS.amountLabel.text = String(format: "%.8f", Double(asset.value) ?? 0.0)
                 }
             }
-
         }
     }
 
@@ -294,7 +278,6 @@ class AccountAssetTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        //UNCLAIM GAS, NATIVE ASSETS and NEP5 TOKENS.
         return 3
     }
 
@@ -315,17 +298,8 @@ class AccountAssetTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
         if indexPath.section == sections.unclaimedGAS.rawValue {
             return 108.0
-        }
-
-        if indexPath.section == sections.nativeAssets.rawValue {
-            return 52.0
-        }
-
-        if indexPath.section == sections.nep5Tokens.rawValue {
-            return 52.0
         }
         return 52.0
     }
@@ -358,7 +332,6 @@ class AccountAssetTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == sections.unclaimedGAS.rawValue {
-
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell-unclaimedgas") as? UnclaimedGASTableViewCell else {
                 let cell =  UITableViewCell()
                 cell.theme_backgroundColor = O3Theme.backgroundColorPicker
@@ -375,13 +348,10 @@ class AccountAssetTableViewController: UITableViewController {
                 return cell
             }
 
-            //NEO
             if indexPath.row == 0 {
                 cell.titleLabel.text = "NEO"
-                //load neo balance here
             }
 
-            //GAS
             if indexPath.row == 1 {
                 cell.titleLabel.text = "GAS"
             }
@@ -404,7 +374,6 @@ class AccountAssetTableViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-
         if indexPath.section == sections.unclaimedGAS.rawValue {
             return false
         }

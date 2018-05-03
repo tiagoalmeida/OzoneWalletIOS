@@ -30,7 +30,7 @@ class MyAddressViewController: UIViewController {
     func share() {
         let shareURL = URL(string: "https://o3.network/")
         let qrWithBranding = UIImage.imageWithView(view: self.qrCodeContainerView)
-        let activityViewController = UIActivityViewController(activityItems: [shareURL, qrWithBranding], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [shareURL as Any, qrWithBranding], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
 
         self.present(activityViewController, animated: true, completion: nil)

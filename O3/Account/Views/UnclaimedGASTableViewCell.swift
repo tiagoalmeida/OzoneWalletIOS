@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol UnclaimGASDelegate {
+protocol UnclaimGASDelegate: class {
     func claimButtonTapped()
 }
 
 class UnclaimedGASTableViewCell: UITableViewCell {
 
-    var delegate: UnclaimGASDelegate?
+    weak var delegate: UnclaimGASDelegate?
     @IBOutlet weak var cardView: CardView!
     @IBOutlet var amountLabel: UILabel!
     @IBOutlet var claimButton: ShadowedButton! {

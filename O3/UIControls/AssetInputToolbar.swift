@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AssetInputToolbarDelegate {
+protocol AssetInputToolbarDelegate: class {
     func percentAmountTapped(value: Decimal)
     func maxAmountTapped(value: Decimal)
 }
@@ -23,7 +23,7 @@ class AssetInputToolbar: UIView {
     @IBOutlet var assetLabel: UILabel?
     @IBOutlet var assetBalance: UILabel?
     @IBOutlet var messageLabel: UILabel?
-    var delegate: AssetInputToolbarDelegate?
+    weak var delegate: AssetInputToolbarDelegate?
 
     var asset: TransferableAsset? {
         didSet {
@@ -60,7 +60,7 @@ class AssetInputToolbar: UIView {
         self.setup()
     }
 
-    //mark: -
+    // MARK: 
     @IBAction func percentTapped(_ sender: UIButton) {
         let percent = Double(sender.tag)
         let value = NSDecimalNumber(decimal: self.asset!.balance).doubleValue * (percent / 100.0)

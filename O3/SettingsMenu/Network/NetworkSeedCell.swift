@@ -44,7 +44,7 @@ class NetworkSeedCell: UITableViewCell {
                 }
             }
 
-            if (delegate?.highestBlockCount() ?? 0) - (node?.blockCount ?? 0)  > 5 { //give a small amount of buffer for unaligned blocks
+            if (delegate!.highestBlockCount()) - (node!.blockCount)  > 5 { //give a small amount of buffer for unaligned blocks
                 DispatchQueue.main.async {
                     self.blockCountLabel.theme_textColor = O3Theme.errorColorPicker
                     self.seedNameLabel.theme_textColor = O3Theme.errorColorPicker

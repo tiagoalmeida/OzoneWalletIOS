@@ -124,7 +124,7 @@ class TokenSalesListTableViewController: UITableViewController {
         }
     }
 
-    //mark: -
+    // MARK: 
     func checkWhitelisted(sale: TokenSales.SaleInfo, indexPath: IndexPath) {
         DispatchQueue.main.async {
 

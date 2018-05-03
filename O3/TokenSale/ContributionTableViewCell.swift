@@ -53,8 +53,10 @@ class ContributionTableViewCell: UITableViewCell {
 
     var tokenName: String! {
         didSet {
-            neoRateLabel.text = "1 NEO = " + (neoRateInfo?.basicRate.string(0, removeTrailing: true) ?? "") + " " + tokenName
-            gasRateLabel.text = "1 GAS = " + (gasRateInfo?.basicRate.string(0, removeTrailing: true) ?? "") + " " + tokenName
+            let neoRateAmountString = neoRateInfo?.basicRate.string(0, removeTrailing: true) ?? ""
+            let gasRateAmountString = gasRateInfo?.basicRate.string(0, removeTrailing: true) ?? ""
+            neoRateLabel.text = "1 NEO = " + neoRateAmountString + " " + tokenName
+            gasRateLabel.text = "1 GAS = " + gasRateAmountString + " " + tokenName
         }
     }
     var selectedAsset: TransferableAsset = TransferableAsset.NEO() {

@@ -50,7 +50,7 @@ public class O3Client {
     public static let shared = O3Client()
 
     func sendRequest(_ endpointURL: String, method: HTTPMethod, data: [String: Any?]?,
-        noBaseURL: Bool = false, completion: @escaping (O3ClientResult<JSONDictionary>) -> Void) {
+                     noBaseURL: Bool = false, completion: @escaping (O3ClientResult<JSONDictionary>) -> Void) {
         var urlString = ""
         if noBaseURL {
             urlString = endpointURL

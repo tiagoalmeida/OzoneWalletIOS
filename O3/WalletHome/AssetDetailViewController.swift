@@ -97,7 +97,8 @@ class AssetDetailViewController: UIViewController, GraphPanDelegate, ScrollableG
         activatedLineCenterXAnchor?.isActive = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.referenceCurrencyTapped(_:)))
         amountLabel.addGestureRecognizer(tapGesture)
-        //TODO: THIS IS A HACK TO GET OVER ANIMATE ON STARTUP
+
+        // A hack to get the thing to animate on startup
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { self.graphView.reload() }
     }
 

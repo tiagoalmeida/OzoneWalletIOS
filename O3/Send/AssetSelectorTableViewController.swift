@@ -9,14 +9,14 @@
 import UIKit
 import NeoSwift
 
-protocol AssetSelectorDelegate {
+protocol AssetSelectorDelegate: class {
     func assetSelected(selected: TransferableAsset, gasBalance: Decimal)
 }
 
 class AssetSelectorTableViewController: UITableViewController {
 
     var accountState: AccountState!
-    var delegate: AssetSelectorDelegate?
+    weak var delegate: AssetSelectorDelegate?
 
     enum sections: Int {
         case nativeAssets = 0

@@ -14,7 +14,6 @@ import Crashlytics
 class ContactsTableViewController: UITableViewController, AddressAddDelegate {
     @IBOutlet weak var addAddressButton: ShadowedButton!
     @IBOutlet weak var addAddressDescriptionLabel: UILabel!
-    let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
     var fetchedResultsController: NSFetchedResultsController<Contact>?
     var selectedAddress = ""
 
@@ -23,9 +22,9 @@ class ContactsTableViewController: UITableViewController, AddressAddDelegate {
         let fetchRequest: NSFetchRequest<Contact> = Contact.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "nickName", ascending: true)]
 
-        let context = appDelegate?.persistentContainer.viewContext
+        let context = UIApplication.appDelegate.persistentContainer.viewContext
 
-        fetchedResultsController =  NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context!, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController =  NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController?.delegate = self
 
         do {

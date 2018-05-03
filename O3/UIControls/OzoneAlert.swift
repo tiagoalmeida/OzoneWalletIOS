@@ -34,8 +34,8 @@ class OzoneAlert {
     }
 
     static func alertDialog(_ title: String = "", message: String,
-                              dismissTitle: String,
-                              didDismiss: @escaping () -> Void) {
+                            dismissTitle: String,
+                            didDismiss: @escaping () -> Void) {
 
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
