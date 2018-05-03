@@ -385,6 +385,7 @@
                     </tableView>
                     <connections>
                         <outlet property="loginButton" destination="36p-VS-Jw7" id="Lfj-Yc-SpO"/>
+                        <outlet property="pkeyTitleLabel" destination="6p0-gY-L30" id="9RW-31-Hmi"/>
                         <outlet property="wifTextField" destination="eHV-oy-wwY" id="HwX-58-eB3"/>
                         <outlet property="wifTextFieldInfoLabel" destination="PGR-rj-rKv" id="xYs-SZ-ydE"/>
                         <segue destination="6fG-df-BHS" kind="presentation" identifier="segueToMainFromLogin" id="1ME-Er-JZt"/>
@@ -628,7 +629,7 @@ It is highly reccomended that you have a passcode set on your iPhone. Removing t
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4F1-SI-Z13"/>
-        <segue reference="gND-3E-7d0"/>
+        <segue reference="1ME-Er-JZt"/>
         <segue reference="nDz-8f-fC4"/>
     </inferredMetricsTieBreakers>
 </document>
