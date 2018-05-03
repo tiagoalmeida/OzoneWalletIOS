@@ -136,8 +136,9 @@ class AddressEntryTableViewController: UITableViewController, AVCaptureMetadataO
 
     func setLocalizedStrings() {
         addressLabel.text = SettingsStrings.addressLabel
-        nicknameField.text = SettingsStrings.nicknameLabel
+        nicknameLabel.text = SettingsStrings.nicknameLabel
         closeButton.setTitle(SettingsStrings.close, for: UIControlState())
+        proceedButton.setTitle(SettingsStrings.addButton, for: UIControlState())
     }
 }
 

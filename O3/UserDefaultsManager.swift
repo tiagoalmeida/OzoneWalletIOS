@@ -63,7 +63,7 @@ class UserDefaultsManager {
                 return "http://seed2.neo.org:20332"
             #endif
             #if PRIVATENET
-                return "http://localhost:30333"
+                return "http://192.168.0.17:30333"
             #endif
 
             return UserDefaults.standard.string(forKey: seedKey)!

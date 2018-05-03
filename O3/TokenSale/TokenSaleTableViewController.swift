@@ -362,6 +362,7 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
 
     func setLocalizedStrings() {
         priorityLabel?.text = TokenSaleStrings.priority
+        priorityInfoButton?.setTitle(TokenSaleStrings.whatIsPriority, for: UIControlState())
         participateButton.setTitle(TokenSaleStrings.review, for: UIControlState())
     }
 }

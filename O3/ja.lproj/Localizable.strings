@@ -7,7 +7,7 @@
 "ALERT_Confirm" = "確認";
 
 /* A text to display when the user is not connected to the internet */
-"ALERT_No_Internet" = "ALERT_No_Internet"; /* NEW */
+"ALERT_No_Internet" = "ALERT_No_Internet";
 
 /* Negative Response to an alert message, it is a negative action stating that they have not yet completed what they need to do */
 "ALERT_Not_Yet_Negative_Confirm" = "まだ";
@@ -210,6 +210,9 @@
 /* Label title for the send to field on the send screen */
 "SEND_To_Label" = "送金先";
 
+/* A generic add button title */
+"SETTINGS_Add_Button" = "SETTINGS_Add_Button"; /* NEW */
+
 /* Title for add watch address button */
 "SETTINGS_Add_Watch_Address" = "ウォッチアドレスを追加する";
 
@@ -230,6 +233,9 @@
 
 /* Title for Currency Menu in Settings */
 "SETTINGS_Currency_Title" = "通貨：%@";
+
+/* Title for Currency Menu, but does not include the type like USD or BTC */
+"SETTINGS_Currency_Title_No_Type" = "SETTINGS_Currency_Title_No_Type"; /* NEW */
 
 /* Error To display when user tries to add an invalid address */
 "SETTINGS_Invalid_Address" = "無効なアドレス";
@@ -401,6 +407,9 @@
 
 /* A title for a button that directs the user to the tokensale website button */
 "TOKENSALE_Website_Button_Title" = "ウェブサイト";
+
+/* A title for the button that gives additional information about what priority does */
+"TOKENSALE_What_Is_Priority" = "TOKENSALE_What_Is_Priority"; /* NEW */
 
 /* Title Describing the send amount in the tokensale review screen */
 "TOKENSALE_You_Are_Sending_Title" = "あなたが送金するのは";

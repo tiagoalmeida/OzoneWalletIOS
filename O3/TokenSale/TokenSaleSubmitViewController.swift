@@ -19,7 +19,7 @@ class TokenSaleSubmitViewController: UIViewController {
 
     func submitTransaction() {
         #if PRIVATENET
-        UserDefaultsManager.seed = "http://localhost:30333"
+        UserDefaultsManager.seed = "http://192.168.0.17:30333"
         UserDefaultsManager.useDefaultSeed = false
         UserDefaultsManager.network = .privateNet
         Authenticated.account?.neoClient = NeoClient(network: .privateNet)
