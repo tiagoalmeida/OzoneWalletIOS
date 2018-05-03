@@ -34,10 +34,11 @@ class TokenSalesListTableViewController: UITableViewController {
         setThemedElements()
 
         #if PRIVATENET
+        Authenticated.account?.neoClient = NeoClient(network: .privateNet)
         UserDefaultsManager.seed = "http://192.168.0.17:30333"
+        Authenticated.account?.neoClient.fullNodeAPI = "http://192.168.0.17:5000"
         UserDefaultsManager.useDefaultSeed = false
         UserDefaultsManager.network = .privateNet
-        Authenticated.account?.neoClient = NeoClient(network: .privateNet)
         #endif
 
         //this to avoid double call in cellForRow
@@ -131,7 +132,7 @@ class TokenSalesListTableViewController: UITableViewController {
             guard let cell = self.tableView.cellForRow(at: indexPath) as? TokenSaleTableViewCell else {
                 return
             }
-            Authenticated.account?.allowToParticipateInTokenSale(scriptHash: sale.scriptHash, completion: { (result) in
+            Authenticated.account?.allowToParticipateInTokenSale( scriptHash: sale.scriptHash, completion: { (result) in
                 DispatchQueue.main.async {
                     switch result {
                     case .failure:

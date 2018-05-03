@@ -23,7 +23,7 @@ struct TokenSaleStrings {
 
     //TOKEN SALE INFO
     static let priority = NSLocalizedString("TOKENSALE_Priority_Label", comment: "Label showing priority. Also displays the gas cost for priority. This is fixed at 0.0011GAS")
-    static let whatIsPrioirty = NSLocalizedString("TOKENSALE_What_Is_Priority", comment: "A title for the button that gives additional information about what priority does")
+    static let whatIsPriority = NSLocalizedString("TOKENSALE_What_Is_Priority", comment: "A title for the button that gives additional information about what priority does")
     static let review = NSLocalizedString("TOKENSALE_Review_Button_Title", comment: "A title for reviewing token sale participation buttton")
     static let invalidAmountError = NSLocalizedString("TOKENSALE_Invalid_Amount_Error", comment: "An error indicating the user has entered an invalid contribution amount")
     static let notEnoughBalanceError = NSLocalizedString("TOKENSALE_Not_Enough_Balance_Error", comment: "An error indicating that the user does not have enough balance for the amount entered")
