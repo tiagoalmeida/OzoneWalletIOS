@@ -24,6 +24,9 @@ class QRScannerController: UIViewController, AVCaptureMetadataOutputObjectsDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        if captureDevice == nil {
+            return
+        }
 
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice!)
