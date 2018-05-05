@@ -87,7 +87,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        currencyLabel.text = String(format: SettingsStrings.currencyTitle, UserDefaultsManager.referenceFiatCurrency.rawValue.uppercased())
+        currencyLabel.text = SettingsStrings.currencyTitle(UserDefaultsManager.referenceFiatCurrency.description)
     }
 
     @objc func maximize(_ sender: Any) {
@@ -207,7 +207,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
         watchOnlyLabel.text = SettingsStrings.watchOnlyTitle
         netLabel.text = SettingsStrings.networkTitle
         themeLabel.text = SettingsStrings.themeTitle
-        currencyLabel.text = SettingsStrings.currencyTitle + ": " + UserDefaultsManager.referenceFiatCurrency.rawValue.uppercased()
+        currencyLabel.text = SettingsStrings.currencyTitle(UserDefaultsManager.referenceFiatCurrency.description)
         contactLabel.text = SettingsStrings.contactTitle
         logoutLabel.text = SettingsStrings.logout
         supportLabel.text = SettingsStrings.supportTitle

@@ -91,6 +91,10 @@ enum Currency: String {
         case .cad: return "en_CA"
         }
     }
+    
+    var description: String {
+        return rawValue.uppercased()
+    }
 }
 
 enum PriceInterval: String {

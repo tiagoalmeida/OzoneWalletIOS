@@ -30,7 +30,11 @@ struct SettingsStrings {
     static let settingsTitle = NSLocalizedString("SETTINGS_Settings_Title", comment: "Title for Settings Menu")
     static let privateKeyTitle = NSLocalizedString("SETTINGS_My_Private_Key", comment: "Settings Menu Title for Private Key")
     static let watchOnlyTitle = NSLocalizedString("SETTINGS_Watch_Only_Address", comment: "Settings Menu Title For Watch Only Address")
-    static let currencyTitle = NSLocalizedString("SETTINGS_Currency_Title", comment: "Title for Currency Menu in Settings")
+    static let currencyTitle = { (currency: String) in
+        return String(format: NSLocalizedString("SETTINGS_Currency_Title",
+                                                comment: "Title for Currency Menu in Settings"),
+                      currency)
+    }
     static let networkTitle = NSLocalizedString("SETTINGS_Network_Title", comment: "Title for Network Screen In Settings")
     static let themeTitle = NSLocalizedString("SETTINGS_Theme", comment: "Settings Menu Title for Theme")
     static let contactTitle = NSLocalizedString("SETTINGS_Contact", comment: "Settings Menu Title For Contact")
