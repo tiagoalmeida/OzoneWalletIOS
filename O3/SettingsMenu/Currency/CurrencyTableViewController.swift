@@ -19,7 +19,9 @@ class CurrencyTableViewController: UITableViewController {
     // MARK: - Properties
     
     private let currencies: [Currency] =  [.usd, .jpy, .eur, .krw, .cny, .aud, .gbp, .rub, .cad]
-    private var currentlySelectedIndex = 0
+    private var currentlySelectedIndex: Int {
+        return currencies.index(of: UserDefaultsManager.referenceFiatCurrency) ?? 0
+    }
 
     // MARK: - Life Cycle
     
@@ -31,19 +33,14 @@ class CurrencyTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let currencyIndex = currencies.index(of: UserDefaultsManager.referenceFiatCurrency)
-        let selectedRow = currencyIndex ?? 0
-
         tableView.reloadData()
-        setSelectedCell(index: selectedRow)
+        setSelectedCell(index: currentlySelectedIndex)
     }
 
     // MARK: - UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        UserDefaultsManager.referenceFiatCurrency = currencies[indexPath.row]
         tableView.cellForRow(at: IndexPath(item: currentlySelectedIndex, section: 0))?.accessoryType = .none
         setSelectedCell(index: indexPath.row)
     }
@@ -51,10 +48,10 @@ class CurrencyTableViewController: UITableViewController {
     // MARK: - Private
     
     private func setSelectedCell(index: Int) {
-        let cell = self.tableView.cellForRow(at: IndexPath(item: index, section: 0))
+        let cell = tableView.cellForRow(at: IndexPath(item: index, section: 0))
         cell?.accessoryType = .checkmark
-        currentlySelectedIndex = index
         navigationItem.title = SettingsStrings.currencyTitle(currencies[index].description)
+        UserDefaultsManager.referenceFiatCurrency = currencies[index]
     }
     
     private func setThemedElements() {
