@@ -81,24 +81,18 @@ class AssetSelectorTableViewController: UITableViewController {
             Authenticated.account?.neoClient = NeoClient(network: .test)
         #endif
 
-         Authenticated.account?.neoClient.getAccountState(for: Authenticated.account?.address ?? "") { result in
-            switch result {
-            case .failure:
-                DispatchQueue.main.async {
+         O3Client().getAccountState(address: Authenticated.account?.address ?? "") { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure:
                     self.tableView.refreshControl?.endRefreshing()
                     return
-                }
-            case .success(let accountState):
-                DispatchQueue.main.async {
+                case .success(let accountState):
                     self.tableView.refreshControl?.endRefreshing()
                     self.showAccountState(accountState: accountState)
                 }
             }
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     // MARK: - Table view data source

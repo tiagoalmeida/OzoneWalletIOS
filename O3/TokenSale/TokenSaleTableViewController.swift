@@ -177,7 +177,7 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
         let amountFormatter = NumberFormatter()
         amountFormatter.minimumFractionDigits = 0
         amountFormatter.numberStyle = .decimal
-        amountFormatter.maximumFractionDigits = self.selectedAsset!.decimal
+        amountFormatter.maximumFractionDigits = self.selectedAsset!.decimals
         amountFormatter.locale = Locale.current
         amountFormatter.usesGroupingSeparator = true
         return amountFormatter.number(from: amountString)
@@ -195,7 +195,7 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
             return false
         }
 
-        let assetName: String! = self.selectedAsset?.name!
+        let assetName: String! = self.selectedAsset!.name
         let amount = amountStringToNumber(amountString: amountString)
 
         if amount == nil {
@@ -208,17 +208,17 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
         //2. check min/max contribution
 
         //validate amount
-        if amount!.decimalValue > self.selectedAsset!.balance! {
-            let balanceDecimal = self.selectedAsset!.balance
+        if amount!.doubleValue > self.selectedAsset!.value {
+            let balanceDecimal = self.selectedAsset!.value
             let formatter = NumberFormatter()
             formatter.minimumFractionDigits = 0
-            formatter.maximumFractionDigits = self.selectedAsset!.decimal
+            formatter.maximumFractionDigits = self.selectedAsset!.decimals
             formatter.numberStyle = .decimal
             let balanceString = formatter.string(for: balanceDecimal)
             let message = String(format: TokenSaleStrings.notEnoughBalanceError, assetName, balanceString!)
             OzoneAlert.alertDialog(message: message, dismissTitle: OzoneAlert.okPositiveConfirmString) {}
             return false
-        } else if selectedAsset?.name.lowercased() == "gas" && self.selectedAsset!.balance! - amount!.decimalValue <= 0.00000001 {
+        } else if selectedAsset?.name.lowercased() == "gas" && self.selectedAsset!.balance - amount!.doubleValue <= 0.00000001 {
             OzoneAlert.alertDialog(message: TokenSaleStrings.roundingError, dismissTitle: OzoneAlert.okPositiveConfirmString) {}
             return false
         }
@@ -326,7 +326,7 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tx = TokenSaleTransactionInfo (
             priorityIncluded: checkboxPriority!.isSelected,
-            assetIDUsedToPurchase: selectedAsset?.assetID ?? "",
+            assetIDUsedToPurchase: selectedAsset?.id ?? "",
             assetNameUsedToPurchase: selectedAsset?.name ?? "",
             assetAmount: Double(truncating: amountStringToNumber(amountString: amountString!)!),
             tokenSaleContractHash: saleInfo.scriptHash,

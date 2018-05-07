@@ -42,6 +42,7 @@
 		3549458E203FD4D000332E53 /* Decimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3549458D203FD4D000332E53 /* Decimal.swift */; };
 		3552DE0D209FF06F00836341 /* panda1.json in Resources */ = {isa = PBXBuildFile; fileRef = 3552DE0C209FF06F00836341 /* panda1.json */; };
 		3552DE0F209FF09900836341 /* NEP5TokenSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552DE0E209FF09900836341 /* NEP5TokenSelectorTableViewCell.swift */; };
+		3552DE1120A025D900836341 /* AccountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552DE1020A025D900836341 /* AccountState.swift */; };
 		358E95D9200358AA00A1878B /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358E95D8200358AA00A1878B /* NewsFeed.swift */; };
 		35A6390F203517BB0054EA20 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35A6390E203517BB0054EA20 /* CloudKit.framework */; };
 		35AD2B64209179010024A900 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 35AD2B61209179010024A900 /* Base.lproj */; };
@@ -111,7 +112,6 @@
 		6ECF0E251FAED3D800884F38 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECF0E241FAED3D800884F38 /* Reachability.framework */; };
 		6ECF0E2B1FAED7BF00884F38 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6ECF0E241FAED3D800884F38 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6ED5D7EC2016BFC900AF3713 /* AssetSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED5D7EB2016BFC900AF3713 /* AssetSelectorTableViewController.swift */; };
-		6ED5D7EE2016C69D00AF3713 /* NEOAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED5D7ED2016C69D00AF3713 /* NEOAsset.swift */; };
 		6ED600131F76219D006760E6 /* Channel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED600121F76219A006760E6 /* Channel.framework */; };
 		6ED600141F76219D006760E6 /* Channel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED600121F76219A006760E6 /* Channel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6ED600161F763434006760E6 /* O3TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED600151F763434006760E6 /* O3TextView.swift */; };
@@ -241,6 +241,7 @@
 		3549458D203FD4D000332E53 /* Decimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decimal.swift; sourceTree = "<group>"; };
 		3552DE0C209FF06F00836341 /* panda1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = panda1.json; sourceTree = "<group>"; };
 		3552DE0E209FF09900836341 /* NEP5TokenSelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NEP5TokenSelectorTableViewCell.swift; sourceTree = "<group>"; };
+		3552DE1020A025D900836341 /* AccountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountState.swift; sourceTree = "<group>"; };
 		358E95D8200358AA00A1878B /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
 		35A6390E203517BB0054EA20 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		35AD2B61209179010024A900 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
@@ -306,7 +307,6 @@
 		6EA7F9271F6E2F7F00E31B78 /* O3Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = O3Client.swift; sourceTree = "<group>"; };
 		6ECF0E241FAED3D800884F38 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		6ED5D7EB2016BFC900AF3713 /* AssetSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSelectorTableViewController.swift; sourceTree = "<group>"; };
-		6ED5D7ED2016C69D00AF3713 /* NEOAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NEOAsset.swift; sourceTree = "<group>"; };
 		6ED600111F762189006760E6 /* O3.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = O3.entitlements; sourceTree = "<group>"; };
 		6ED600121F76219A006760E6 /* Channel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Channel.framework; path = Frameworks/Channel.framework; sourceTree = "<group>"; };
 		6ED600151F763434006760E6 /* O3TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = O3TextView.swift; sourceTree = "<group>"; };
@@ -451,7 +451,6 @@
 			isa = PBXGroup;
 			children = (
 				6E4E6F83201462D7001A5844 /* NEP5Token.swift */,
-				6ED5D7ED2016C69D00AF3713 /* NEOAsset.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -493,6 +492,7 @@
 			children = (
 				6EA7F9271F6E2F7F00E31B78 /* O3Client.swift */,
 				351200BC207EF84C003CA07D /* TokenSales.swift */,
+				3552DE1020A025D900836341 /* AccountState.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -968,6 +968,7 @@
 				752017481F73F30B00090C4F /* UIImage.swift in Sources */,
 				752017341F72980A00090C4F /* SendCompleteViewController.swift in Sources */,
 				756AC1941F7FD1B1003BF8F7 /* AddressSelectionCell.swift in Sources */,
+				3552DE1120A025D900836341 /* AccountState.swift in Sources */,
 				35061E47205F5CFE004E89EB /* FeaturedCollectionCell.swift in Sources */,
 				75D5BFB41F6CEF2E00E64855 /* OnboardingCollectionCell.swift in Sources */,
 				35061E49205F6306004E89EB /* FeatureFeed.swift in Sources */,
@@ -991,7 +992,6 @@
 				6E3E381E1FA44C84004965F8 /* LoginToCurrentWalletViewController.swift in Sources */,
 				353F364B200370D6002B4FE1 /* NewsFeedViewController.swift in Sources */,
 				6E73679B2084B3B900F4202B /* TokenSaleSuccessViewController.swift in Sources */,
-				6ED5D7EE2016C69D00AF3713 /* NEOAsset.swift in Sources */,
 				7520068C1F7F8AC400D19B5F /* PrivateKeyViewController.swift in Sources */,
 				35B426C1209825D800957211 /* TokenSelectionTabViewController.swift in Sources */,
 				75DA590B1F7A83940065FE0D /* UIViewController.swift in Sources */,

@@ -9,7 +9,6 @@
 import Foundation
 import NeoSwift
 import UIKit
-import Cache
 
 protocol HomeViewModelDelegate: class {
     func updateWithBalanceData(_ assets: [TransferableAsset])
@@ -21,11 +20,14 @@ protocol HomeViewModelDelegate: class {
 class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
 
-    var cachedWritableAssets: [TransferableAsset] = []
-    var cachedReadOnlyAssets: [TransferableAsset] = []
-    var assetsReadOnly: [TransferableAsset] = []
-    var assetsWriteable: [TransferableAsset] = []
-    var selectedNEP5Tokens = UserDefaultsManager.selectedNEP5Token!
+    var writableTokens: [TransferableAsset] = O3Cache.tokenAssets()
+    var readOnlyTokens: [TransferableAsset] = O3Cache.readOnlyTokens()
+    var neoBalance = O3Cache.neoBalance()
+    var gasBalance = O3Cache.gasBalance()
+    var readOnlyNeoBalance = O3Cache.readOnlyNeoBalance()
+    var readOnlyGasBalance = O3Cache.readOnlyGasBalance()
+    
+
     var watchAddresses = [WatchAddress]()
     var group = DispatchGroup()
 
@@ -48,27 +50,40 @@ class HomeViewModel {
         self.referenceCurrency = currency
     }
 
-    func combinedReadOnlyAndWriteable() -> [TransferableAsset] {
-        var assets: [TransferableAsset] = assetsWriteable
-        for asset in assetsReadOnly {
-            let index = assets.index(where: { (item) -> Bool in
-                item.name == asset.name //test if we've already added this asset from another watch address
-            })
-            if index == nil {
-                assets.append(asset)
+    func getCombinedReadOnlyAndWriteable() -> [TransferableAsset] {
+        var assets: [TransferableAsset] = getReadOnlyAssets()
+        for asset in getWritableAssets() {
+            if let index = assets.index(where: { (item) -> Bool in item.name == asset.name }) {
+                assets[index].value = assets[index].value + asset.value
             } else {
-                assets[index!].balance = assets[index!].balance + asset.balance
+                assets.append(asset)
             }
         }
         return assets
+    }
+    
+    func getWritableAssets() -> [TransferableAsset] {
+        let neo = TransferableAsset(id: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO",
+                                    decimals: 8, value: Double(neoBalance), assetType: .nativeAsset)
+        let gas = TransferableAsset(id: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS",
+                                    decimals: 8, value: Double(neoBalance), assetType: .nativeAsset)
+        return [neo, gas] + writableTokens
+    }
+    
+    func getReadOnlyAssets() -> [TransferableAsset] {
+        let neo = TransferableAsset(id: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO",
+                                    decimals: 8, value: Double(readOnlyNeoBalance), assetType: .nativeAsset)
+        let gas = TransferableAsset(id: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS",
+                                    decimals: 8, value: Double(readOnlyGasBalance), assetType: .nativeAsset)
+        return [neo, gas] + writableTokens
     }
 
     func getTransferableAssets() -> [TransferableAsset] {
         var transferableAssetsToReturn: [TransferableAsset]  = []
         switch self.portfolioType {
-        case .writable: transferableAssetsToReturn = self.assetsWriteable
-        case .readOnlyAndWritable: transferableAssetsToReturn = self.combinedReadOnlyAndWriteable()
-        case .readOnly: transferableAssetsToReturn = self.assetsReadOnly
+        case .writable: transferableAssetsToReturn = getWritableAssets()
+        case .readOnlyAndWritable: transferableAssetsToReturn = getCombinedReadOnlyAndWriteable()
+        case .readOnly: transferableAssetsToReturn = getReadOnlyAssets()
         }
 
         //Put NEO + GAS at the top
@@ -90,27 +105,28 @@ class HomeViewModel {
         return sortedAssets + transferableAssetsToReturn
     }
 
-    func initiateCache() {
-        if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
+    func initiateCacheBalances() {
+        
+        
+        
+        /*if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
             cachedWritableAssets = (try? storage.object(ofType: [TransferableAsset].self, forKey: "writableAssets")) ?? []
             cachedReadOnlyAssets = (try? storage.object(ofType: [TransferableAsset].self, forKey: "readOnlyAssets")) ?? []
-        }
+        }*/
     }
 
     init(delegate: HomeViewModelDelegate) {
         self.delegate = delegate
-        initiateCache()
         reloadBalances()
     }
 
     func reloadBalances() {
         do {
             watchAddresses = try UIApplication.appDelegate.persistentContainer.viewContext.fetch(WatchAddress.fetchRequest())
-        } catch {}
-        assetsWriteable = []
-        assetsReadOnly = []
+        } catch {
+            
+        }
 
-        selectedNEP5Tokens = UserDefaultsManager.selectedNEP5Token!
         fetchAssetBalances(address: (Authenticated.account?.address)!, isReadOnly: false)
         for watchAddress in watchAddresses {
             if NEOValidator.validateNEOAddress(watchAddress.address ?? "") {
@@ -123,165 +139,18 @@ class HomeViewModel {
         }
     }
 
-    func addWritableAsset(_ asset: TransferableAsset) {
-        assetsWriteable.append(asset)
+    
 
-        //Add to writable assets cache
-        let index = cachedWritableAssets.index(where: { (item) -> Bool in
-            item.name == asset.name
-        })
-        if index == nil {
-            cachedWritableAssets.append(asset)
-        } else {
-            cachedWritableAssets[index!] = asset
-        }
-    }
-
-    func addReadOnlyAsset(_ asset: TransferableAsset) {
-        let index = assetsReadOnly.index(where: { (item) -> Bool in
-            item.name == asset.name //test if we've already added this asset from another watch address
-        })
-        if index == nil {
-            assetsReadOnly.append(asset)
-        } else {
-            assetsReadOnly[index!].balance = assetsReadOnly[index!].balance + asset.balance
-        }
-
-        //update the cache to match
-        let cacheIndex = cachedReadOnlyAssets.index(where: { (item) -> Bool in
-            item.name == asset.name
-        })
-        if cacheIndex == nil {
-            cachedReadOnlyAssets.append(asset)
-        } else {
-            cachedReadOnlyAssets[cacheIndex!] = asset
-        }
-    }
-
-    func fetchTokenFromCache(_ tokenHash: String, isReadOnly: Bool) -> TransferableAsset? {
-        if isReadOnly {
-            let cacheIndex = cachedReadOnlyAssets.index(where: { (item) -> Bool in
-                item.assetID == tokenHash
-            })
-            if cacheIndex != nil {
-                return cachedReadOnlyAssets[cacheIndex!]
-            } else {
-                return nil
-            }
-        } else {
-            let cacheIndex = cachedWritableAssets.index(where: { (item) -> Bool in
-                item.assetID == tokenHash
-            })
-            if cacheIndex != nil {
-                return cachedWritableAssets[cacheIndex!]
-            } else {
-                return nil
-            }
-        }
-    }
-
-    func fetchNativeAssetsFromCache(isReadOnly: Bool) {
-        let cachedNEO = self.fetchTokenFromCache(NeoSwift.AssetId.neoAssetId.rawValue, isReadOnly: isReadOnly)
-        if cachedNEO != nil {
-            if isReadOnly {
-                self.addReadOnlyAsset(cachedNEO!)
-            } else {
-                self.addWritableAsset(cachedNEO!)
-            }
-        }
-
-        let cachedGAS = self.fetchTokenFromCache(NeoSwift.AssetId.gasAssetId.rawValue, isReadOnly: isReadOnly)
-        if cachedGAS != nil {
-            if isReadOnly {
-                self.addReadOnlyAsset(cachedGAS!)
-            } else {
-                self.addWritableAsset(cachedGAS!)
-            }
-        }
-    }
-
-    func fetchNativeAssets(address: String, isReadOnly: Bool) {
-        NeoClient(seed: UserDefaultsManager.seed).getAccountState(for: address) { result in
-            switch result {
-            case .failure:
-                self.fetchNativeAssetsFromCache(isReadOnly: isReadOnly)
-                self.group.leave()
-            case .success(let accountState):
-                for asset in accountState.balances {
-                    var assetToAdd: TransferableAsset
-                    if asset.id.contains(NeoSwift.AssetId.neoAssetId.rawValue) {
-                        assetToAdd = TransferableAsset(assetID: NeoSwift.AssetId.neoAssetId.rawValue,
-                                                       name: "NEO",
-                                                       symbol: "NEO",
-                                                       assetType: AssetType.nativeAsset,
-                                                       decimal: 0,
-                                                       balance: Decimal(Double(asset.value) ?? 0))
-                        if !isReadOnly { O3Cache.setNEOForSession(neoBalance: Int(asset.value) ?? 0) }
-                    } else {
-                        assetToAdd = TransferableAsset(assetID: NeoSwift.AssetId.gasAssetId.rawValue,
-                                                       name: "GAS",
-                                                       symbol: "GAS",
-                                                       assetType: AssetType.nativeAsset,
-                                                       decimal: 8,
-                                                       balance: Decimal(Double(asset.value) ?? 0))
-                        if !isReadOnly { O3Cache.setGASForSession(gasBalance: Double(asset.value) ?? 0.0) }
-                    }
-                    if isReadOnly {
-                        self.addReadOnlyAsset(assetToAdd)
-                    } else {
-                        self.addWritableAsset(assetToAdd)
-                    }
-                }
-                self.group.leave()
-            }
-        }
-    }
-
-    func fetchTokenAssets(address: String, isReadOnly: Bool) {
-        for key in self.selectedNEP5Tokens.keys {
-            let token = self.selectedNEP5Tokens[key]!
-            self.group.enter()
-            NeoClient(seed: UserDefaultsManager.seed).getTokenBalanceUInt(token.tokenHash, address: address) { result in
-                switch result {
-                case .failure:
-                    let cachedAsset = self.fetchTokenFromCache(token.tokenHash, isReadOnly: isReadOnly)
-                    if cachedAsset != nil {
-                        if isReadOnly {
-                            self.addReadOnlyAsset(cachedAsset!)
-                        } else {
-                            self.addWritableAsset(cachedAsset!)
-                        }
-                    }
-                    self.group.leave()
-                case .success(let balance):
-                    let balanceDecimal = Decimal(balance) / pow(10, token.decimal)
-                    let assetToAdd = TransferableAsset(assetID: token.tokenHash,
-                                                       name: token.name,
-                                                       symbol: token.symbol,
-                                                       assetType: AssetType.nep5Token,
-                                                       decimal: token.decimal,
-                                                       balance: balanceDecimal)
-                    if isReadOnly {
-                        self.addReadOnlyAsset(assetToAdd)
-                    } else {
-                        self.addWritableAsset(assetToAdd)
-                    }
-                    self.group.leave()
-                }
-            }
-        }
+    func fetchAccountState(address: String, isReadOnly: Bool) {
+       
     }
 
     func fetchAssetBalances(address: String, isReadOnly: Bool) {
-        group.enter()
-        DispatchQueue.global().async {
-            self.fetchNativeAssets(address: address, isReadOnly: isReadOnly)
-        }
-        DispatchQueue.global().async {
-            self.fetchTokenAssets(address: address, isReadOnly: isReadOnly)
-        }
+       
     }
-
+    
+    
+    
     func loadPortfolioValue() {
         delegate?.showLoadingIndicator()
         DispatchQueue.global().async {

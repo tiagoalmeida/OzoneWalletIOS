@@ -136,13 +136,6 @@
                                                             <color key="textColor" name="grey"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="syS-Gc-c6b">
-                                                            <rect key="frame" x="106" y="8" width="15" height="15"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="7bw-Aw-zub"/>
-                                                                <constraint firstAttribute="height" constant="15" id="DF6-qs-4mc"/>
-                                                            </constraints>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -152,9 +145,7 @@
                                                         <constraint firstItem="PTC-pu-AEo" firstAttribute="top" secondItem="CEV-Wf-EFn" secondAttribute="bottom" constant="1" id="G3r-zV-Nqd"/>
                                                         <constraint firstItem="CEV-Wf-EFn" firstAttribute="centerX" secondItem="Hdt-37-YIM" secondAttribute="centerX" id="SiR-z0-jxh"/>
                                                         <constraint firstItem="CEV-Wf-EFn" firstAttribute="centerY" secondItem="Hdt-37-YIM" secondAttribute="centerY" multiplier="0.75" id="cGc-2m-zf3"/>
-                                                        <constraint firstItem="syS-Gc-c6b" firstAttribute="top" secondItem="Hdt-37-YIM" secondAttribute="top" constant="8" id="iAd-cV-AbQ"/>
                                                         <constraint firstItem="PTC-pu-AEo" firstAttribute="centerX" secondItem="Hdt-37-YIM" secondAttribute="centerX" id="mN8-Ab-cpN"/>
-                                                        <constraint firstAttribute="trailing" secondItem="syS-Gc-c6b" secondAttribute="trailing" constant="8" id="pRc-Lb-egs"/>
                                                         <constraint firstAttribute="trailing" secondItem="PTC-pu-AEo" secondAttribute="trailing" id="vY6-Ng-8YK"/>
                                                     </constraints>
                                                 </view>
@@ -167,7 +158,6 @@
                                             <constraint firstItem="Hdt-37-YIM" firstAttribute="leading" secondItem="OJO-El-hfe" secondAttribute="leading" constant="8" id="ncu-5R-G09"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="inWalletImageView" destination="syS-Gc-c6b" id="WZN-Tl-yu9"/>
                                             <outlet property="tokenImageView" destination="CEV-Wf-EFn" id="fqg-NM-7A9"/>
                                             <outlet property="tokenNameLabel" destination="PTC-pu-AEo" id="GcT-go-JDV"/>
                                             <outlet property="tokenSymbolLabel" destination="dEe-s9-evG" id="6aA-Wg-7bm"/>
@@ -204,7 +194,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checked" width="119" height="114"/>
         <namedColor name="grey">
             <color red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

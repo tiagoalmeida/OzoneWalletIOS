@@ -114,7 +114,7 @@ public class O3Client {
 
         var queryString = String(format: "?i=%@", interval)
         for asset in assets {
-            queryString += String(format: "&%@=%@", asset.symbol, asset.balance.description)
+            queryString += String(format: "&%@=%@", asset.symbol, asset.value.description)
         }
         queryString += String(format: "&currency=%@", UserDefaultsManager.referenceFiatCurrency.rawValue)
 
@@ -199,6 +199,23 @@ public class O3Client {
                         return
                 }
                 completion(.success(list))
+            }
+        }
+    }
+    
+    func getAccountState(address: String, completion: @escaping(O3ClientResult<AccountState>) -> Void) {
+        let endpoint = "http://192.168.0.48:8080/api/v1/neo/\(address)/balances"
+        sendRequest(endpoint, method: .GET, data: nil, noBaseURL: true) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let response):
+                let decoder = JSONDecoder()
+                guard let data = try? JSONSerialization.data(withJSONObject: response["data"]!, options: .prettyPrinted),
+                    let accountState = try? decoder.decode(AccountState.self, from: data) else {
+                         return
+                }
+                completion(.success(accountState))
             }
         }
     }
