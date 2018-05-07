@@ -178,7 +178,7 @@ class TransactionHistoryTableViewController: UITableViewController, TransactionH
 
     //Pagination
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if ((tableView.contentOffset.y + tableView.frame.size.height) >= tableView.contentSize.height) {
+        if (tableView.contentOffset.y + tableView.frame.size.height) >= tableView.contentSize.height {
             if !isDataLoading && !endReached {
                 isDataLoading = true
                 self.pageNo += 1

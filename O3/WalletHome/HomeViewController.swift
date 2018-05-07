@@ -15,28 +15,21 @@ import PKHUD
 import SwiftTheme
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GraphPanDelegate, ScrollableGraphViewDataSource, HomeViewModelDelegate {
-
-    // Settings for price graph interval
     @IBOutlet weak var walletHeaderCollectionView: UICollectionView!
-
     @IBOutlet weak var graphLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var assetsTable: UITableView!
-
-    // Xcode 9 beta issue with outlet connections gonna just hook up two buttons for now
     @IBOutlet weak var fiveMinButton: UIButton!
     @IBOutlet weak var fifteenMinButton: UIButton!
     @IBOutlet weak var thirtyMinButton: UIButton!
     @IBOutlet weak var sixtyMinButton: UIButton!
     @IBOutlet weak var oneDayButton: UIButton!
     @IBOutlet weak var allButton: UIButton!
-
     @IBOutlet weak var graphViewContainer: UIView!
-
     @IBOutlet var activatedLineLeftConstraint: NSLayoutConstraint?
-    var group: DispatchGroup?
     @IBOutlet weak var activatedLine: UIView!
-    var activatedLineCenterXAnchor: NSLayoutConstraint?
 
+    var group: DispatchGroup?
+    var activatedLineCenterXAnchor: NSLayoutConstraint?
     var graphView: ScrollableGraphView!
     var portfolio: PortfolioValue?
     var activatedIndex = 1
@@ -45,9 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var firstTimeGraphLoad = true
     var firstTimeViewLoad = true
     var homeviewModel: HomeViewModel!
-
     var selectedPrice: PriceData?
-
     var displayedAssets = [TransferableAsset]()
 
     func addThemedElements() {
@@ -73,15 +64,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    func loadBalanceData(fromReadOnly: Bool, address: String) {
-    }
-
-    /*
-     * We simulatenously load all of your balance data at once
-     * Get the sum of your read only addresses and then the hot wallet as well
-     * However the display in the graph and asset cells will vary depending on
-     * on the portfolio you wish to display read, write, or read + write
-     */
     @objc func getBalance() {
         homeviewModel.reloadBalances()
     }
@@ -216,11 +198,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    /*
-     * Although we have only two assets right now we expect the asset list to be of arbitrary
-     * length as new tokens are introduced, we must be flexible enough to support that
-     */
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = assetsTable.dequeueReusableCell(withIdentifier: "portfolioAssetCell") as? PortfolioAssetCell else {
             fatalError("Undefined Table Cell Behavior")
@@ -234,7 +211,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         cell.data = PortfolioAssetCell.Data(assetName: asset.symbol ?? "",
-                                            amount: Double((asset.balance ?? 0) as NSNumber),
+                                            amount: Double(truncating: (asset.balance ?? 0) as NSNumber),
                                             referenceCurrency: (homeviewModel?.referenceCurrency)!,
                                             latestPrice: latestPrice,
                                             firstPrice: firstPrice)
@@ -282,8 +259,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     // MARK: - Graph delegate
     func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
-        // Return the data for each plot.
-
         if pointIndex > portfolio!.data.count {
             return 0
         }
@@ -365,15 +340,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if scrollView == assetsTable {
             return
         }
-        var visibleRect = CGRect()
 
+        var visibleRect = CGRect()
         visibleRect.origin = walletHeaderCollectionView.contentOffset
         visibleRect.size = walletHeaderCollectionView.bounds.size
 
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-
         let visibleIndexPath: IndexPath? = walletHeaderCollectionView.indexPathForItem(at: visiblePoint)
-
         if visibleIndexPath != nil {
             self.homeviewModel?.setPortfolioType(self.indexToPortfolioType(visibleIndexPath!.row))
         }
@@ -386,6 +359,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         default:
             homeviewModel?.setReferenceCurrency(.btc)
         }
+
         DispatchQueue.main.async {
             collectionView.reloadData()
             self.assetsTable.reloadData()

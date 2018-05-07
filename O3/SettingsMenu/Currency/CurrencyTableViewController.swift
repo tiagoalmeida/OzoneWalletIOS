@@ -28,7 +28,7 @@ class CurrencyTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setThemedElements()
-        navigationItem.title = SettingsStrings.currencyTitle(UserDefaultsManager.referenceFiatCurrency.description)
+        navigationItem.title = SettingsStrings.currencyTitleNoType
     }
 
     override func viewWillAppear(_ animated: Bool) {

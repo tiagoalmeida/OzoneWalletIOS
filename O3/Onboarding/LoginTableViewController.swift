@@ -18,6 +18,7 @@ class LoginTableViewController: UITableViewController, QRScanDelegate {
     @IBOutlet weak var wifTextField: UITextView!
     @IBOutlet weak var wifTextFieldInfoLabel: UILabel!
     @IBOutlet weak var loginButton: ShadowedButton!
+    @IBOutlet weak var pkeyTitleLabel: UILabel!
     var watchAddresses = [WatchAddress]()
 
     func loadWatchAddresses() {
@@ -117,6 +118,7 @@ class LoginTableViewController: UITableViewController, QRScanDelegate {
     func setLocalizedStrings() {
         navigationItem.title = OnboardingStrings.loginTitle
         wifTextFieldInfoLabel.text = OnboardingStrings.loginInputInfo
+        pkeyTitleLabel.text = OnboardingStrings.privateKeyTitle
         loginButton.setTitle(OnboardingStrings.loginTitle, for: UIControlState())
     }
 }

@@ -46,12 +46,15 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
     }
 
     func setAssetRateInfo() {
-        guard let neoIndex = saleInfo.acceptingAssets.index (where: {$0.asset.lowercased() == "neo" }),
-            let gasIndex = saleInfo.acceptingAssets.index (where: {$0.asset.lowercased() == "gas" }) else {
-                return
+        let neoIndex = saleInfo.acceptingAssets.index (where: {$0.asset.lowercased() == "neo" })
+        let gasIndex = saleInfo.acceptingAssets.index (where: {$0.asset.lowercased() == "gas" })
+        if neoIndex != nil {
+            neoRateInfo = saleInfo.acceptingAssets[neoIndex!]
         }
-        neoRateInfo = saleInfo.acceptingAssets[neoIndex]
-        gasRateInfo = saleInfo.acceptingAssets[gasIndex]
+        if gasIndex != nil {
+            gasRateInfo = saleInfo.acceptingAssets[gasIndex!]
+        }
+
     }
     var countdownTimer: Timer?
 
@@ -277,6 +280,17 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
         cell.delegate = self
         cell.neoRateInfo = neoRateInfo
         cell.gasRateInfo = gasRateInfo
+        if neoRateInfo == nil {
+            cell.neoSelectorContainerView.isHidden = true
+        }
+        //if token sale doesn't accept gas we then hide it and make the neo button bigger
+        //as well as disable tapping to select
+        if gasRateInfo == nil {
+            cell.gasSelectorContainerView.isHidden = true
+            cell.neoSelectorWidthContraint.constant = UIScreen.main.bounds.width - 32.0
+            cell.neoSelectorContainerView.isUserInteractionEnabled = false
+        }
+
         cell.tokenName = saleInfo.symbol
         //init with 0
         cell.tokenAmountLabel.text = String(format: "0 %@", saleInfo.symbol)
@@ -348,6 +362,7 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
 
     func setLocalizedStrings() {
         priorityLabel?.text = TokenSaleStrings.priority
+        priorityInfoButton?.setTitle(TokenSaleStrings.whatIsPriority, for: UIControlState())
         participateButton.setTitle(TokenSaleStrings.review, for: UIControlState())
     }
 }

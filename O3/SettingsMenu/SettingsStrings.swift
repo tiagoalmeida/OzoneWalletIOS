@@ -25,6 +25,7 @@ struct SettingsStrings {
     static let addressLabel = NSLocalizedString("SETTINGS_Address_Label", comment: "Label to describe an address input field")
     static let nicknameLabel = NSLocalizedString("SETTINGS_Nickname_LAbel", comment: "Lavel to describe a nickname input field")
     static let close = NSLocalizedString("SETTINGS_Close_Title", comment: "String to describe a close action")
+    static let addButton = NSLocalizedString("SETTINGS_Add_Button", comment: "A generic add button title")
 
     //Main Settings Menu
     static let settingsTitle = NSLocalizedString("SETTINGS_Settings_Title", comment: "Title for Settings Menu")
@@ -35,6 +36,7 @@ struct SettingsStrings {
                                                 comment: "Title for Currency Menu in Settings"),
                       currency)
     }
+    static let currencyTitleNoType = NSLocalizedString("SETTINGS_Currency_Title_No_Type", comment: "Title for Currency Menu, but does not include the type like USD or BTC")
     static let networkTitle = NSLocalizedString("SETTINGS_Network_Title", comment: "Title for Network Screen In Settings")
     static let themeTitle = NSLocalizedString("SETTINGS_Theme", comment: "Settings Menu Title for Theme")
     static let contactTitle = NSLocalizedString("SETTINGS_Contact", comment: "Settings Menu Title For Contact")

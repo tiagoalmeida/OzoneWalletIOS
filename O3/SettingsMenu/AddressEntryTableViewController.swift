@@ -84,13 +84,10 @@ class AddressEntryTableViewController: UITableViewController, AVCaptureMetadataO
         tableView.tableHeaderView?.embed(qrView)
         tableView.tableHeaderView?.bringSubview(toFront: closeButton)
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-
-        #if (arch(i386) || arch(x86_64)) && os(iOS)
-            return
-        #endif
         if captureDevice == nil {
             return
         }
+
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice!)
 
@@ -123,8 +120,6 @@ class AddressEntryTableViewController: UITableViewController, AVCaptureMetadataO
         }
 
         if supportedCodeTypes.contains(metadataObj.type) {
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
-
             if let dataString = metadataObj.stringValue {
                 DispatchQueue.main.async { self.addressTextView.text = dataString }
             }
@@ -141,8 +136,9 @@ class AddressEntryTableViewController: UITableViewController, AVCaptureMetadataO
 
     func setLocalizedStrings() {
         addressLabel.text = SettingsStrings.addressLabel
-        nicknameField.text = SettingsStrings.nicknameLabel
+        nicknameLabel.text = SettingsStrings.nicknameLabel
         closeButton.setTitle(SettingsStrings.close, for: UIControlState())
+        proceedButton.setTitle(SettingsStrings.addButton, for: UIControlState())
     }
 }
 

@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: userDefaultsDefaults)
     }
 
-    let alertController = UIAlertController(title: "Uh oh! There is no internet connection. 😵", message: nil, preferredStyle: .alert)
+    let alertController = UIAlertController(title: OzoneAlert.noInternetError, message: nil, preferredStyle: .alert)
     @objc func reachabilityChanged(_ note: Notification) {
         switch reachability.connection {
         case .wifi:

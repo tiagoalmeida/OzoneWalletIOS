@@ -45,9 +45,6 @@ class HalfModalInteractiveTransition: UIPercentDrivenInteractiveTransition {
         switch pan.state {
         case .began:
             self.presentingViewController?.dismiss(animated: true, completion: nil)
-
-            break
-
         case .changed:
             let screenHeight = UIScreen.main.bounds.size.height - 50
             let dragAmount = screenHeight
@@ -61,8 +58,6 @@ class HalfModalInteractiveTransition: UIPercentDrivenInteractiveTransition {
 
             shouldComplete = percent > threshold
 
-            break
-
         case .ended, .cancelled:
             if pan.state == .cancelled || !shouldComplete {
                 cancel()
@@ -74,12 +69,8 @@ class HalfModalInteractiveTransition: UIPercentDrivenInteractiveTransition {
                 print("finished transition")
             }
 
-            break
-
         default:
             cancel()
-
-            break
         }
     }
 }

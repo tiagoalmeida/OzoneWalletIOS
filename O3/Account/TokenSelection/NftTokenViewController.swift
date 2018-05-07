@@ -12,14 +12,16 @@ import Lottie
 
 class NftSelectionViewController: UIViewController {
     @IBOutlet weak var animationView: UIView!
+    @IBOutlet weak var nftConstructionLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let lottieView = LOTAnimationView(name: "empty_status")
+        view.theme_backgroundColor = O3Theme.backgroundColorPicker
+        nftConstructionLabel.text = TokenSelectionStrings.underConstruction
+        let lottieView = LOTAnimationView(name: "panda1")
         lottieView.frame = animationView.bounds
         lottieView.loopAnimation = true
         animationView.addSubview(lottieView)
         lottieView.play()
-
     }
 }

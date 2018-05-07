@@ -22,17 +22,17 @@ class LoginToCurrentWalletViewController: UIViewController {
         let keychain = Keychain(service: "network.o3.neo.wallet")
         DispatchQueue.global().async {
             do {
-                guard let key = try keychain
+                let key = try keychain
                     .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: .userPresence)
                     .authenticationPrompt(OnboardingStrings.authenticationPrompt)
-                    .get("ozonePrivateKey") else {
+                    .get("ozonePrivateKey")
+                if key == nil {
                     return
                 }
 
-                guard let account = Account(wif: key) else {
+                guard let account = Account(wif: key!) else {
                     return
                 }
-                
                 O3HUD.start()
                 Authenticated.account = account
                 DispatchQueue.global(qos: .background).async {

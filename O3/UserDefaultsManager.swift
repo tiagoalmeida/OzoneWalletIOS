@@ -21,13 +21,7 @@ class UserDefaultsManager {
             #if PRIVATENET
                 return .test //change this to private net or make NeoSwift able to overwrite coz api
             #endif
-            let stringValue = UserDefaults.standard.string(forKey: networkKey)!
-            return Network(rawValue: stringValue)!
-        }
-        set {
-            Authenticated.account?.neoClient = NeoClient(network: network, seedURL: UserDefaultsManager.seed)
-            UserDefaults.standard.set(newValue.rawValue, forKey: networkKey)
-            NotificationCenter.default.post(name: Notification.Name("ChangedNetwork"), object: nil)
+            return .main
         }
     }
 
@@ -63,7 +57,7 @@ class UserDefaultsManager {
                 return "http://seed2.neo.org:20332"
             #endif
             #if PRIVATENET
-                return "http://localhost:30333"
+                return "http://192.168.0.17:30333"
             #endif
 
             return UserDefaults.standard.string(forKey: seedKey)!

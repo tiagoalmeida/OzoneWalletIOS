@@ -179,14 +179,6 @@
             </objects>
             <point key="canvasLocation" x="190" y="29"/>
         </scene>
-        <!--O3HUD-->
-        <scene sceneID="rFH-Hf-Tm1">
-            <objects>
-                <viewControllerPlaceholder storyboardName="O3HUD" id="rFj-ZT-26b" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g8d-v2-2gZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-193" y="430"/>
-        </scene>
         <!--Login To Current Wallet View Controller-->
         <scene sceneID="Qga-0C-y6A">
             <objects>
@@ -393,6 +385,7 @@
                     </tableView>
                     <connections>
                         <outlet property="loginButton" destination="36p-VS-Jw7" id="Lfj-Yc-SpO"/>
+                        <outlet property="pkeyTitleLabel" destination="6p0-gY-L30" id="9RW-31-Hmi"/>
                         <outlet property="wifTextField" destination="eHV-oy-wwY" id="HwX-58-eB3"/>
                         <outlet property="wifTextFieldInfoLabel" destination="PGR-rj-rKv" id="xYs-SZ-ydE"/>
                         <segue destination="6fG-df-BHS" kind="presentation" identifier="segueToMainFromLogin" id="1ME-Er-JZt"/>
@@ -636,7 +629,7 @@ It is highly reccomended that you have a passcode set on your iPhone. Removing t
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4F1-SI-Z13"/>
-        <segue reference="gND-3E-7d0"/>
+        <segue reference="1ME-Er-JZt"/>
         <segue reference="nDz-8f-fC4"/>
     </inferredMetricsTieBreakers>
 </document>

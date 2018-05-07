@@ -50,7 +50,7 @@ public class O3Client {
     public static let shared = O3Client()
 
     func sendRequest(_ endpointURL: String, method: HTTPMethod, data: [String: Any?]?,
-        noBaseURL: Bool = false, completion: @escaping (O3ClientResult<JSONDictionary>) -> Void) {
+                     noBaseURL: Bool = false, completion: @escaping (O3ClientResult<JSONDictionary>) -> Void) {
         var urlString = ""
         if noBaseURL {
             urlString = endpointURL
@@ -61,7 +61,7 @@ public class O3Client {
         let request = NSMutableURLRequest(url: url!)
         request.httpMethod = "GET"
         request.setValue("application/json-rpc", forHTTPHeaderField: "Content-Type")
-
+        request.cachePolicy = .reloadIgnoringLocalCacheData
         if data != nil {
             guard let body = try? JSONSerialization.data(withJSONObject: data!, options: []) else {
                 completion(.failure(.invalidBodyRequest))
@@ -182,12 +182,12 @@ public class O3Client {
     func getTokens(completion: @escaping(O3ClientResult<[NEP5Token]>) -> Void) {
         var endpoint = "https://cdn.o3.network/data/nep5.json"
         #if TESTNET
-        endpoint = "https://o3.network/settings/nep5.test.json"
+        endpoint = "https://s3-ap-northeast-1.amazonaws.com/network.o3.cdn/data/nep5.test.json"
         #endif
         #if PRIVATENET
         endpoint = "https://s3-ap-northeast-1.amazonaws.com/network.o3.cdn/data/nep5.private.json"
         #endif
-      
+
         sendRequest(endpoint, method: .GET, data: nil, noBaseURL: true) { result in
             switch result {
             case .failure(let error):
@@ -205,7 +205,7 @@ public class O3Client {
 
     func getTokenSales(completion: @escaping(O3ClientResult<TokenSales>) -> Void) {
         var endpoint = "https://cdn.o3.network/data/tokensales.json"
-        #if PRIVATENET
+        #if PRIVATENET || TESTNET
         endpoint = "https://s3-ap-northeast-1.amazonaws.com/network.o3.cdn/data/___tokensale.json"
         #endif
         sendRequest(endpoint, method: .GET, data: nil, noBaseURL: true) { result in

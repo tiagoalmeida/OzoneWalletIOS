@@ -152,14 +152,14 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
         let keychain = Keychain(service: "network.o3.neo.wallet")
         DispatchQueue.global().async {
             do {
-                let password = try keychain
+                _ = try keychain
                     .authenticationPrompt(SettingsStrings.authenticate)
                     .get("ozonePrivateKey")
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "segueToPrivateKey", sender: nil)
                 }
 
-            } catch let error {
+            } catch {
 
             }
         }

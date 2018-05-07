@@ -54,7 +54,7 @@ public struct FeedData: Codable {
         var link: String
         var published: String
         var source: String
-        var images: Array<NewsImage>
+        var images: [NewsImage]
 
         enum CodingKeys: String, CodingKey {
             case title
@@ -65,7 +65,7 @@ public struct FeedData: Codable {
             case images
         }
 
-        public init(title: String, description: String, link: String, published: String, source: String, images: Array<NewsImage>) {
+        public init(title: String, description: String, link: String, published: String, source: String, images: [NewsImage]) {
             self.title = title
             self.description = description
             self.link = link
@@ -81,29 +81,29 @@ public struct FeedData: Codable {
             let link: String = try container.decode(String.self, forKey: .link)
             let published: String = try container.decode(String.self, forKey: .published)
             let source: String = try container.decode(String.self, forKey: .source)
-            let images: Array<NewsImage> = try container.decode(Array<NewsImage>.self, forKey: .images)
+            let images: [NewsImage] = try container.decode([NewsImage].self, forKey: .images)
             self.init(title: title, description: description, link: link, published: published, source: source, images: images)
 
         }
     }
 
-    var features: Array<Feature>
-    var items: Array<FeedItem>
+    var features: [Feature]
+    var items: [FeedItem]
 
     enum CodingKeys: String, CodingKey {
         case features
         case items
     }
 
-    public init(features: Array<Feature>, items: Array<FeedItem>) {
+    public init(features: [Feature], items: [FeedItem]) {
         self.features = features
         self.items = items
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let features: Array<Feature> = try container.decode(Array<Feature>.self, forKey: .features)
-        let items: Array<FeedItem> = try container.decode(Array<FeedItem>.self, forKey: .items)
+        let features: [Feature] = try container.decode([Feature].self, forKey: .features)
+        let items: [FeedItem] = try container.decode([FeedItem].self, forKey: .items)
         self.init(features: features, items: items)
     }
 }

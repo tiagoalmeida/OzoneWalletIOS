@@ -25,8 +25,6 @@ class AccountTabViewController: TabmanViewController, PageboyViewControllerDataS
     }
 
     @objc func changedTheme(_ sender: Any) {
-        let textColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.lightTextColor : Theme.dark.lightTextColor
-
         self.bar.appearance = TabmanBar.Appearance({ (appearance) in
             appearance.state.selectedColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.primaryColor : Theme.dark.primaryColor
             appearance.state.color = UserDefaultsManager.themeIndex == 0 ? Theme.light.lightTextColor : Theme.dark.lightTextColor

@@ -14,8 +14,9 @@ import SwiftTheme
 import Crashlytics
 
 class SendTableViewController: UITableViewController, AddressSelectDelegate, QRScanDelegate {
-
+    // swiftlint:disable weak_delegate
     var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
+    // swiftlint:enable weak_delegate
 
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var amountField: UITextField!
@@ -88,7 +89,9 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
     func sendNEP5Token(tokenHash: String, assetName: String, amount: Double, toAddress: String) {
 
         DispatchQueue.main.async {
-            OzoneAlert.confirmDialog(message: SendStrings.sendConfirmationPrompt, cancelTitle: OzoneAlert.cancelNegativeConfirmString, confirmTitle: OzoneAlert.confirmPositiveConfirmString, didCancel: {}) {
+            OzoneAlert.confirmDialog(message: String(format: SendStrings.sendConfirmationPrompt, amount, assetName, toAddress),
+                                     cancelTitle: OzoneAlert.cancelNegativeConfirmString,
+                                     confirmTitle: OzoneAlert.confirmPositiveConfirmString, didCancel: {}) {
             let keychain = Keychain(service: "network.o3.neo.wallet")
                 do {
                     _ = try keychain
@@ -102,7 +105,6 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
                     #if TESTNET
                         UserDefaultsManager.seed = "http://seed2.neo.org:20332"
                         UserDefaultsManager.useDefaultSeed = false
-                        UserDefaultsManager.network = .test
                         Authenticated.account?.neoClient = NeoClient(network: .test)
                     #endif
                     Authenticated.account?.sendNep5Token(tokenContractHash: tokenHash, amount: amount, toAddress: toAddress, completion: { (completed, _) in
@@ -126,7 +128,9 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
 
     func sendNativeAsset(assetId: AssetId, assetName: String, amount: Double, toAddress: String) {
         DispatchQueue.main.async {
-            OzoneAlert.confirmDialog(message: SendStrings.sendConfirmationPrompt, cancelTitle: OzoneAlert.cancelNegativeConfirmString, confirmTitle: OzoneAlert.okPositiveConfirmString, didCancel: {}) {
+            OzoneAlert.confirmDialog(message: String(format: SendStrings.sendConfirmationPrompt, amount, assetName, toAddress),
+                                     cancelTitle: OzoneAlert.cancelNegativeConfirmString,
+                                     confirmTitle: OzoneAlert.okPositiveConfirmString, didCancel: {}) {
             let keychain = Keychain(service: "network.o3.neo.wallet")
                 do {
                     _ = try keychain
@@ -140,7 +144,6 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
                     #if TESTNET
                         UserDefaultsManager.seed = "http://seed2.neo.org:20332"
                         UserDefaultsManager.useDefaultSeed = false
-                        UserDefaultsManager.network = .test
                         Authenticated.account?.neoClient = NeoClient(network: .test)
                     #endif
                     Authenticated.account?.sendAssetTransaction(asset: assetId, amount: amount, toAddress: toAddress) { completed, _ in
@@ -174,7 +177,7 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
         amountFormatter.maximumFractionDigits = self.selectedAsset!.decimal
         amountFormatter.numberStyle = .decimal
 
-        var amount = amountFormatter.number(from: (self.amountField.text?.trim())!)
+        let amount = amountFormatter.number(from: (self.amountField.text?.trim())!)
 
         if amount == nil {
             OzoneAlert.alertDialog(message: SendStrings.invalidAmountError, dismissTitle: OzoneAlert.okPositiveConfirmString, didDismiss: {
@@ -316,7 +319,6 @@ extension SendTableViewController: AssetSelectorDelegate {
         DispatchQueue.main.async {
             self.gasBalance = gasBalance
             self.selectedAsset = selected
-            self.assetLabel.text = selected.assetType == AssetType.nativeAsset ? "Asset" : "NEP5 Token"
             self.selectedAssetLabel.text = selected.symbol
             self.enableSendButton()
         }
