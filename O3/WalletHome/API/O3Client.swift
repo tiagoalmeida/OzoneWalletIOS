@@ -182,7 +182,7 @@ public class O3Client {
     func getTokens(completion: @escaping(O3ClientResult<[NEP5Token]>) -> Void) {
         var endpoint = "https://cdn.o3.network/data/nep5.json"
         #if TESTNET
-        endpoint = "https://o3.network/settings/nep5.test.json"
+        endpoint = "https://s3-ap-northeast-1.amazonaws.com/network.o3.cdn/data/nep5.test.json"
         #endif
         #if PRIVATENET
         endpoint = "https://s3-ap-northeast-1.amazonaws.com/network.o3.cdn/data/nep5.private.json"
@@ -205,7 +205,7 @@ public class O3Client {
 
     func getTokenSales(completion: @escaping(O3ClientResult<TokenSales>) -> Void) {
         var endpoint = "https://cdn.o3.network/data/tokensales.json"
-        #if PRIVATENET
+        #if PRIVATENET || TESTNET
         endpoint = "https://s3-ap-northeast-1.amazonaws.com/network.o3.cdn/data/___tokensale.json"
         #endif
         sendRequest(endpoint, method: .GET, data: nil, noBaseURL: true) { result in
