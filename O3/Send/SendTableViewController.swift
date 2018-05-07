@@ -105,7 +105,6 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
                     #if TESTNET
                         UserDefaultsManager.seed = "http://seed2.neo.org:20332"
                         UserDefaultsManager.useDefaultSeed = false
-                        UserDefaultsManager.network = .test
                         Authenticated.account?.neoClient = NeoClient(network: .test)
                     #endif
                     Authenticated.account?.sendNep5Token(tokenContractHash: tokenHash, amount: amount, toAddress: toAddress, completion: { (completed, _) in
@@ -145,7 +144,6 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
                     #if TESTNET
                         UserDefaultsManager.seed = "http://seed2.neo.org:20332"
                         UserDefaultsManager.useDefaultSeed = false
-                        UserDefaultsManager.network = .test
                         Authenticated.account?.neoClient = NeoClient(network: .test)
                     #endif
                     Authenticated.account?.sendAssetTransaction(asset: assetId, amount: amount, toAddress: toAddress) { completed, _ in
