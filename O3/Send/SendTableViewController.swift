@@ -321,7 +321,6 @@ extension SendTableViewController: AssetSelectorDelegate {
         DispatchQueue.main.async {
             self.gasBalance = gasBalance
             self.selectedAsset = selected
-            self.assetLabel.text = selected.assetType == AssetType.nativeAsset ? "Asset" : "NEP5 Token"
             self.selectedAssetLabel.text = selected.symbol
             self.enableSendButton()
         }

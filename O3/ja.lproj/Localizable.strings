@@ -217,7 +217,7 @@
 "SETTINGS_Add_Button" = "追加";
 
 /* Title for add watch address button */
-"SETTINGS_Add_Watch_Address" = "ウォッチアドレスを追加する";
+"SETTINGS_Add_Watch_Address" = "残高確認用アドレス追加";
 
 /* Description under add address button that describes what a watch address is and how it will work in the app */
 "SETTINGS_Add_Watch_Description" = "残高確認用アドレスでは、隔離された環境でポートフォリオを確認できます。 このアドレスから送金することはできませんが、残高を確認することができます。";
@@ -232,7 +232,7 @@
 "SETTINGS_Close_Title" = "閉じる";
 
 /* Settings Menu Title For Contact */
-"SETTINGS_Contact" = "アドレス帳";
+"SETTINGS_Contact" = "お問い合わせ";
 
 /* Title for Currency Menu in Settings */
 "SETTINGS_Currency_Title" = "通貨：%@";
