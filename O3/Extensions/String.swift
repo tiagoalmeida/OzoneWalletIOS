@@ -74,7 +74,8 @@ extension String {
             }
         }
         let posixString = previousPrice.time
-        return String(format: "%@ (%.2f%@) SINCE %@", amountChangeString, percentChange, "%", posixString.intervaledDateString(selectedInterval))
+        return String(format: NSLocalizedString("PORTFOLIO_Interval", comment: "Portfolio Percentage Change String"),
+                      amountChangeString, percentChange, "%", posixString.intervaledDateString(selectedInterval))
     }
 
     static func percentChangeStringShort(latestPrice: PriceData, previousPrice: PriceData, referenceCurrency: Currency) -> String {

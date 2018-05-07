@@ -120,6 +120,9 @@
 /* A header title on the portfolio screen, show the displayed funds are a combination of those store in O3 wallet and cold storage */
 "PORTFOLIO_Combined_Header" = "PORTFOLIO_Combined_Header";
 
+/* Portfolio Percentage Change String */
+"PORTFOLIO_Interval" = "PORTFOLIO_Interval"; /* NEW */
+
 /* Interval Button on portfolio page, interval specifies 1 Month */
 "PORTFOLIO_Interval_Button_1M" = "PORTFOLIO_Interval_Button_1M";
 
