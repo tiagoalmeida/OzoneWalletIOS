@@ -235,7 +235,7 @@
 "SETTINGS_Contact" = "Contact";
 
 /* Title for Currency Menu in Settings */
-"SETTINGS_Currency_Title" = "Currency";
+"SETTINGS_Currency_Title" = "Currency: %@";
 
 /* Title for Currency Menu, but does not include the type like USD or BTC */
 "SETTINGS_Currency_Title_No_Type" = "Currency";
