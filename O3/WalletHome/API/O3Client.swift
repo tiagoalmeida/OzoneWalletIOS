@@ -202,16 +202,16 @@ public class O3Client {
             }
         }
     }
-    
+
     func getAccountState(address: String, completion: @escaping(O3ClientResult<AccountState>) -> Void) {
-        let endpoint = "http://192.168.0.48:8080/api/v1/neo/\(address)/balances"
+        let endpoint = "https://platform.o3.network/api/v1/neo/\(address)/balances"
         sendRequest(endpoint, method: .GET, data: nil, noBaseURL: true) { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let response):
                 let decoder = JSONDecoder()
-                guard let data = try? JSONSerialization.data(withJSONObject: response["data"]!, options: .prettyPrinted),
+                guard let data = try? JSONSerialization.data(withJSONObject: (response["result"] as? JSONDictionary)!["data"], options: .prettyPrinted),
                     let accountState = try? decoder.decode(AccountState.self, from: data) else {
                          return
                 }
@@ -232,7 +232,6 @@ public class O3Client {
             case .success(let response):
                 let decoder = JSONDecoder()
                 guard let data = try? JSONSerialization.data(withJSONObject: response, options: .prettyPrinted),
-
                     let liveSales = try? decoder.decode(TokenSales.self, from: data) else {
                         return
                 }

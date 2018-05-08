@@ -20,13 +20,12 @@ protocol HomeViewModelDelegate: class {
 class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
 
-    var writableTokens: [TransferableAsset] = O3Cache.tokenAssets()
-    var readOnlyTokens: [TransferableAsset] = O3Cache.readOnlyTokens()
-    var neoBalance = O3Cache.neoBalance()
-    var gasBalance = O3Cache.gasBalance()
-    var readOnlyNeoBalance = O3Cache.readOnlyNeoBalance()
-    var readOnlyGasBalance = O3Cache.readOnlyGasBalance()
-    
+    var writableTokens = O3Cache.tokenAssets()
+    var readOnlyTokens = O3Cache.readOnlyTokens()
+    var neo = O3Cache.neo()
+    var gas = O3Cache.gas()
+    var readOnlyNeo = O3Cache.readOnlyNeo()
+    var readOnlyGas = O3Cache.readOnlyGas()
 
     var watchAddresses = [WatchAddress]()
     var group = DispatchGroup()
@@ -61,21 +60,13 @@ class HomeViewModel {
         }
         return assets
     }
-    
+
     func getWritableAssets() -> [TransferableAsset] {
-        let neo = TransferableAsset(id: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO",
-                                    decimals: 8, value: Double(neoBalance), assetType: .nativeAsset)
-        let gas = TransferableAsset(id: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS",
-                                    decimals: 8, value: Double(neoBalance), assetType: .nativeAsset)
         return [neo, gas] + writableTokens
     }
-    
+
     func getReadOnlyAssets() -> [TransferableAsset] {
-        let neo = TransferableAsset(id: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO",
-                                    decimals: 8, value: Double(readOnlyNeoBalance), assetType: .nativeAsset)
-        let gas = TransferableAsset(id: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS",
-                                    decimals: 8, value: Double(readOnlyGasBalance), assetType: .nativeAsset)
-        return [neo, gas] + writableTokens
+        return [readOnlyNeo, readOnlyGas] + readOnlyTokens
     }
 
     func getTransferableAssets() -> [TransferableAsset] {
@@ -105,52 +96,102 @@ class HomeViewModel {
         return sortedAssets + transferableAssetsToReturn
     }
 
-    func initiateCacheBalances() {
-        
-        
-        
-        /*if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            cachedWritableAssets = (try? storage.object(ofType: [TransferableAsset].self, forKey: "writableAssets")) ?? []
-            cachedReadOnlyAssets = (try? storage.object(ofType: [TransferableAsset].self, forKey: "readOnlyAssets")) ?? []
-        }*/
-    }
-
     init(delegate: HomeViewModelDelegate) {
         self.delegate = delegate
         reloadBalances()
+    }
+
+    func resetReadOnlyBalances() {
+        readOnlyTokens = []
+        readOnlyGas = TransferableAsset.GAS()
+        readOnlyGas.value = 0
+        readOnlyNeo = TransferableAsset.NEO()
+        readOnlyNeo.value = 0
     }
 
     func reloadBalances() {
         do {
             watchAddresses = try UIApplication.appDelegate.persistentContainer.viewContext.fetch(WatchAddress.fetchRequest())
         } catch {
-            
+
         }
 
-        fetchAssetBalances(address: (Authenticated.account?.address)!, isReadOnly: false)
+        loadAccountState(address: (Authenticated.account?.address)!, isReadOnly: false)
+
+        resetReadOnlyBalances()
         for watchAddress in watchAddresses {
             if NEOValidator.validateNEOAddress(watchAddress.address ?? "") {
-                self.fetchAssetBalances(address: (watchAddress.address)!, isReadOnly: true)
+                self.loadAccountState(address: (watchAddress.address)!, isReadOnly: true)
             }
         }
         group.notify(queue: .main) {
+            O3Cache.setReadOnlyNEOForSession(neoBalance: Int(self.readOnlyNeo.value))
+            O3Cache.setReadOnlyGasForSession(gasBalance: self.readOnlyGas.value)
+            O3Cache.setReadOnlyTokensForSession(tokens: self.readOnlyTokens)
             self.loadPortfolioValue()
             self.delegate?.updateWithBalanceData(self.getTransferableAssets())
         }
     }
 
-    
-
-    func fetchAccountState(address: String, isReadOnly: Bool) {
-       
+    func addWritableAccountState(_ accountState: AccountState) {
+        for asset in accountState.assets {
+            if asset.id.contains(NeoSwift.AssetId.neoAssetId.rawValue) {
+                neo = asset
+            } else {
+                gas = asset
+            }
+        }
+        writableTokens = []
+        for token in accountState.nep5Tokens {
+            writableTokens.append(token)
+        }
+        O3Cache.setGASForSession(gasBalance: gas.value)
+        O3Cache.setNEOForSession(neoBalance: Int(neo.value))
+        O3Cache.setTokenAssetsForSession(tokens: writableTokens)
     }
 
-    func fetchAssetBalances(address: String, isReadOnly: Bool) {
-       
+    func addReadOnlyToken(_ token: TransferableAsset) {
+        if let index = readOnlyTokens.index(where: { (item) -> Bool in item.name == token.name }) {
+            readOnlyTokens[index].value += token.value
+        } else {
+            readOnlyTokens.append(token)
+        }
     }
-    
-    
-    
+
+    func addReadOnlyAccountState(_ accountState: AccountState) {
+        for asset in accountState.assets {
+            if asset.id.contains(NeoSwift.AssetId.gasAssetId.rawValue) {
+                readOnlyNeo.value += asset.value
+            } else {
+                readOnlyGas.value += asset.value
+            }
+        }
+
+        for token in accountState.nep5Tokens {
+            addReadOnlyToken(token)
+        }
+    }
+
+    func loadAccountState(address: String, isReadOnly: Bool) {
+        self.group.enter()
+        O3Client().getAccountState(address: address) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure:
+                    self.group.leave()
+                    return
+                case .success(let accountState):
+                    if isReadOnly {
+                        self.addReadOnlyAccountState(accountState)
+                    } else {
+                        self.addWritableAccountState(accountState)
+                    }
+                    self.group.leave()
+                }
+            }
+        }
+    }
+
     func loadPortfolioValue() {
         delegate?.showLoadingIndicator()
         DispatchQueue.global().async {

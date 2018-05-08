@@ -26,9 +26,9 @@ class AccountAssetTableViewController: UITableViewController {
     var isClaiming: Bool = false
     var refreshClaimableGasTimer: Timer?
 
-    var tokenAssets = O3Cache.tokenAssets
-    var neoBalance: Int = O3Cache.neoBalance()
-    var gasBalance: Double = O3Cache.gasBalance()
+    var tokenAssets = O3Cache.tokenAssets()
+    var neo: Int = Int(O3Cache.neo().value)
+    var gasBalance: Double = O3Cache.gas().value
     var mostRecentClaimAmount = 0.0
 
     @objc func reloadCells() {
@@ -112,7 +112,7 @@ class AccountAssetTableViewController: UITableViewController {
 
     func prepareClaimingGAS() {
 
-        if self.neoBalance == 0 {
+        if self.neo == 0 {
             return
         }
         refreshClaimableGasTimer?.invalidate()
@@ -135,7 +135,7 @@ class AccountAssetTableViewController: UITableViewController {
         }
 
         //to be able to claim. we need to send the entire NEO to ourself.
-        Authenticated.account?.sendAssetTransaction(asset: AssetId.neoAssetId, amount: Double(self.neoBalance), toAddress: (Authenticated.account?.address)!) { completed, _ in
+        Authenticated.account?.sendAssetTransaction(asset: AssetId.neoAssetId, amount: Double(self.neo), toAddress: (Authenticated.account?.address)!) { completed, _ in
             if completed == false {
                 HUD.hide()
                 self.enableClaimButton(enable: true)
@@ -264,9 +264,9 @@ class AccountAssetTableViewController: UITableViewController {
         let token = list[indexPath.row]
         cell.titleLabel.text = token.symbol
         cell.subtitleLabel.text = token.name
-        DispatchQueue.global().async {
+        /*DispatchQueue.global().async {
             self.loadTokenBalance(cell: cell, token: token)
-        }
+        }*/
         return cell
     }
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {

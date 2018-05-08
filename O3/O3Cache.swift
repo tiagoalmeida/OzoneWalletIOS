@@ -8,6 +8,7 @@
 
 import Foundation
 import Cache
+import NeoSwift
 
 class O3Cache {
     enum keys: String {
@@ -24,7 +25,7 @@ class O3Cache {
             try? storage.removeObject(forKey: keys.gasBalance.rawValue)
             try? storage.removeObject(forKey: keys.neoBalance.rawValue)
             try? storage.removeObject(forKey: keys.tokens.rawValue)
-            
+
             try? storage.removeObject(forKey: keys.readOnlyGasBalance.rawValue)
             try? storage.removeObject(forKey: keys.readOnlyNeoBalance.rawValue)
             try? storage.removeObject(forKey: keys.readOnlyTokens.rawValue)
@@ -34,35 +35,43 @@ class O3Cache {
     // MARK: Cache Setters for Writable Balances
     static func setNEOForSession(neoBalance: Int) {
         if let storage = try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            try? storage.setObject(neoBalance, forKey: keys.neoBalance.rawValue)
+            let neoAsset = TransferableAsset(id: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO",
+                                             decimals: 8, value: Double(neoBalance), assetType: .nativeAsset)
+            try? storage.setObject(neoAsset, forKey: keys.neoBalance.rawValue)
         }
     }
 
     static func setGASForSession(gasBalance: Double) {
         if let storage = try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            try? storage.setObject(gasBalance, forKey: keys.gasBalance.rawValue)
+            let gasAsset = TransferableAsset(id: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS",
+                                             decimals: 8, value: gasBalance, assetType: .nativeAsset)
+            try? storage.setObject(gasAsset, forKey: keys.gasBalance.rawValue)
         }
     }
-    
+
     static func setTokenAssetsForSession(tokens: [TransferableAsset]) {
         if let storage = try? Storage(diskConfig: DiskConfig(name: "O3")) {
             try? storage.setObject(tokens, forKey: keys.tokens.rawValue)
         }
     }
-    
+
     // MARK: Cache Setters for Read Only Balances
     static func setReadOnlyNEOForSession(neoBalance: Int) {
         if let storage = try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            try? storage.setObject(neoBalance, forKey: keys.readOnlyNeoBalance.rawValue)
+            let neoAsset = TransferableAsset(id: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO",
+                                             decimals: 8, value: Double(neoBalance), assetType: .nativeAsset)
+            try? storage.setObject(neoAsset, forKey: keys.readOnlyNeoBalance.rawValue)
         }
     }
-    
+
     static func setReadOnlyGasForSession(gasBalance: Double) {
         if let storage = try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            try? storage.setObject(gasBalance, forKey: keys.readOnlyGasBalance.rawValue)
+            let gasAsset = TransferableAsset(id: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS",
+                                                     decimals: 8, value: gasBalance, assetType: .nativeAsset)
+            try? storage.setObject(gasAsset, forKey: keys.readOnlyGasBalance.rawValue)
         }
     }
-    
+
     static func setReadOnlyTokensForSession(tokens: [TransferableAsset]) {
         if let storage = try? Storage(diskConfig: DiskConfig(name: "O3")) {
             try? storage.setObject(tokens, forKey: keys.readOnlyTokens.rawValue)
@@ -70,22 +79,24 @@ class O3Cache {
     }
 
     // MARK: Cache Getters for Writable Balances
-    static func gasBalance() -> Double {
-        var cachedGASBalance = 0.0
+    static func gas() -> TransferableAsset {
+        var cachedGASBalance = TransferableAsset(id: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS",
+                                                 decimals: 8, value: 0, assetType: .nativeAsset)
         if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            cachedGASBalance = (try? storage.object(ofType: Double.self, forKey: keys.gasBalance.rawValue)) ?? 0.0
+            cachedGASBalance = (try? storage.object(ofType: TransferableAsset.self, forKey: keys.gasBalance.rawValue)) ?? cachedGASBalance
         }
         return cachedGASBalance
     }
 
-    static func neoBalance() -> Int {
-        var cachedNEOBalance = 0
+    static func neo() -> TransferableAsset {
+        var cachedNEOBalance = TransferableAsset(id: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO",
+                                                 decimals: 8, value: 0, assetType: .nativeAsset)
         if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            cachedNEOBalance = (try? storage.object(ofType: Int.self, forKey: keys.neoBalance.rawValue)) ?? 0
+            cachedNEOBalance = (try? storage.object(ofType: TransferableAsset.self, forKey: keys.neoBalance.rawValue)) ?? cachedNEOBalance
         }
         return cachedNEOBalance
     }
-    
+
     static func tokenAssets() -> [TransferableAsset] {
         var cachedTokens = [TransferableAsset]()
         if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
@@ -93,28 +104,30 @@ class O3Cache {
         }
         return cachedTokens
     }
-    
+
     // MARK: Cache Getters For Read Only Balances
-    static func readOnlyGasBalance() -> Double {
-        var cachedGASBalance = 0.0
+    static func readOnlyGas() -> TransferableAsset {
+        var cachedGASBalance = TransferableAsset(id: NeoSwift.AssetId.gasAssetId.rawValue, name: "GAS", symbol: "GAS",
+                                                                   decimals: 8, value: 0, assetType: .nativeAsset)
         if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            cachedGASBalance = (try? storage.object(ofType: Double.self, forKey: keys.readOnlyGasBalance.rawValue)) ?? 0.0
+            cachedGASBalance = (try? storage.object(ofType: TransferableAsset.self, forKey: keys.readOnlyGasBalance.rawValue)) ?? cachedGASBalance
         }
         return cachedGASBalance
     }
-    
-    static func readOnlyNeoBalance() -> Int {
-        var cachedNEOBalance = 0
+
+    static func readOnlyNeo() -> TransferableAsset {
+        var cachedNEOBalance = TransferableAsset(id: NeoSwift.AssetId.neoAssetId.rawValue, name: "NEO", symbol: "NEO",
+                                                 decimals: 8, value: 0, assetType: .nativeAsset)
         if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            cachedNEOBalance = (try? storage.object(ofType: Int.self, forKey: keys.readOnlyNeoBalance.rawValue)) ?? 0
+            cachedNEOBalance = (try? storage.object(ofType: TransferableAsset.self, forKey: keys.readOnlyNeoBalance.rawValue)) ?? cachedNEOBalance
         }
         return cachedNEOBalance
     }
-    
+
     static func readOnlyTokens() -> [TransferableAsset] {
         var cachedTokens = [TransferableAsset]()
         if let storage =  try? Storage(diskConfig: DiskConfig(name: "O3")) {
-            cachedTokens = (try? storage.object(ofType: [AccountState.Asset].self, forKey: keys.readOnlyTokens.rawValue)) ?? []
+            cachedTokens = (try? storage.object(ofType: [TransferableAsset].self, forKey: keys.readOnlyTokens.rawValue)) ?? []
         }
         return cachedTokens
     }

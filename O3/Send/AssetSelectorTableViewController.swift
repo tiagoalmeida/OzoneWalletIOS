@@ -41,18 +41,18 @@ class AssetSelectorTableViewController: UITableViewController {
         addThemedElements()
         self.title = SendStrings.assetSelectorTitle
 
-        selectedNEP5Tokens = UserDefaultsManager.selectedNEP5Token!
-        for token in selectedNEP5Tokens {
+        //selectedNEP5Tokens = UserDefaultsManager.selectedNEP5Token!
+        /*for token in selectedNEP5Tokens {
             let nep5 = token.value
             let a = TransferableAsset(assetID: nep5.tokenHash, name: nep5.name, symbol: nep5.symbol, assetType: AssetType.nep5Token, decimal: nep5.decimal, balance: 0.0)
             //update max amount from server
             assets[nep5.tokenHash] = a
-        }
+        }*/
 
-        self.loadAccountState()
+       // self.loadAccountState()
     }
 
-    func showAccountState(accountState: AccountState) {
+    /*func showAccountState(accountState: AccountState) {
         guard let cellNEO = tableView.cellForRow(at: IndexPath(row: 0, section: sections.nativeAssets.rawValue)) as? NativeAssetSelectorTableViewCell else {
             return
         }
@@ -61,7 +61,7 @@ class AssetSelectorTableViewController: UITableViewController {
             return
         }
         DispatchQueue.main.async {
-            for asset in accountState.balances {
+            /*for asset in accountState.assets {
                 if asset.id.contains(NeoSwift.AssetId.neoAssetId.rawValue) {
                     self.neoBalance =  Int(asset.value) ?? 0
                     cellNEO.amountLabel.text = String(format: "%ld", Int(asset.value) ?? 0)
@@ -72,7 +72,7 @@ class AssetSelectorTableViewController: UITableViewController {
                     cellGAS.amountLabel.text = String(format: "%.8f", Double(asset.value) ?? 0.0)
                 }
             }
-        }
+        }*/
     }
 
     func loadAccountState() {
@@ -150,7 +150,7 @@ class AssetSelectorTableViewController: UITableViewController {
             Authenticated.account?.neoClient = NeoClient(network: .test)
         #endif
 
-        Authenticated.account?.neoClient.getTokenBalanceUInt(token.tokenHash, address: address) { result in
+       /* Authenticated.account?.neoClient.getTokenBalanceUInt(token.tokenHash, address: address) { result in
             switch result {
             case .failure:
                 DispatchQueue.main.async {
@@ -169,11 +169,11 @@ class AssetSelectorTableViewController: UITableViewController {
 
                     //set max amount for transferableAsset here
                     if self.assets[token.tokenHash] != nil {
-                        self.assets[token.tokenHash]?.balance = balanceDecimal
+                        self.assets[token.tokenHash]?.value = balanceDecimal
                     }
                 }
             }
-        }
+        }*/
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -194,5 +194,5 @@ class AssetSelectorTableViewController: UITableViewController {
             }
         }
         self.dismiss(animated: true, completion: nil)
-    }
+    }*/
 }

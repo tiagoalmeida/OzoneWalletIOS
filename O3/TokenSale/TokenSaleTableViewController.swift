@@ -218,7 +218,7 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
             let message = String(format: TokenSaleStrings.notEnoughBalanceError, assetName, balanceString!)
             OzoneAlert.alertDialog(message: message, dismissTitle: OzoneAlert.okPositiveConfirmString) {}
             return false
-        } else if selectedAsset?.name.lowercased() == "gas" && self.selectedAsset!.balance - amount!.doubleValue <= 0.00000001 {
+        } else if selectedAsset?.name.lowercased() == "gas" && self.selectedAsset!.value - amount!.doubleValue <= 0.00000001 {
             OzoneAlert.alertDialog(message: TokenSaleStrings.roundingError, dismissTitle: OzoneAlert.okPositiveConfirmString) {}
             return false
         }

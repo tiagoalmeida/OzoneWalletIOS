@@ -17,7 +17,7 @@ public struct AccountState: Codable {
     var scriptHash: String
     var assets: [TransferableAsset]
     var nep5Tokens: [TransferableAsset]
-    
+
     enum CodingKeys: String, CodingKey {
         case version
         case address
@@ -25,7 +25,7 @@ public struct AccountState: Codable {
         case assets
         case nep5Tokens
     }
-    
+
     public init(version: Int, address: String, scriptHash: String,
                 assets: [TransferableAsset], nep5Tokens: [TransferableAsset]) {
         self.version = version
@@ -34,7 +34,7 @@ public struct AccountState: Codable {
         self.assets = assets
         self.nep5Tokens = nep5Tokens
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let version: Int = try container.decode(Int.self, forKey: .version)
@@ -44,7 +44,7 @@ public struct AccountState: Codable {
         let nep5Tokens: [TransferableAsset] = try container.decode([TransferableAsset].self, forKey: .nep5Tokens)
         self.init(version: version, address: address, scriptHash: scriptHash, assets: assets, nep5Tokens: nep5Tokens)
     }
-    
+
     public struct TransferableAsset: Codable {
         var id: String
         var name: String
@@ -52,12 +52,12 @@ public struct AccountState: Codable {
         var decimals: Int
         var value: Double
         var assetType: AssetType
-    
+
         public enum AssetType: Int, Codable {
             case nativeAsset = 0
             case nep5Token
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id
             case name
@@ -65,7 +65,7 @@ public struct AccountState: Codable {
             case decimals
             case value
         }
-        
+
         public init(id: String, name: String, symbol: String, decimals: Int, value: Double, assetType: AssetType) {
             self.id = id
             self.name = name
@@ -74,7 +74,7 @@ public struct AccountState: Codable {
             self.value = value
             self.assetType = assetType
         }
-        
+
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let id = try container.decode(String.self, forKey: .id)
@@ -85,21 +85,20 @@ public struct AccountState: Codable {
             let valueDecimal = Decimal(string: valueString)
             let type: AssetType = id.hasPrefix("0x") ? .nativeAsset : .nep5Token
             var value = 0.0
-            if type == .nep5Token {
+            if type == .nativeAsset {
                 value = Double(truncating: (valueDecimal as NSNumber?)!)
             } else {
                 let dividedBalance = value / 10000000
                 value = Double(truncating: (dividedBalance as NSNumber?)!)
             }
-            
-            
+
             self.init(id: id, name: name, symbol: symbol, decimals: decimals, value: value, assetType: type)
         }
     }
 }
 
 extension TransferableAsset {
-    
+
     var formattedBalanceString: String {
         let amountFormatter = NumberFormatter()
         amountFormatter.minimumFractionDigits = self.decimals
@@ -117,18 +116,17 @@ extension TransferableAsset {
             name: "NEO",
             symbol: "NEO",
             decimals: 0,
-            value: Double(O3Cache.neoBalance()),
+            value: O3Cache.neo().value,
             assetType: AssetType.nativeAsset)
     }
-    
+
     static func GAS() -> TransferableAsset {
         return TransferableAsset(
             id: NeoSwift.AssetId.gasAssetId.rawValue,
             name: "GAS",
             symbol: "GAS",
             decimals: 8,
-            value: O3Cache.gasBalance(),
+            value: O3Cache.gas().value,
             assetType: AssetType.nativeAsset)
     }
 }
-
