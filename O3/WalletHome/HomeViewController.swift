@@ -151,10 +151,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !firstTimeViewLoad {
@@ -203,9 +199,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let asset = self.displayedAssets[indexPath.row]
         guard let latestPrice = portfolio?.price[asset.symbol],
             let firstPrice = portfolio?.firstPrice[asset.symbol] else {
-                let blankCell =  UITableViewCell()
-                blankCell.theme_backgroundColor = O3Theme.backgroundColorPicker
-                return blankCell
+                cell.data = PortfolioAssetCell.Data(assetName: asset.symbol,
+                                                    amount: Double(truncating: asset.value as NSNumber),
+                                                    referenceCurrency: (homeviewModel?.referenceCurrency)!,
+                                                    latestPrice: PriceData(average: 0, averageBTC: 0, time: "24h"),
+                                                    firstPrice: PriceData(average: 0, averageBTC: 0, time: "24h"))
+                return cell
         }
 
         cell.data = PortfolioAssetCell.Data(assetName: asset.symbol,

@@ -205,7 +205,7 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
                     self.amountField.becomeFirstResponder()
             })
             return
-        } else if selectedAsset?.assetType == TransferableAsset.AssetType.nep5Token && gasBalance == 0.0 {
+        } else if selectedAsset?.assetType == .nep5Token && gasBalance == 0.0 {
             OzoneAlert.alertDialog(message: SendStrings.notEnoughGasForInvokeError, dismissTitle: OzoneAlert.okPositiveConfirmString, didDismiss: {
                 self.amountField.becomeFirstResponder()
             })
@@ -223,9 +223,9 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
             }
         }
 
-        if self.selectedAsset?.assetType == TransferableAsset.AssetType.nativeAsset {
+        if self.selectedAsset?.assetType == .nativeAsset {
             self.sendNativeAsset(assetId: NeoSwift.AssetId(rawValue: assetId)!, assetName: assetName, amount: amount!.doubleValue, toAddress: toAddress)
-        } else if self.selectedAsset?.assetType == TransferableAsset.AssetType.nep5Token {
+        } else if self.selectedAsset?.assetType == .nep5Token {
             self.sendNEP5Token(tokenHash: assetId, assetName: assetName, amount: amount!.doubleValue, toAddress: toAddress)
         }
     }

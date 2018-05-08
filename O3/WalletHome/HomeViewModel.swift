@@ -98,6 +98,7 @@ class HomeViewModel {
 
     init(delegate: HomeViewModelDelegate) {
         self.delegate = delegate
+        self.delegate?.updateWithBalanceData(self.getTransferableAssets())
         reloadBalances()
     }
 

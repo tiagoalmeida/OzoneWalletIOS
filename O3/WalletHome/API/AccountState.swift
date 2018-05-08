@@ -53,8 +53,8 @@ public struct AccountState: Codable {
         var value: Double
         var assetType: AssetType
 
-        public enum AssetType: Int, Codable {
-            case nativeAsset = 0
+        public enum AssetType: String, Codable {
+            case nativeAsset
             case nep5Token
         }
 
@@ -81,18 +81,27 @@ public struct AccountState: Codable {
             let name = try container.decode(String.self, forKey: .name)
             let symbol = try container.decode(String.self, forKey: .symbol)
             let decimals = try container.decode(Int.self, forKey: .decimals)
-            let valueString = try container.decode(String.self, forKey: .value)
-            let valueDecimal = Decimal(string: valueString)
-            let type: AssetType = id.hasPrefix("0x") ? .nativeAsset : .nep5Token
+            let assetType: AssetType = id.hasPrefix("0x") ? .nativeAsset : .nep5Token
+
+            //If the value is given in string format, the assumption is that is coming from the
+            // server and it is not ready to use, and needs to be adjusted for decimals
+            // Otherwise the value can be given and it doesnt have to be adjusted
             var value = 0.0
-            if type == .nativeAsset {
-                value = Double(truncating: (valueDecimal as NSNumber?)!)
-            } else {
-                let dividedBalance = value / 10000000
-                value = Double(truncating: (dividedBalance as NSNumber?)!)
+            do {
+                let valueString = try container.decode(String.self, forKey: .value)
+                let valueDecimal = Decimal(string: valueString)
+
+                if assetType == .nativeAsset {
+                    value = Double(truncating: (valueDecimal as NSNumber?)!)
+                } else {
+                    let dividedBalance = (valueDecimal! / pow(10, decimals))
+                    value = Double(truncating: (dividedBalance as NSNumber?)!)
+                }
+            } catch {
+                value = try container.decode(Double.self, forKey: .value)
             }
 
-            self.init(id: id, name: name, symbol: symbol, decimals: decimals, value: value, assetType: type)
+            self.init(id: id, name: name, symbol: symbol, decimals: decimals, value: value, assetType: assetType)
         }
     }
 }
@@ -117,7 +126,7 @@ extension TransferableAsset {
             symbol: "NEO",
             decimals: 0,
             value: O3Cache.neo().value,
-            assetType: AssetType.nativeAsset)
+            assetType: .nativeAsset)
     }
 
     static func GAS() -> TransferableAsset {
@@ -127,6 +136,6 @@ extension TransferableAsset {
             symbol: "GAS",
             decimals: 8,
             value: O3Cache.gas().value,
-            assetType: AssetType.nativeAsset)
+            assetType: .nativeAsset)
     }
 }
