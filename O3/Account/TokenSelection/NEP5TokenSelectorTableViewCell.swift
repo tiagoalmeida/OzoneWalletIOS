@@ -14,7 +14,6 @@ class NEP5TokenSelectorTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var amountLabel: UILabel!
-    @IBOutlet var loadingView: UIActivityIndicatorView?
 
     override func awakeFromNib() {
         titleLabel.theme_textColor = O3Theme.titleColorPicker

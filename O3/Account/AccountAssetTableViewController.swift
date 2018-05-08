@@ -213,8 +213,9 @@ class AccountAssetTableViewController: UITableViewController {
                 switch result {
                 case .failure:
                     self.tableView.refreshControl?.endRefreshing()
-                case .success:
+                case .success(let accountState):
                     self.tableView.refreshControl?.endRefreshing()
+                    self.updateCacheAndLocalBalance(accountState: accountState)
                     self.tableView.reloadData()
                 }
             }
@@ -296,7 +297,6 @@ class AccountAssetTableViewController: UITableViewController {
 
     func setLocalizedStrings() {
         self.navigationController?.navigationBar.topItem?.title = AccountStrings.accountTitle
-        addNEP5Button.setTitle(AccountStrings.addNEP5Token, for: UIControlState())
     }
 }
 
