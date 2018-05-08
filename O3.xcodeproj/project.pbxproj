@@ -21,6 +21,7 @@
 		351200C1207F2649003CA07D /* TokenSaleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351200C0207F2649003CA07D /* TokenSaleTableViewCell.swift */; };
 		351200C3207F3586003CA07D /* TokenSaleInfoRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351200C2207F3586003CA07D /* TokenSaleInfoRowTableViewCell.swift */; };
 		351200C5207F3740003CA07D /* TokenSaleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351200C4207F3740003CA07D /* TokenSaleTableViewController.swift */; };
+		351B52F320A17E0000D352D7 /* keyframe.json in Resources */ = {isa = PBXBuildFile; fileRef = 351B52F220A17E0000D352D7 /* keyframe.json */; };
 		3537848A2080713200648AF2 /* M13Checkbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353784892080713100648AF2 /* M13Checkbox.framework */; };
 		3537848B2080713200648AF2 /* M13Checkbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 353784892080713100648AF2 /* M13Checkbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3537848D20807FD800648AF2 /* ContributionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3537848C20807FD800648AF2 /* ContributionTableViewCell.swift */; };
@@ -226,6 +227,7 @@
 		351200C0207F2649003CA07D /* TokenSaleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaleTableViewCell.swift; sourceTree = "<group>"; };
 		351200C2207F3586003CA07D /* TokenSaleInfoRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaleInfoRowTableViewCell.swift; sourceTree = "<group>"; };
 		351200C4207F3740003CA07D /* TokenSaleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaleTableViewController.swift; sourceTree = "<group>"; };
+		351B52F220A17E0000D352D7 /* keyframe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = keyframe.json; sourceTree = "<group>"; };
 		353784892080713100648AF2 /* M13Checkbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M13Checkbox.framework; path = Carthage/Build/iOS/M13Checkbox.framework; sourceTree = "<group>"; };
 		3537848C20807FD800648AF2 /* ContributionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionTableViewCell.swift; sourceTree = "<group>"; };
 		3537848E20809D3B00648AF2 /* TokenSaleReviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSaleReviewTableViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 		35B426BD2098240B00957211 /* TokenSelection */ = {
 			isa = PBXGroup;
 			children = (
+				351B52F220A17E0000D352D7 /* keyframe.json */,
 				3552DE0E209FF09900836341 /* NEP5TokenSelectorTableViewCell.swift */,
 				3552DE0C209FF06F00836341 /* panda1.json */,
 				35B426BE2098242600957211 /* TokenSelection.storyboard */,
@@ -904,6 +907,7 @@
 				75D5BFC21F6D196200E64855 /* OnboardingAssets.xcassets in Resources */,
 				75BEB2681F8A068100DC20E9 /* HUD.xcassets in Resources */,
 				35B426BF2098242600957211 /* TokenSelection.storyboard in Resources */,
+				351B52F320A17E0000D352D7 /* keyframe.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

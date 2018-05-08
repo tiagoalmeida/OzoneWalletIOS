@@ -15,8 +15,6 @@ import Crashlytics
 import StoreKit
 
 class AccountAssetTableViewController: UITableViewController {
-    @IBOutlet weak var addNEP5Button: UIButton!
-
     private enum sections: Int {
         case unclaimedGAS = 0
         case assets
@@ -27,7 +25,7 @@ class AccountAssetTableViewController: UITableViewController {
     var refreshClaimableGasTimer: Timer?
 
     var tokenAssets = O3Cache.tokenAssets()
-    var neo: Int = Int(O3Cache.neo().value)
+    var neoBalance: Int = Int(O3Cache.neo().value)
     var gasBalance: Double = O3Cache.gas().value
     var mostRecentClaimAmount = 0.0
 
@@ -52,7 +50,6 @@ class AccountAssetTableViewController: UITableViewController {
         self.view.theme_backgroundColor = O3Theme.backgroundColorPicker
         self.tableView.theme_backgroundColor = O3Theme.backgroundColorPicker
         applyNavBarTheme()
-        loadAccountState()
         loadClaimableGAS()
         refreshClaimableGasTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(AccountAssetTableViewController.loadClaimableGAS), userInfo: nil, repeats: true)
         refreshClaimableGasTimer?.fire()
@@ -112,7 +109,7 @@ class AccountAssetTableViewController: UITableViewController {
 
     func prepareClaimingGAS() {
 
-        if self.neo == 0 {
+        if self.neoBalance == 0 {
             return
         }
         refreshClaimableGasTimer?.invalidate()
@@ -135,7 +132,7 @@ class AccountAssetTableViewController: UITableViewController {
         }
 
         //to be able to claim. we need to send the entire NEO to ourself.
-        Authenticated.account?.sendAssetTransaction(asset: AssetId.neoAssetId, amount: Double(self.neo), toAddress: (Authenticated.account?.address)!) { completed, _ in
+        Authenticated.account?.sendAssetTransaction(asset: AssetId.neoAssetId, amount: Double(self.neoBalance), toAddress: (Authenticated.account?.address)!) { completed, _ in
             if completed == false {
                 HUD.hide()
                 self.enableClaimButton(enable: true)
@@ -193,10 +190,27 @@ class AccountAssetTableViewController: UITableViewController {
         }
     }
 
+    func updateCacheAndLocalBalance(accountState: AccountState) {
+        for asset in accountState.assets {
+            if asset.id.contains(NeoSwift.AssetId.neoAssetId.rawValue) {
+                neoBalance = Int(asset.value)
+            } else {
+                gasBalance = asset.value
+            }
+        }
+        tokenAssets = []
+        for token in accountState.nep5Tokens {
+            tokenAssets.append(token)
+        }
+        O3Cache.setGASForSession(gasBalance: gasBalance)
+        O3Cache.setNEOForSession(neoBalance: neoBalance)
+        O3Cache.setTokenAssetsForSession(tokens: tokenAssets)
+    }
+
     func loadAccountState() {
         O3Client().getAccountState(address: Authenticated.account?.address ?? "") { result in
             DispatchQueue.main.async {
-            switch result {
+                switch result {
                 case .failure:
                     self.tableView.refreshControl?.endRefreshing()
                 case .success:
@@ -246,10 +260,12 @@ class AccountAssetTableViewController: UITableViewController {
 
             if indexPath.row == 0 {
                 cell.titleLabel.text = "NEO"
+                cell.amountLabel.text = neoBalance.description
             }
 
             if indexPath.row == 1 {
                 cell.titleLabel.text = "GAS"
+                cell.amountLabel.text = gasBalance.string(0, removeTrailing: true)
             }
 
             return cell
@@ -261,12 +277,10 @@ class AccountAssetTableViewController: UITableViewController {
             return cell
         }
         let list = tokenAssets
-        let token = list[indexPath.row]
+        let token = list[indexPath.row - 2]
+        cell.amountLabel.text = token.value.string(token.decimals, removeTrailing: true)
         cell.titleLabel.text = token.symbol
         cell.subtitleLabel.text = token.name
-        /*DispatchQueue.global().async {
-            self.loadTokenBalance(cell: cell, token: token)
-        }*/
         return cell
     }
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {

@@ -42,25 +42,7 @@
                         <view key="tableFooterView" contentMode="scaleToFill" id="Fuw-MK-zk1">
                             <rect key="frame" x="0.0" y="240" width="375" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gm8-zz-UU2">
-                                    <rect key="frame" x="16" y="16" width="343" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="Yua-Ug-ETt"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
-                                    <state key="normal" title="+ ADD NEP5 TOKEN"/>
-                                    <connections>
-                                        <action selector="addNEP5TokensTapped:" destination="sEU-p8-l0I" eventType="touchUpInside" id="s29-BQ-tXx"/>
-                                    </connections>
-                                </button>
-                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="gm8-zz-UU2" firstAttribute="top" secondItem="Fuw-MK-zk1" secondAttribute="top" constant="16" id="Vq9-zS-IM9"/>
-                                <constraint firstAttribute="trailing" secondItem="gm8-zz-UU2" secondAttribute="trailing" constant="16" id="bBD-nv-u1c"/>
-                                <constraint firstItem="gm8-zz-UU2" firstAttribute="leading" secondItem="Fuw-MK-zk1" secondAttribute="leading" constant="16" id="bqb-Gt-Wvk"/>
-                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell-unclaimedgas" rowHeight="108" id="0aK-Uu-jdx" customClass="UnclaimedGASTableViewCell" customModule="O3" customModuleProvider="target">
@@ -209,18 +191,13 @@
                                                     <color key="textColor" red="0.058823529409999999" green="0.062745098040000002" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Fp7-Ry-gUR">
-                                                    <rect key="frame" x="307" y="12" width="20" height="20"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="vbL-i5-rf2" secondAttribute="trailing" constant="16" id="149-Au-Cm3"/>
                                                 <constraint firstItem="JW8-eN-YP0" firstAttribute="leading" secondItem="Low-27-Yrf" secondAttribute="leading" constant="16" id="APF-XQ-uT4"/>
                                                 <constraint firstItem="JW8-eN-YP0" firstAttribute="top" secondItem="Low-27-Yrf" secondAttribute="top" constant="5" id="VgK-BP-M6D"/>
-                                                <constraint firstItem="Fp7-Ry-gUR" firstAttribute="centerY" secondItem="Low-27-Yrf" secondAttribute="centerY" id="g2P-hf-835"/>
                                                 <constraint firstAttribute="bottom" secondItem="Zcj-Lg-OlY" secondAttribute="bottom" constant="5" id="hf1-Fz-Nsa"/>
-                                                <constraint firstAttribute="trailing" secondItem="Fp7-Ry-gUR" secondAttribute="trailing" constant="16" id="lDe-bT-Rg2"/>
                                                 <constraint firstAttribute="bottom" secondItem="vbL-i5-rf2" secondAttribute="bottom" id="pgm-cQ-bBY"/>
                                                 <constraint firstItem="Zcj-Lg-OlY" firstAttribute="leading" secondItem="JW8-eN-YP0" secondAttribute="leading" id="rRv-ma-jdH"/>
                                                 <constraint firstItem="vbL-i5-rf2" firstAttribute="top" secondItem="Low-27-Yrf" secondAttribute="top" id="wME-fB-EtC"/>
@@ -237,7 +214,6 @@
                                 <connections>
                                     <outlet property="amountLabel" destination="vbL-i5-rf2" id="HlF-cR-LtE"/>
                                     <outlet property="cardView" destination="Low-27-Yrf" id="4CB-tR-ftZ"/>
-                                    <outlet property="loadingView" destination="Fp7-Ry-gUR" id="hqk-64-Twh"/>
                                     <outlet property="subtitleLabel" destination="Zcj-Lg-OlY" id="j7f-DT-lGL"/>
                                     <outlet property="titleLabel" destination="JW8-eN-YP0" id="vU2-C7-0T7"/>
                                 </connections>
@@ -250,7 +226,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Account" id="1c4-vr-c6c"/>
                     <connections>
-                        <outlet property="addNEP5Button" destination="gm8-zz-UU2" id="eV4-Em-rT3"/>
                         <segue destination="xeb-mh-Hz2" kind="presentation" identifier="addTokens" id="8G3-Ol-UMB"/>
                     </connections>
                 </tableViewController>
