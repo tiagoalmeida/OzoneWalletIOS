@@ -90,6 +90,10 @@ class UserDefaultsManager {
             UserDefaults.standard.synchronize()
         }
     }
+    
+    static var theme: Theme {
+        return themeIndex == 0 ? Theme.light: Theme.dark
+    }
 
     private static let launchedBeforeKey = "launchedBeforeKey"
     static var launchedBefore: Bool {

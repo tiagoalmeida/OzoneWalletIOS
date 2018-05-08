@@ -16,6 +16,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var newsFeedTableView: UITableView!
     @IBOutlet weak var featuredCollectionView: UICollectionView!
+    
     var feedData: FeedData?
     var featureData: FeatureFeed?
     var urlToLoad = ""
@@ -25,7 +26,6 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         newsFeedTableView.theme_separatorColor = O3Theme.tableSeparatorColorPicker
         newsFeedTableView.theme_backgroundColor = O3Theme.backgroundColorPicker
         view.theme_backgroundColor = O3Theme.backgroundColorPicker
-
     }
 
     func loadNews() {
@@ -77,6 +77,11 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         loadNews()
     }
 
+    func applyTheme(webViewController: WebBrowserViewController) {
+        webViewController.tintColor = UserDefaultsManager.theme.titleTextColor
+        webViewController.barTintColor = UserDefaultsManager.theme.backgroundColor
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feedData?.items.count ?? 0
     }
@@ -105,7 +110,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
 
         let webBrowserViewController = WebBrowserViewController()
         webBrowserViewController.hidesBottomBarWhenPushed = true
-        //webBrowserViewController.tintColor = Theme.light.primaryColor
+        applyTheme(webViewController: webBrowserViewController)
         webBrowserViewController.loadURLString((item?.link)!)
         self.navigationController?.pushViewController(webBrowserViewController, animated: true)
     }
@@ -125,12 +130,11 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
 
         if let link = URL(string: featureItem.actionURL) {
             let webBrowserViewController = WebBrowserViewController()
-            webBrowserViewController.tintColor = Theme.light.primaryColor
+            applyTheme(webViewController: webBrowserViewController)
             webBrowserViewController.loadURL(link)
             let navigationWebBrowser = WebBrowserViewController.rootNavigationWebBrowser(webBrowser: webBrowserViewController)
-            present(navigationWebBrowser, animated: true, completion: nil)
+            present(navigationWebBrowser, animated: true)
         }
-
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -153,11 +157,10 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         return CGSize(width: screenSize.width - 48, height: (newsFeedTableView.frame.width * 9.0 / 16.0) + 45)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if section == 0 {
-                return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: section == 0 ? 0 : 16, bottom: 0, right: 0)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

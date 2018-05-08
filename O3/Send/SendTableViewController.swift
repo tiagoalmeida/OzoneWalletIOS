@@ -51,7 +51,7 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
         tableView.theme_backgroundColor = O3Theme.backgroundColorPicker
         tableView.theme_separatorColor = O3Theme.tableSeparatorColorPicker
         let themedTextFields = [toAddressField, amountField]
-        let placeHolderColor = ThemeManager.currentThemeIndex == 0 ? Theme.light.textFieldPlaceHolderColor : Theme.dark.textFieldPlaceHolderColor
+        let placeHolderColor = UserDefaultsManager.theme.textFieldPlaceHolderColor
         for field in themedTextFields {
             field!.attributedPlaceholder = NSAttributedString(
                 string: field!.placeholder ?? "",

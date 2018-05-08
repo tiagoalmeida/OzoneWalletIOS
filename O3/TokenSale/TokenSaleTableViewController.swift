@@ -120,7 +120,7 @@ class TokenSaleTableViewController: UITableViewController, ContributionCellDeleg
         webBrowserViewController.isToolbarHidden = false
         webBrowserViewController.title = saleInfo.name
         webBrowserViewController.isShowURLInNavigationBarWhenLoading = true
-        webBrowserViewController.barTintColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.backgroundColor: Theme.dark.backgroundColor
+        webBrowserViewController.barTintColor = UserDefaultsManager.theme.backgroundColor
         webBrowserViewController.tintColor = Theme.light.primaryColor
         webBrowserViewController.isShowPageTitleInNavigationBar = true
         webBrowserViewController.loadURLString(saleInfo.webURL)
