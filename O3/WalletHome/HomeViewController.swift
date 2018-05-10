@@ -183,9 +183,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.selectedPrice = portfolio.data.first
             self.walletHeaderCollectionView.reloadData()
             self.assetsTable.reloadData()
-
             self.graphView.reload()
-            if self.firstTimeGraphLoad {
+        }
+
+        //A hack otherwise graph wont appear
+        if self.firstTimeGraphLoad {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 self.graphView.reload()
                 self.firstTimeGraphLoad = false
             }

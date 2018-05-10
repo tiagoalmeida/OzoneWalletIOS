@@ -20,7 +20,7 @@ class AccountAssetTableViewController: UITableViewController {
         case assets
     }
 
-    var claims: Claims?
+    var claims: Claimable?
     var isClaiming: Bool = false
     var refreshClaimableGasTimer: Timer?
 
@@ -54,6 +54,7 @@ class AccountAssetTableViewController: UITableViewController {
         refreshClaimableGasTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(AccountAssetTableViewController.loadClaimableGAS), userInfo: nil, repeats: true)
         refreshClaimableGasTimer?.fire()
         tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.beginRefreshing()
         tableView.refreshControl?.addTarget(self, action: #selector(reloadAllData), for: .valueChanged)
     }
 
@@ -67,6 +68,7 @@ class AccountAssetTableViewController: UITableViewController {
         self.enableClaimButton(enable: false)
         self.loadClaimableGAS()
         Authenticated.account?.claimGas { _, error in
+
             if error != nil {
                 //if error then try again in 10 seconds
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
@@ -156,12 +158,13 @@ class AccountAssetTableViewController: UITableViewController {
         }
 
         Authenticated.account?.neoClient.getClaims(address: (Authenticated.account?.address)!) { result in
+            DispatchQueue.main.async { self.tableView.refreshControl?.endRefreshing() }
             switch result {
             case .failure:
                 return
             case .success(let claims):
                 self.claims = claims
-                self.mostRecentClaimAmount = Double(claims.totalUnspentClaim) / 100000000.0
+                self.mostRecentClaimAmount = claims.gas
                 DispatchQueue.main.async {
                     self.showClaimableGASAmount(amount: self.mostRecentClaimAmount)
                 }
@@ -212,9 +215,8 @@ class AccountAssetTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .failure:
-                    self.tableView.refreshControl?.endRefreshing()
+                    return
                 case .success(let accountState):
-                    self.tableView.refreshControl?.endRefreshing()
                     self.updateCacheAndLocalBalance(accountState: accountState)
                     self.tableView.reloadData()
                 }

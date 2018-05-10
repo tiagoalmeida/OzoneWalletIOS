@@ -161,7 +161,7 @@ class HomeViewModel {
 
     func addReadOnlyAccountState(_ accountState: AccountState) {
         for asset in accountState.assets {
-            if asset.id.contains(NeoSwift.AssetId.gasAssetId.rawValue) {
+            if asset.id.contains(NeoSwift.AssetId.neoAssetId.rawValue) {
                 readOnlyNeo.value += asset.value
             } else {
                 readOnlyGas.value += asset.value
