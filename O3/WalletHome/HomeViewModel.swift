@@ -104,6 +104,9 @@ class HomeViewModel {
     }
 
     func reloadBalances() {
+        guard let address = Authenticated.account?.address else {
+            return
+        }
         do {
             watchAddresses = try UIApplication.appDelegate.persistentContainer.viewContext.fetch(WatchAddress.fetchRequest())
         } catch {}
@@ -111,7 +114,7 @@ class HomeViewModel {
         assetsReadOnly = []
 
         selectedNEP5Tokens = UserDefaultsManager.selectedNEP5Token!
-        fetchAssetBalances(address: (Authenticated.account?.address)!, isReadOnly: false)
+        fetchAssetBalances(address: address, isReadOnly: false)
         for watchAddress in watchAddresses {
             if NEOValidator.validateNEOAddress(watchAddress.address ?? "") {
                 self.fetchAssetBalances(address: (watchAddress.address)!, isReadOnly: true)

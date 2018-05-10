@@ -14,7 +14,7 @@ class AssetView: UIView {
     override var backgroundColor: UIColor? {
         didSet {
             if shadowLayer != nil {
-               shadowLayer.fillColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.cardColor.cgColor : Theme.dark.cardColor.cgColor
+               shadowLayer.fillColor = UserDefaultsManager.theme.cardColor.cgColor
             }
         }
     }
@@ -26,7 +26,7 @@ class AssetView: UIView {
         if shadowLayer == nil {
             shadowLayer = CAShapeLayer()
             shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: 10).cgPath
-            shadowLayer.fillColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.cardColor.cgColor : Theme.dark.cardColor.cgColor
+            shadowLayer.fillColor = UserDefaultsManager.theme.cardColor.cgColor
 
             shadowLayer.shadowColor = UIColor.black.cgColor
             shadowLayer.shadowPath = shadowLayer.path

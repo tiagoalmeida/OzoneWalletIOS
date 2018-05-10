@@ -26,11 +26,11 @@ class AccountTabViewController: TabmanViewController, PageboyViewControllerDataS
 
     @objc func changedTheme(_ sender: Any) {
         self.bar.appearance = TabmanBar.Appearance({ (appearance) in
-            appearance.state.selectedColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.primaryColor : Theme.dark.primaryColor
-            appearance.state.color = UserDefaultsManager.themeIndex == 0 ? Theme.light.lightTextColor : Theme.dark.lightTextColor
+            appearance.state.selectedColor = UserDefaultsManager.theme.primaryColor
+            appearance.state.color = UserDefaultsManager.theme.lightTextColor
             appearance.layout.edgeInset = 0
             appearance.text.font = O3Theme.topTabbarItemFont
-            appearance.style.background = .solid(color: ThemeManager.currentThemeIndex == 0 ? Theme.light.backgroundColor : Theme.dark.backgroundColor)
+            appearance.style.background = .solid(color: UserDefaultsManager.theme.backgroundColor)
         })
     }
 
@@ -50,11 +50,11 @@ class AccountTabViewController: TabmanViewController, PageboyViewControllerDataS
         self.dataSource = self
 
         self.bar.appearance = TabmanBar.Appearance({ (appearance) in
-            appearance.state.selectedColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.primaryColor : Theme.dark.primaryColor
-            appearance.state.color = UserDefaultsManager.themeIndex == 0 ? Theme.light.lightTextColor : Theme.dark.lightTextColor
+            appearance.state.selectedColor = UserDefaultsManager.theme.primaryColor
+            appearance.state.color = UserDefaultsManager.theme.lightTextColor
             appearance.text.font = O3Theme.topTabbarItemFont
             appearance.layout.edgeInset = 0
-            appearance.style.background = .solid(color: ThemeManager.currentThemeIndex == 0 ? Theme.light.backgroundColor : Theme.dark.backgroundColor)
+            appearance.style.background = .solid(color: UserDefaultsManager.theme.backgroundColor)
         })
         self.bar.location = .top
         self.bar.style = .buttonBar
