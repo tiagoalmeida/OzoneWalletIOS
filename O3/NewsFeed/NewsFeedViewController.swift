@@ -16,7 +16,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var newsFeedTableView: UITableView!
     @IBOutlet weak var featuredCollectionView: UICollectionView!
-    
+
     var feedData: FeedData?
     var featureData: FeatureFeed?
     var urlToLoad = ""
@@ -81,7 +81,7 @@ class NewsFeedViewController: UIViewController, UITableViewDelegate, UITableView
         webViewController.tintColor = UserDefaultsManager.theme.titleTextColor
         webViewController.barTintColor = UserDefaultsManager.theme.backgroundColor
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feedData?.items.count ?? 0
     }

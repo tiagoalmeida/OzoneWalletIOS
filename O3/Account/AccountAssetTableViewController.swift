@@ -19,30 +19,30 @@ class AccountAssetTableViewController: UITableViewController {
         case unclaimedGAS = 0
         case assets
     }
-    
+
     var claims: Claimable?
     var isClaiming: Bool = false
     var refreshClaimableGasTimer = Timer()
-    
+
     var tokenAssets = O3Cache.tokenAssets()
     var neoBalance: Int = Int(O3Cache.neo().value)
     var gasBalance: Double = O3Cache.gas().value
     var mostRecentClaimAmount = 0.0
-    
+
     @objc func reloadCells() {
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
-    
+
     func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadAllData), name: NSNotification.Name(rawValue: "tokenSelectorDismissed"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadCells), name: NSNotification.Name(rawValue: ThemeUpdateNotification), object: nil)
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: ThemeUpdateNotification), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "tokenSelectiorDismissed"), object: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setLocalizedStrings()
@@ -51,24 +51,24 @@ class AccountAssetTableViewController: UITableViewController {
         self.tableView.theme_backgroundColor = O3Theme.backgroundColorPicker
         applyNavBarTheme()
         loadClaimableGAS()
-        
+
         refreshClaimableGasTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(AccountAssetTableViewController.loadClaimableGAS), userInfo: nil, repeats: true)
         tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.beginRefreshing()
         tableView.refreshControl?.addTarget(self, action: #selector(reloadAllData), for: .valueChanged)
     }
-    
+
     @objc func reloadAllData() {
         loadAccountState()
         loadClaimableGAS()
         DispatchQueue.main.async { self.tableView.reloadData() }
     }
-    
+
     func claimGas() {
         self.enableClaimButton(enable: false)
         self.loadClaimableGAS()
         Authenticated.account?.claimGas { _, error in
-            
+
             if error != nil {
                 //if error then try again in 10 seconds
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
@@ -86,12 +86,12 @@ class AccountAssetTableViewController: UITableViewController {
                         SKStoreReviewController.requestReview()
                     }
                 }
-                
+
                 //save latest claim time interval here to limit user to only claim every 5 minutes
                 let now = Date().timeIntervalSince1970
                 UserDefaults.standard.set(now, forKey: "lastetClaimDate")
                 UserDefaults.standard.synchronize()
-                
+
                 self.isClaiming = false
                 //if claim succeeded then fire the timer to refresh claimable gas again.
                 self.refreshClaimableGasTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(AccountAssetTableViewController.loadClaimableGAS), userInfo: nil, repeats: true)
@@ -99,7 +99,7 @@ class AccountAssetTableViewController: UITableViewController {
             }
         }
     }
-    
+
     func enableClaimButton(enable: Bool) {
         let indexPath = IndexPath(row: 0, section: sections.unclaimedGAS.rawValue)
         guard let cell = tableView.cellForRow(at: indexPath) as? UnclaimedGASTableViewCell else {
@@ -107,27 +107,26 @@ class AccountAssetTableViewController: UITableViewController {
         }
         cell.claimButton.isEnabled = enable && isClaiming == false
     }
-    
+
     func prepareClaimingGAS() {
-        
+
         if self.neoBalance == 0 {
             return
         }
         self.isClaiming = true
         refreshClaimableGasTimer.invalidate()
         refreshClaimableGasTimer = Timer()
-        
-        
+
         enableClaimButton(enable: false)
-        
+
         HUD.show(.labeledProgress(title: AccountStrings.claimingInProgressTitle, subtitle: AccountStrings.claimingInProgressSubtitle))
-        
+
         //select best node
         if let bestNode = NEONetworkMonitor.autoSelectBestNode() {
             UserDefaultsManager.seed = bestNode
             UserDefaultsManager.useDefaultSeed = false
         }
-        
+
         //we are able to claim gas only when there is data in the .claims array
         if self.claims != nil && self.claims!.claims.count > 0 {
             DispatchQueue.main.async {
@@ -135,7 +134,7 @@ class AccountAssetTableViewController: UITableViewController {
             }
             return
         }
-        
+
         //to be able to claim. we need to send the entire NEO to ourself.
         Authenticated.account?.sendAssetTransaction(asset: AssetId.neoAssetId, amount: Double(self.neoBalance), toAddress: (Authenticated.account?.address)!) { completed, _ in
             if completed == false {
@@ -146,24 +145,24 @@ class AccountAssetTableViewController: UITableViewController {
             DispatchQueue.main.async {
                 //if completed then mark the flag that we are claiming GAS
                 self.isClaiming = true
-                
+
                 //disable button and invalidate the timer to refresh claimable GAS
-                
+
                 self.refreshClaimableGasTimer.invalidate()
                 self.refreshClaimableGasTimer = Timer()
-                
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                     self.claimGas()
                 }
             }
         }
     }
-    
+
     @objc func loadClaimableGAS() {
         if Authenticated.account == nil {
             return
         }
-        
+
         if self.isClaiming == true {
             return
         }
@@ -181,7 +180,7 @@ class AccountAssetTableViewController: UITableViewController {
             }
         }
     }
-    
+
     func showClaimableGASAmount(amount: Double) {
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: 0, section: sections.unclaimedGAS.rawValue)
@@ -189,7 +188,7 @@ class AccountAssetTableViewController: UITableViewController {
                 return
             }
             cell.amountLabel.text = amount.string(8, removeTrailing: true)
-            
+
             //only enable button if latestClaimDate is more than 5 minutes
             let latestClaimDateInterval: Double = UserDefaults.standard.double(forKey: "lastetClaimDate")
             let latestClaimDate: Date = Date(timeIntervalSince1970: latestClaimDateInterval)
@@ -202,7 +201,7 @@ class AccountAssetTableViewController: UITableViewController {
             cell.claimButton.isEnabled = amount > 0
         }
     }
-    
+
     func updateCacheAndLocalBalance(accountState: AccountState) {
         for asset in accountState.assets {
             if asset.id.contains(NeoSwift.AssetId.neoAssetId.rawValue) {
@@ -219,7 +218,7 @@ class AccountAssetTableViewController: UITableViewController {
         O3Cache.setNEOForSession(neoBalance: neoBalance)
         O3Cache.setTokenAssetsForSession(tokens: tokenAssets)
     }
-    
+
     func loadAccountState() {
         O3Client().getAccountState(address: Authenticated.account?.address ?? "") { result in
             DispatchQueue.main.async {
@@ -233,26 +232,26 @@ class AccountAssetTableViewController: UITableViewController {
             }
         }
     }
-    
+
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == sections.unclaimedGAS.rawValue {
             return 1
         }
         return 2 + tokenAssets.count
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == sections.unclaimedGAS.rawValue {
             return 108.0
         }
         return 52.0
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == sections.unclaimedGAS.rawValue {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell-unclaimedgas") as? UnclaimedGASTableViewCell else {
@@ -263,27 +262,27 @@ class AccountAssetTableViewController: UITableViewController {
             cell.delegate = self
             return cell
         }
-        
+
         if indexPath.section == sections.assets.rawValue && indexPath.row < 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell-nativeasset") as? NativeAssetTableViewCell else {
                 let cell =  UITableViewCell()
                 cell.theme_backgroundColor = O3Theme.backgroundColorPicker
                 return cell
             }
-            
+
             if indexPath.row == 0 {
                 cell.titleLabel.text = "NEO"
                 cell.amountLabel.text = neoBalance.description
             }
-            
+
             if indexPath.row == 1 {
                 cell.titleLabel.text = "GAS"
                 cell.amountLabel.text = gasBalance.string(8, removeTrailing: true)
             }
-            
+
             return cell
         }
-        
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell-nep5token") as? NEP5TokenTableViewCell else {
             let cell =  UITableViewCell()
             cell.theme_backgroundColor = O3Theme.backgroundColorPicker
@@ -302,11 +301,11 @@ class AccountAssetTableViewController: UITableViewController {
         }
         return false
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
     func setLocalizedStrings() {
         self.navigationController?.navigationBar.topItem?.title = AccountStrings.accountTitle
     }
