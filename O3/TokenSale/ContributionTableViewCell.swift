@@ -39,9 +39,7 @@ class ContributionTableViewCell: UITableViewCell {
             amountTextField.inputAccessoryView = inputToolbar?.loadNib()
             amountTextField.inputAccessoryView?.theme_backgroundColor = O3Theme.backgroundColorPicker
 
-            var neo = TransferableAsset.NEO()
-            neo.balance = Decimal(O3Cache.neoBalance())
-            inputToolbar?.asset = neo
+            inputToolbar?.asset = O3Cache.neo()
         }
     }
 
@@ -86,7 +84,7 @@ class ContributionTableViewCell: UITableViewCell {
         //formatter to format string to a proper numbers
         let amountFormatter = NumberFormatter()
         amountFormatter.minimumFractionDigits = 0
-        amountFormatter.maximumFractionDigits = selectedAsset.decimal
+        amountFormatter.maximumFractionDigits = selectedAsset.decimals
         amountFormatter.numberStyle = .decimal
         amountFormatter.locale = Locale.current
         amountFormatter.usesGroupingSeparator = true
@@ -115,7 +113,7 @@ class ContributionTableViewCell: UITableViewCell {
             self.amountTextField.text = ""
             if sender.view == self.neoSelectorContainerView {
                 var neo = TransferableAsset.NEO()
-                neo.balance = Decimal(O3Cache.neoBalance())
+                neo.value = Double(O3Cache.neo().value)
                 self.inputToolbar?.asset = neo
                 self.amountTextField.keyboardType = .numberPad
                 //allow only integer for neo
@@ -133,7 +131,7 @@ class ContributionTableViewCell: UITableViewCell {
             } else {
 
                 var gas = TransferableAsset.GAS()
-                gas.balance = Decimal(O3Cache.gasBalance())
+                gas.value = O3Cache.gas().value
                 self.inputToolbar?.asset = gas
 
                 self.amountTextField.keyboardType = .decimalPad
@@ -166,11 +164,10 @@ class ContributionTableViewCell: UITableViewCell {
     }
 }
 extension ContributionTableViewCell: AssetInputToolbarDelegate {
-
-    func maxAmountTapped(value: Decimal) {
+    func maxAmountTapped(value: Double) {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = selectedAsset.decimal
+        formatter.maximumFractionDigits = selectedAsset.decimals
         formatter.numberStyle = .decimal
         formatter.usesGroupingSeparator = false
         let balanceString = formatter.string(for: value)
@@ -178,10 +175,10 @@ extension ContributionTableViewCell: AssetInputToolbarDelegate {
         contributionAmountChanged(amountTextField)
     }
 
-    func percentAmountTapped(value: Decimal) {
+    func percentAmountTapped(value: Double) {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = selectedAsset.decimal
+        formatter.maximumFractionDigits = selectedAsset.decimals
         formatter.numberStyle = .decimal
         formatter.usesGroupingSeparator = false
 
@@ -189,5 +186,4 @@ extension ContributionTableViewCell: AssetInputToolbarDelegate {
         amountTextField.text = balanceString
         contributionAmountChanged(amountTextField)
     }
-
 }

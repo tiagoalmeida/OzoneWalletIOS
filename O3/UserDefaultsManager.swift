@@ -132,31 +132,6 @@ class UserDefaultsManager {
         }
     }
 
-    private static let selectedNEP5TokensKey = "selectedNEP5TokensKey"
-    static var selectedNEP5Token: [String: NEP5Token]? {
-        get {
-
-            if let data = UserDefaults.standard.value(forKey: selectedNEP5TokensKey) as? Data {
-                do {
-                    let tokens = try PropertyListDecoder().decode([String: NEP5Token].self, from: data)
-                    return tokens
-                } catch {
-                    return [:]
-                }
-            }
-            return [:]
-        }
-        set {
-            do {
-                let data = try PropertyListEncoder().encode(newValue)
-                UserDefaults.standard.set(data, forKey: selectedNEP5TokensKey)
-                UserDefaults.standard.synchronize()
-            } catch {
-                print("Save Failed")
-            }
-        }
-    }
-
     private static let numClaimsKey = "numClaimsKey"
     static var numClaims: Int {
         get {
