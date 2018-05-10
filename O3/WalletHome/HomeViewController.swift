@@ -106,7 +106,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.addObserver(self, selector: #selector(self.getBalance), name: Notification.Name("ChangedNetwork"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.getBalance), name: Notification.Name("ChangedReferenceCurrency"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.getBalance), name: Notification.Name("UpdatedWatchOnlyAddress"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.getBalance), name: Notification.Name("AddedNewToken"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.removeObservers), name: Notification.Name("loggedOut"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateGraphAppearance(_:)), name: NSNotification.Name(rawValue: ThemeUpdateNotification), object: nil)
     }
@@ -116,7 +115,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.removeObserver(self, name: Notification.Name("ChangedNetwork"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name("UpdatedWatchOnlyAddress"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name("ChangedReferenceCurrency"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("AddedNewToken"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: ThemeUpdateNotification), object: nil)
     }
 
@@ -153,10 +151,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !firstTimeViewLoad {
@@ -189,9 +183,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.selectedPrice = portfolio.data.first
             self.walletHeaderCollectionView.reloadData()
             self.assetsTable.reloadData()
-
             self.graphView.reload()
-            if self.firstTimeGraphLoad {
+        }
+
+        //A hack otherwise graph wont appear
+        if self.firstTimeGraphLoad {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 self.graphView.reload()
                 self.firstTimeGraphLoad = false
             }
@@ -203,15 +200,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             fatalError("Undefined Table Cell Behavior")
         }
         let asset = self.displayedAssets[indexPath.row]
-        guard let latestPrice = portfolio?.price[asset.symbol ?? ""],
-            let firstPrice = portfolio?.firstPrice[asset.symbol ?? ""] else {
-                let blankCell =  UITableViewCell()
-                blankCell.theme_backgroundColor = O3Theme.backgroundColorPicker
-                return blankCell
+        guard let latestPrice = portfolio?.price[asset.symbol],
+            let firstPrice = portfolio?.firstPrice[asset.symbol] else {
+                cell.data = PortfolioAssetCell.Data(assetName: asset.symbol,
+                                                    amount: Double(truncating: asset.value as NSNumber),
+                                                    referenceCurrency: (homeviewModel?.referenceCurrency)!,
+                                                    latestPrice: PriceData(average: 0, averageBTC: 0, time: "24h"),
+                                                    firstPrice: PriceData(average: 0, averageBTC: 0, time: "24h"))
+                return cell
         }
 
-        cell.data = PortfolioAssetCell.Data(assetName: asset.symbol ?? "",
-                                            amount: Double(truncating: (asset.balance ?? 0) as NSNumber),
+        cell.data = PortfolioAssetCell.Data(assetName: asset.symbol,
+                                            amount: Double(truncating: asset.value as NSNumber),
                                             referenceCurrency: (homeviewModel?.referenceCurrency)!,
                                             latestPrice: latestPrice,
                                             firstPrice: firstPrice)

@@ -18,10 +18,9 @@ class NftSelectionViewController: UIViewController {
         super.viewDidLoad()
         view.theme_backgroundColor = O3Theme.backgroundColorPicker
         nftConstructionLabel.text = TokenSelectionStrings.underConstruction
-        let lottieView = LOTAnimationView(name: "panda1")
+        let lottieView = LOTAnimationView(name: "keyframe")
         lottieView.frame = animationView.bounds
-        lottieView.loopAnimation = true
         animationView.addSubview(lottieView)
-        lottieView.play()
+        lottieView.play(toFrame: 30, withCompletion: {_ in})
     }
 }
