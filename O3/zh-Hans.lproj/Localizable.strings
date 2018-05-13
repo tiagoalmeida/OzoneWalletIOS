@@ -17,7 +17,7 @@
 
 /*NEW 
  An informative description about what happens when you add a contact*/
-"CONTACTS_Add_Contact_Description" = "将此人添加到通讯录，方便交易。即不需记住对方的地址，也可以打款给对方。";
+"CONTACTS_Add_Contact_Description" = "将此人添加到通讯录以便交易，即无需记住对方的地址亦可打款给对方。";
 
 /*NEW 
  A prompt asking if you are sure that you want to delete this contact*/
@@ -56,7 +56,7 @@
 "ONBARDING_Confirmed_Private_Key_Saved_Prompt" = "请确认在离线且安全的情况下备份好私钥";
 
 /*On authentication screen, when wallet already exists. Ask them to login using the specific type of authentication they have, e.g Login using TouchID*/
-"ONBOARDING Login_Button_Specifying_Biometric" = "使用指纹识别或人脸识别登录";
+"ONBOARDING Login_Button_Specifying_Biometric" = "使用指纹或人脸识别登录";
 
 /*On authentication screen, when wallet already exists. Ask them to login using the specific type of authentication they have, e.g Login using Passcode*/
 "ONBOARDING Login_Button_Specifying_PassCode" = "使用密码登录";
@@ -65,7 +65,7 @@
 "ONBOARDING_Create_New _Wallet" = "创建新钱包";
 
 /*Error message that is displayed when the user tries to Create a New Wallet without a passcode*/
-"ONBOARDING_Create_Wallet_No_Passcode_Error" = "若要创建新钱包，请确认已在该设备上设置密码，以确保你的资金安全。";
+"ONBOARDING_Create_Wallet_No_Passcode_Error" = "若要创建新钱包，请确认已在该设备上设置好密码，以确保您的资金安全。";
 
 /*Prompt asking the user to authenticate themselves when they already have a wallet stored on device.*/
 "ONBOARDING_Existing_Wallet_Authentication_Prompt" = "使用已保存在该设备上的钱包登录";
@@ -77,7 +77,7 @@
 "ONBOARDING_Login_Input_Info_Title" = "使用您的NEO私钥登录钱包";
 
 /*Error message that is displayed when the user tries to login without a passcode*/
-"ONBOARDING_Login_No_Passcode_Error" = "若要登录，必须在您的设备上设置好密码，以确定资金安全。\n";
+"ONBOARDING_Login_No_Passcode_Error" = "若要登录，必须在您的设备上设置好密码，以确保您的资金安全。\n";
 
 /*Title for all login items in the onboarding flow*/
 "ONBOARDING_Login_Title" = "登录";
@@ -86,7 +86,7 @@
 "ONBOARDING_New To O3?" = "新手入门O3？";
 
 /*A title presented over the top of the private key, specifies WIF format. e.g. Your Private Key (WIF)*/
-"ONBOARDING_Private_Key_title" = "你的私钥（WIF）";
+"ONBOARDING_Private_Key_title" = "您的私钥（WIF）";
 
 /*Displayed when the app is waiting to connect to the network. It is finding the best NEO node to connect to*/
 "ONBOARDING_Selecting_Best_Node" = "选择最佳节点";
@@ -96,7 +96,7 @@
 
 /*NEW 
  The first subtitle in the onboarding pages*/
-"ONBOARDING_Tutorial_Subtitle_One" = "安全监管您的钱包";
+"ONBOARDING_Tutorial_Subtitle_One" = "安全管控自己的钱包";
 
 /*The third subtitle in the onboarding pages*/
 "ONBOARDING_Tutorial_Subtitle_Three" = "支持GAS、NEO、NEP5所有代币";
@@ -105,7 +105,7 @@
 "ONBOARDING_Tutorial_Subtitle_Two" = "您的隐私受到最新安全措施的保护";
 
 /*The first title in the onboarding pages*/
-"ONBOARDING_Tutorial_Title_One" = "添加免私钥监控地址";
+"ONBOARDING_Tutorial_Title_One" = "添加观察地址";
 
 /*The third title in the onboarding pages*/
 "ONBOARDING_Tutorial_Title_Three" = "发送、接收、索求奖励";
@@ -153,7 +153,7 @@
 
 /*NEW 
  Title of the portfolio page*/
-"PORTFOLIO_Portfolio_Title" = "资产配置？";
+"PORTFOLIO_Portfolio_Title" = "资产配置";
 
 /*NEW 
  A title for the scan button in the send screen*/
@@ -181,7 +181,7 @@
 
 /*NEW 
  A confirmation dialog that asks the user to confirm the asset, amount, and recipient of their transaction*/
-"SEND_Confirmation_Prompt" = "确认发送...到...？";
+"SEND_Confirmation_Prompt" = "确认发送%.8f %@到%@";
 
 /*NEW 
  Description to display when the transaction has failed to be submitted to the NEO blockchain*/
@@ -193,7 +193,7 @@
 
 /*NEW 
  Description to display when the transaction has successfuly been submitted to the NEO blockchain*/
-"SEND_Created_Transaction_Successfully_Description" = "一旦确认交易，即可在交易历史中查看信息";
+"SEND_Created_Transaction_Successfully_Description" = "一旦确认交易，便可在交易历史中查看信息";
 
 /*NEW 
  Title to display when the transaction has successfuly been submitted to the NEO blockchain*/
@@ -209,7 +209,7 @@
 
 /*NEW 
  Error To display when the user is trying to send without enough balance*/
-"SEND_Not_Enough_Balance_Error" = "金额不足。您当前余额为...";
+"SEND_Not_Enough_Balance_Error" = "您的金额不足%@。当前余额为@%。";
 
 /*NEW 
  A title for the paste button in the send screen*/
@@ -237,7 +237,7 @@
 
 /*NEW 
  Title for add watch address button*/
-"SETTINGS_Add_Watch_Address" = "添加私钥监控地址";
+"SETTINGS_Add_Watch_Address" = "添加观察地址";
 
 /*NEW 
  Label to describe an address input field*/
@@ -269,7 +269,7 @@
 
 /*NEW 
  Warning that appears when attempting to logout from settings*/
-"SETTINGS_Logout_Warning" = "退出程序的同时，您的私钥将会从该设备上移除。请确认私钥已备份或记下。下次登入该应用程序，需要从备份中恢复私钥。";
+"SETTINGS_Logout_Warning" = "退出程序后，您的私钥将会从该设备上移除。请确认私钥已备份或记下。下次登入该应用程序，需要从备份中恢复私钥。";
 
 /*NEW 
  Settings Menu Title for Private Key*/
@@ -309,15 +309,15 @@
 
 /*NEW 
  Settings Menu Title For Version*/
-"SETTINGS_Version" = "版本：";
+"SETTINGS_Version" = "版本：%@";
 
 /*NEW 
  Settings Menu Title For Watch Only Address*/
-"SETTINGS_Watch_Only_Address" = "添加免私钥监控地址";
+"SETTINGS_Watch_Only_Address" = "添加观察地址";
 
 /*NEW 
  A title for the Watch Only Address Title Screen*/
-"SETTINGS_Watch_Only_Address_Title" = "添加免私钥监控地址";
+"SETTINGS_Watch_Only_Address_Title" = "添加观察地址";
 
 /*NEW 
  Title for receive action in tabbar*/
@@ -345,11 +345,11 @@
 
 /*NEW 
  String showing that the token sale has already ended*/
-"TOKENSALE_Ended" = "交易结束";
+"TOKENSALE_Ended" = "已结束";
 
 /*NEW 
  A string displaying how muc time is left in the token sale*/
-"TOKENSALE_Ends_In" = "交易完成xx%";
+"TOKENSALE_Ends_In" = "已完成%@";
 
 /*NEW 
  A title showing users can get notified about the latest token sales*/
@@ -361,7 +361,7 @@
 
 /*NEW 
  String on the review screen describing that this transaction will have priority*/
-"TOKENSALE_Has_Priority_Label" = "优先权（0.001燃料）";
+"TOKENSALE_Has_Priority_Label" = "优先级（0.001GAS）";
 
 /*NEW 
  An error indicating the user has entered an invalid contribution amount*/
@@ -373,23 +373,23 @@
 
 /*NEW 
  A string showing that the displayed token sale is currently active*/
-"TOKENSALE_Live_Status" = "正在进行";
+"TOKENSALE_Live_Status" = "进行中";
 
 /*NEW 
  An error that shows when the user tries to contribute more than the max contribution amount*/
-"TOKENSALE_Max_Contribution_Error" = "对...的最大贡献值是...";
+"TOKENSALE_Max_Contribution_Error" = "对%@的最大贡献是%@";
 
 /*NEW 
  An error that show when the user tries to contribute less than the min contribution amount*/
-"TOKENSALE_Min_Contribution_Error" = "对...的最小贡献值是...";
+"TOKENSALE_Min_Contribution_Error" = "对%@的最小贡献值是%@";
 
 /*NEW 
  An error when the user has not yet agreed to the tokensale disclaimers*/
-"TOKENSALE_Not_Agreed_To_Disclaimers Error" = "请在代币销售之前，同意该免责声明？？？？";
+"TOKENSALE_Not_Agreed_To_Disclaimers Error" = "请在代币销售之前，同意该免责声明";
 
 /*NEW 
  An error indicating that the user does not have enough balance for the amount entered*/
-"TOKENSALE_Not_Enough_Balance_Error" = "金额不足。您当前的余额是...";
+"TOKENSALE_Not_Enough_Balance_Error" = "您的金额不足%@。当前余额是%@。";
 
 /*NEW 
  A string showing the user is not whitelisted for this tokensale*/
@@ -397,7 +397,7 @@
 
 /*NEW 
  An error to display when the user is not whitelisted for the tokensale*/
-"TOKENSALE_Not_Whitelisted_Error" = "您不在此次销售的白名单内。请前往代币发行网站查找如何加入白名单。";
+"TOKENSALE_Not_Whitelisted_Error" = "您不在此次代币销售的名单内。请前往代币发行网站查找如何加入名单。";
 
 /*NEW 
  Disclaimer text asking the user to agree to the terms of the O3 Application. States that the user is interacting directly with the smart contract*/
@@ -409,11 +409,11 @@
 
 /*NEW 
  A Dialog that shows explaining when, what is priority is tapped. Explains that priority allows your transactions to process faster on the blockchain*/
-"TOKENSALE_Priority_Explanation" = "优先级允许您首先获区块。 在高流量期间，优先级将提高您获得代币销售的机会。\n";
+"TOKENSALE_Priority_Explanation" = "较高的优先级允许您先加入到新的区块中。 在高流量期间，优先级将提高您获得代币销售的机会。\n";
 
 /*NEW 
  Label showing priority. Also displays the gas cost for priority. This is fixed at 0.0011GAS*/
-"TOKENSALE_Priority_Label" = "优先权（0.0011GAS）";
+"TOKENSALE_Priority_Label" = "优先级（0.0011GAS）";
 
 /*NEW 
  Label for the date in the token sale receipt in transaction success screen*/
@@ -421,15 +421,15 @@
 
 /*NEW 
  Email Text For the receipt that the user can send to themselves*/
-"TOKENSALE_Receipt_Email_Full_Text" = "该收据证明您的交易已提交到NEO，平台正在处理中。\n\n一旦授权成功，将从您的钱包扣除金额。我们会对货币分配负责到底。请持该交易账号作为凭证，参加代币销售活动。其他细节如下：\n\n日期：\n代币销售名字：\n交易ID：\n已发送至：？？\n应接收者：？？\n\n此致\n\nO3团队\n\n\n";
+"TOKENSALE_Receipt_Email_Full_Text" = "该收据证明您的交易已提交到NEO，平台正在处理中。\n\n一旦授权成功，将从您的钱包扣除金额。我们会对货币分配负责到底。请持该交易账号作为凭证，参加代币销售活动。其他细节如下：\n\n日期：%@\n代币销售名字：%@\n交易ID：%@\n发送者：%@\n接收者：%@\n\n此致\n\nO3团队\n\n\n";
 
 /*NEW 
  Label for the priority in the token sale receipt in transaction success screen*/
-"TOKENSALE_Receipt_Priority_Label" = "优先权";
+"TOKENSALE_Receipt_Priority_Label" = "优先级";
 
 /*NEW 
  Label for the receiving asset and amount in the token sale receipt in transaction success screen*/
-"TOKENSALE_Receipt_Receiving_Label" = "接收者";
+"TOKENSALE_Receipt_Receiving_Label" = "接收";
 
 /*NEW 
  Label for the sending asset and amount in the token sale receipt in transaction success screen*/
@@ -481,7 +481,7 @@
 
 /*NEW 
  Title Describing the send amount in the tokensale review screen*/
-"TOKENSALE_You_Are_Sending_Title" = "发送中？？";
+"TOKENSALE_You_Are_Sending_Title" = "正在发送";
 
 /*NEW 
  A title indicating how much the user will receive with a given contribution amount*/
@@ -501,7 +501,7 @@
 
 /*NEW 
  Prefix used to indicate the block number in the transaction history*/
-"WALLET_Block_Prefix" = "屏蔽：";
+"WALLET_Block_Prefix" = "屏蔽：%@";
 
 /*NEW 
  A Title for the claim Action*/
@@ -513,11 +513,11 @@
 
 /*NEW 
  A title to display while claiming is in progress*/
-"WALLET_Claim_In_Progress_Title" = "GAS声明？？";
+"WALLET_Claim_In_Progress_Title" = "GAS声明";
 
 /*NEW 
  A Message to display in the alert after the user hs successfully claimed their gas*/
-"WALLET_Claim_Succeeded_Prompt" = "您的申诉已成功，可能需要几分钟才能反映在您的交易历史记录中。 你可以在5分钟后再次发起申诉。";
+"WALLET_Claim_Succeeded_Prompt" = "您的申诉已成功，可能需要几分钟才能体现在您的交易历史记录中。 你可以在5分钟后再次发起申诉。";
 
 /*NEW 
  Indicated that the transation in history originated from claim*/
@@ -533,7 +533,7 @@
 
 /*NEW 
  Prefix used in the transaction history to indicate where the transaction came from*/
-"WALLET_From_Prefix" = "来自";
+"WALLET_From_Prefix" = "来自：%@";
 
 /*NEW 
  Informative text explaining you can store neo, gas, and nep-5 tokens using this address*/
@@ -573,7 +573,7 @@
 
 /*NEW 
  Prefix used in the transaction history to indicate where the transaction went to*/
-"WALLET_To_Prefix" = "到：？？";
+"WALLET_To_Prefix" = "到：%@";
 
 /*NEW 
  Title of Transactions tab in wallet screen*/
@@ -581,7 +581,7 @@
 
 /*NEW 
  A title for Unclaimed Gas in the wallet*/
-"WALLET_Unclaimed_Gas_Title" = "未声明GAS？？";
+"WALLET_Unclaimed_Gas_Title" = "未声明GAS";
 
 /*NEW 
  Title to copy watch address*/
@@ -593,7 +593,7 @@
 
 /*NEW 
  A prompt asking for user confirmation to delete the watch address*/
-"WATCH_ADDRESS_Delete_Confirmation" = "确定删除该私钥监控地址？";
+"WATCH_ADDRESS_Delete_Confirmation" = "确定删除该观察地址";
 
 /*NEW 
  Title for editing name of a watch address*/
@@ -604,10 +604,10 @@
 "WATCH_ADDRESS_Save" = "保存";
 
 /*When the user tries to create a new wallet, but they already have one saved on the devicve, this explanation/warning is given to the user*/
-"ONBOARDING_Already_Have_Wallet_Explanation" = "在改设备上，你已经有一个创建好的钱包了。\n\n若要创建新的钱包，现有的私钥将被新私钥覆盖。 请确保你现有钱包的私钥已备份。";
+"ONBOARDING_Already_Have_Wallet_Explanation" = "您在该设备上已有一个创建好的钱包。\n\n若要创建新钱包，现有的私钥将会被新私钥覆盖。 请确保你现有钱包的私钥已备份。";
 
 /*A warning given to the user to make sure that they have backed up their private key in a secure location. Also states that deletibg the passcode will delete the key from the device*/
-"ONBOARDING_Please_Backup Warning" = "请在安全的情况下备份该私钥。\n\n我们强烈建议您在自己的iPhone上设置密码。若删除您设备上的密码，您钥匙串上的密码也将被删除。";
+"ONBOARDING_Please_Backup Warning" = "请在安全的情况下备份该私钥。\n\n我们强烈建议您在自己的iPhone上设置好密码。若删除您设备上的密码，钥匙串上的私钥也将被删除。";
 
 /*NEW 
  Error to display when the user is trying to send a token but does not have enough gas to make the invoke occur. It requires 0.00000001 GAS in the wallet in order to send a token*/
@@ -619,11 +619,11 @@
 
 /*NEW 
  Description under add address button that describes what a watch address is and how it will work in the app*/
-"SETTINGS_Add_Watch_Description" = "免私钥监控地址让您可以在孤立的环境中监控您的投资组合。 尽管您无法发送邮件到这些地址，但您可以查看余额。";
+"SETTINGS_Add_Watch_Description" = "观察地址让您在单独一人的情况下监控自己的投资组合。 虽然无法发送代币，但您可以通过该地址查看余额。";
 
 /*NEW 
  A detailed description about what will happen if the user signs up for the email list to get notified about token sales*/
-"TOKENSALE_Get_Notified_Description" = "分享您的邮箱，我们将为您提供最新代币销售信息。O3上出现的所有代币都是经过审核的，您的电子邮件也绝不会与第三方共享。 没有代币允许！？？？";
+"TOKENSALE_Get_Notified_Description" = "分享您的邮箱，我们将为您提供最新代币销售信息。O3上出现的所有代币都是经过审核的，您的电子邮件也绝不会与第三方共享。 没有垃圾代币！";
 
 /*NEW 
  Description that shows when there is an error*/
@@ -648,7 +648,7 @@
 "SETTINGS_Currency_Title_No_Type" = "货币";
 
 /*A title for the button that gives additional information about what priority does*/
-"TOKENSALE_What_Is_Priority" = "什么是优先权？";
+"TOKENSALE_What_Is_Priority" = "什么是优先级？";
 
 /*Portfolio Percentage Change String*/
-"PORTFOLIO_Interval" = "自从...";
+"PORTFOLIO_Interval" = "%@（%.2f%@）自从%@";
