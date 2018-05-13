@@ -282,7 +282,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         fifteenMinButton.setTitle(PortfolioStrings.oneDayInterval, for: UIControlState())
         thirtyMinButton.setTitle(PortfolioStrings.oneWeekInterval, for: UIControlState())
         sixtyMinButton.setTitle(PortfolioStrings.oneMonthInterval, for: UIControlState())
-        oneDayButton.setTitle(PortfolioStrings.oneMonthInterval, for: UIControlState())
+        oneDayButton.setTitle(PortfolioStrings.threeMonthInterval, for: UIControlState())
         allButton.setTitle(PortfolioStrings.allInterval, for: UIControlState())
     }
 }
