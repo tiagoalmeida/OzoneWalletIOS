@@ -22,7 +22,7 @@ class AccountAssetTableViewController: UITableViewController {
 
     var claims: Claimable?
     var isClaiming: Bool = false
-    var refreshClaimableGasTimer = Timer()
+    /// var refreshClaimableGasTimer = Timer()
 
     var tokenAssets = O3Cache.tokenAssets()
     var neoBalance: Int = Int(O3Cache.neo().value)
@@ -52,7 +52,7 @@ class AccountAssetTableViewController: UITableViewController {
         applyNavBarTheme()
         loadClaimableGAS()
 
-        refreshClaimableGasTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(AccountAssetTableViewController.loadClaimableGAS), userInfo: nil, repeats: true)
+        //refreshClaimableGasTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(AccountAssetTableViewController.loadClaimableGAS), userInfo: nil, repeats: true)
         tableView.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.beginRefreshing()
         tableView.refreshControl?.addTarget(self, action: #selector(reloadAllData), for: .valueChanged)
@@ -66,7 +66,6 @@ class AccountAssetTableViewController: UITableViewController {
 
     func claimGas() {
         self.enableClaimButton(enable: false)
-        self.loadClaimableGAS()
         Authenticated.account?.claimGas { _, error in
 
             if error != nil {
@@ -93,8 +92,6 @@ class AccountAssetTableViewController: UITableViewController {
                 UserDefaults.standard.synchronize()
 
                 self.isClaiming = false
-                //if claim succeeded then fire the timer to refresh claimable gas again.
-                self.refreshClaimableGasTimer = Timer.scheduledTimer(timeInterval: 15, target: self, selector: #selector(AccountAssetTableViewController.loadClaimableGAS), userInfo: nil, repeats: true)
                 self.loadClaimableGAS()
             }
         }
@@ -110,16 +107,9 @@ class AccountAssetTableViewController: UITableViewController {
 
     func prepareClaimingGAS() {
 
-        if self.neoBalance == 0 {
-            return
-        }
         self.isClaiming = true
-        refreshClaimableGasTimer.invalidate()
-        refreshClaimableGasTimer = Timer()
-
-        enableClaimButton(enable: false)
-
-        HUD.show(.labeledProgress(title: AccountStrings.claimingInProgressTitle, subtitle: AccountStrings.claimingInProgressSubtitle))
+        //refreshClaimableGasTimer.invalidate()
+     //   refreshClaimableGasTimer = Timer()
 
         //select best node
         if let bestNode = NEONetworkMonitor.autoSelectBestNode() {
@@ -148,8 +138,8 @@ class AccountAssetTableViewController: UITableViewController {
 
                 //disable button and invalidate the timer to refresh claimable GAS
 
-                self.refreshClaimableGasTimer.invalidate()
-                self.refreshClaimableGasTimer = Timer()
+               // self.refreshClaimableGasTimer.invalidate()
+               // self.refreshClaimableGasTimer = Timer()
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
                     self.claimGas()
@@ -173,7 +163,7 @@ class AccountAssetTableViewController: UITableViewController {
                 return
             case .success(let claims):
                 self.claims = claims
-                self.mostRecentClaimAmount = claims.gas
+                self.mostRecentClaimAmount = NSDecimalNumber(decimal: claims.gas).doubleValue
                 DispatchQueue.main.async {
                     self.showClaimableGASAmount(amount: self.mostRecentClaimAmount)
                 }
@@ -314,6 +304,11 @@ class AccountAssetTableViewController: UITableViewController {
 extension AccountAssetTableViewController: UnclaimGASDelegate {
     func claimButtonTapped() {
         DispatchQueue.main.async {
+            if self.neoBalance == 0 {
+                return
+            }
+            HUD.show(.labeledProgress(title: AccountStrings.claimingInProgressTitle, subtitle: AccountStrings.claimingInProgressSubtitle))
+            self.enableClaimButton(enable: false)
             self.prepareClaimingGAS()
         }
     }
