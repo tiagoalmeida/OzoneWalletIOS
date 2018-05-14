@@ -151,10 +151,10 @@ extension TransferableAsset {
 
     static func GASNoBalance() -> TransferableAsset {
         return TransferableAsset(
-            id: NeoSwift.AssetId.neoAssetId.rawValue,
-            name: "NEO",
-            symbol: "NEO",
-            decimals: 0,
+            id: NeoSwift.AssetId.gasAssetId.rawValue,
+            name: "GAS",
+            symbol: "GAS",
+            decimals: 8,
             value: 0,
             assetType: .nativeAsset)
     }
