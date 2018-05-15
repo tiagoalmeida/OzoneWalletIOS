@@ -134,7 +134,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
         webBrowserViewController.isToolbarHidden = true
         webBrowserViewController.title = ""
         webBrowserViewController.isShowURLInNavigationBarWhenLoading = false
-        webBrowserViewController.barTintColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.backgroundColor: Theme.dark.backgroundColor
+        webBrowserViewController.barTintColor = UserDefaultsManager.theme.backgroundColor
         webBrowserViewController.tintColor = Theme.light.primaryColor
         webBrowserViewController.isShowPageTitleInNavigationBar = false
         webBrowserViewController.loadURLString("https://community.o3.network")
@@ -193,7 +193,7 @@ class SettingsMenuTableViewController: UITableViewController, HalfModalPresentab
 
             }, didConfirm: {
                 self.performLogoutCleanup()
-                self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+                self.view.window!.rootViewController?.dismiss(animated: false)
                 UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: "Onboarding", bundle: nil).instantiateInitialViewController()
 
             })

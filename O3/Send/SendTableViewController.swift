@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import NeoSwift
 import KeychainAccess
 import SwiftTheme
 import Crashlytics
@@ -33,7 +32,7 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
     @IBOutlet weak var sendAmountCell: UITableViewCell!
     @IBOutlet weak var sendAssetCell: UITableViewCell!
 
-    var gasBalance: Decimal = 0
+    var gasBalance: Double = 0.0
     var transactionCompleted: Bool!
     var selectedAsset: TransferableAsset?
     var preselectedAddress = ""
@@ -51,7 +50,7 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
         tableView.theme_backgroundColor = O3Theme.backgroundColorPicker
         tableView.theme_separatorColor = O3Theme.tableSeparatorColorPicker
         let themedTextFields = [toAddressField, amountField]
-        let placeHolderColor = ThemeManager.currentThemeIndex == 0 ? Theme.light.textFieldPlaceHolderColor : Theme.dark.textFieldPlaceHolderColor
+        let placeHolderColor = UserDefaultsManager.theme.textFieldPlaceHolderColor
         for field in themedTextFields {
             field!.attributedPlaceholder = NSAttributedString(
                 string: field!.placeholder ?? "",
@@ -170,11 +169,11 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
             return
         }
 
-        let assetId: String! = self.selectedAsset!.assetID!
-        let assetName: String! = self.selectedAsset?.name!
+        var assetId: String! = self.selectedAsset!.id
+        let assetName: String! = self.selectedAsset!.name
         let amountFormatter = NumberFormatter()
         amountFormatter.minimumFractionDigits = 0
-        amountFormatter.maximumFractionDigits = self.selectedAsset!.decimal
+        amountFormatter.maximumFractionDigits = self.selectedAsset!.decimals
         amountFormatter.numberStyle = .decimal
 
         let amount = amountFormatter.number(from: (self.amountField.text?.trim())!)
@@ -187,11 +186,11 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
         }
 
         //validate amount
-        if amount!.decimalValue > self.selectedAsset!.balance! {
-            let balanceDecimal = self.selectedAsset!.balance
+        if amount!.doubleValue > self.selectedAsset!.value {
+            let balanceDecimal = self.selectedAsset!.value
             let formatter = NumberFormatter()
             formatter.minimumFractionDigits = 0
-            formatter.maximumFractionDigits = self.selectedAsset!.decimal
+            formatter.maximumFractionDigits = self.selectedAsset!.decimals
             formatter.numberStyle = .decimal
             let balanceString = formatter.string(for: balanceDecimal)
 
@@ -200,12 +199,12 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
                 self.amountField.becomeFirstResponder()
             })
             return
-        } else if selectedAsset?.name.lowercased() == "gas" && self.selectedAsset!.balance! - amount!.decimalValue <= 0.00000001 {
+        } else if selectedAsset?.name.lowercased() == "gas" && self.selectedAsset!.value - amount!.doubleValue <= 0.00000001 {
             OzoneAlert.alertDialog(message: SendStrings.roundingGasError, dismissTitle: OzoneAlert.okPositiveConfirmString, didDismiss: {
                     self.amountField.becomeFirstResponder()
             })
             return
-        } else if selectedAsset?.assetType == AssetType.nep5Token && gasBalance == 0.0 {
+        } else if selectedAsset?.assetType == .nep5Token && gasBalance == 0.0 {
             OzoneAlert.alertDialog(message: SendStrings.notEnoughGasForInvokeError, dismissTitle: OzoneAlert.okPositiveConfirmString, didDismiss: {
                 self.amountField.becomeFirstResponder()
             })
@@ -223,9 +222,10 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
             }
         }
 
-        if self.selectedAsset?.assetType == AssetType.nativeAsset {
-            self.sendNativeAsset(assetId: NeoSwift.AssetId(rawValue: assetId)!, assetName: assetName, amount: amount!.doubleValue, toAddress: toAddress)
-        } else if self.selectedAsset?.assetType == AssetType.nep5Token {
+        if self.selectedAsset?.assetType == .nativeAsset {
+            assetId = String(assetId.dropFirst(2))
+            self.sendNativeAsset(assetId: AssetId(rawValue: assetId)!, assetName: assetName, amount: amount!.doubleValue, toAddress: toAddress)
+        } else if self.selectedAsset?.assetType == .nep5Token {
             self.sendNEP5Token(tokenHash: assetId, assetName: assetName, amount: amount!.doubleValue, toAddress: toAddress)
         }
     }
@@ -315,7 +315,7 @@ class SendTableViewController: UITableViewController, AddressSelectDelegate, QRS
 }
 
 extension SendTableViewController: AssetSelectorDelegate {
-    func assetSelected(selected: TransferableAsset, gasBalance: Decimal) {
+    func assetSelected(selected: TransferableAsset, gasBalance: Double) {
         DispatchQueue.main.async {
             self.gasBalance = gasBalance
             self.selectedAsset = selected

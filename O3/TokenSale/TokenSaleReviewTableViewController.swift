@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Kingfisher
-import NeoSwift
 import WebBrowser
 
 class TokenSaleReviewTableViewController: UITableViewController {
@@ -110,7 +109,7 @@ class TokenSaleReviewTableViewController: UITableViewController {
         webBrowserViewController.isToolbarHidden = false
         webBrowserViewController.title = transactionInfo.saleInfo.name
         webBrowserViewController.isShowURLInNavigationBarWhenLoading = true
-        webBrowserViewController.barTintColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.backgroundColor: Theme.dark.backgroundColor
+        webBrowserViewController.barTintColor = UserDefaultsManager.theme.backgroundColor
         webBrowserViewController.tintColor = Theme.light.primaryColor
         webBrowserViewController.isShowPageTitleInNavigationBar = true
         webBrowserViewController.loadURLString(transactionInfo.saleInfo.webURL)
@@ -125,7 +124,7 @@ class TokenSaleReviewTableViewController: UITableViewController {
         webBrowserViewController.isToolbarHidden = false
         webBrowserViewController.title = transactionInfo.saleInfo.name
         webBrowserViewController.isShowURLInNavigationBarWhenLoading = true
-        webBrowserViewController.barTintColor = UserDefaultsManager.themeIndex == 0 ? Theme.light.backgroundColor: Theme.dark.backgroundColor
+        webBrowserViewController.barTintColor = UserDefaultsManager.theme.backgroundColor
         webBrowserViewController.tintColor = Theme.light.primaryColor
         webBrowserViewController.isShowPageTitleInNavigationBar = true
         webBrowserViewController.loadURLString(transactionInfo.saleInfo.webURL)

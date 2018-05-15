@@ -331,19 +331,14 @@
                                                     <color key="textColor" red="0.058823529409999999" green="0.062745098040000002" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="adobeRGB1998"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tYC-N9-6rn">
-                                                    <rect key="frame" x="284" y="16" width="20" height="20"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="cWx-ml-ClM" firstAttribute="top" secondItem="vIH-GK-xj4" secondAttribute="top" id="D96-DG-Rbl"/>
                                                 <constraint firstItem="cqp-DR-dL0" firstAttribute="leading" secondItem="047-54-205" secondAttribute="leading" id="HbS-ME-hcP"/>
-                                                <constraint firstItem="tYC-N9-6rn" firstAttribute="centerY" secondItem="vIH-GK-xj4" secondAttribute="centerY" id="IFb-RF-R4g"/>
                                                 <constraint firstItem="047-54-205" firstAttribute="leading" secondItem="vIH-GK-xj4" secondAttribute="leading" constant="16" id="OeU-bZ-tUS"/>
                                                 <constraint firstAttribute="trailing" secondItem="cWx-ml-ClM" secondAttribute="trailing" constant="16" id="Uhj-Cf-pbA"/>
                                                 <constraint firstAttribute="bottom" secondItem="cWx-ml-ClM" secondAttribute="bottom" id="Y8B-5x-hP4"/>
-                                                <constraint firstAttribute="trailing" secondItem="tYC-N9-6rn" secondAttribute="trailing" constant="16" id="nPn-J8-t1D"/>
                                                 <constraint firstItem="047-54-205" firstAttribute="top" secondItem="vIH-GK-xj4" secondAttribute="top" constant="5" id="px6-4K-4T0"/>
                                                 <constraint firstAttribute="bottom" secondItem="cqp-DR-dL0" secondAttribute="bottom" constant="5" id="w4v-8S-PbL"/>
                                             </constraints>
@@ -358,7 +353,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="amountLabel" destination="cWx-ml-ClM" id="B5T-Hi-seH"/>
-                                    <outlet property="loadingView" destination="tYC-N9-6rn" id="OSW-hT-CXa"/>
                                     <outlet property="subtitleLabel" destination="cqp-DR-dL0" id="yYN-DY-hQH"/>
                                     <outlet property="titleLabel" destination="047-54-205" id="9R9-1J-Vm9"/>
                                 </connections>

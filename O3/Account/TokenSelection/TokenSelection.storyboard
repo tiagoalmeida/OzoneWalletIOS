@@ -55,15 +55,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xY6-qr-1wr">
-                                <rect key="frame" x="60" y="184" width="200" height="200"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="381"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Boo-Y4-E0p"/>
-                                    <constraint firstAttribute="width" secondItem="xY6-qr-1wr" secondAttribute="height" multiplier="1:1" id="ETE-b9-lsh"/>
+                                    <constraint firstAttribute="width" secondItem="xY6-qr-1wr" secondAttribute="height" multiplier="370:440" id="ETE-b9-lsh"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Non Fungible Tokens are Under Construction" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJq-O7-UxR">
-                                <rect key="frame" x="16" y="400" width="288" height="46.5"/>
+                                <rect key="frame" x="16" y="417" width="288" height="46.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -75,8 +74,10 @@
                             <constraint firstItem="tJq-O7-UxR" firstAttribute="leading" secondItem="UcA-nv-Bzl" secondAttribute="leading" constant="16" id="4b4-HL-cNo"/>
                             <constraint firstItem="tJq-O7-UxR" firstAttribute="centerX" secondItem="UcA-nv-Bzl" secondAttribute="centerX" id="BFl-1p-Leg"/>
                             <constraint firstItem="tJq-O7-UxR" firstAttribute="top" secondItem="xY6-qr-1wr" secondAttribute="bottom" constant="16" id="DU9-Mg-BhE"/>
+                            <constraint firstItem="xY6-qr-1wr" firstAttribute="leading" secondItem="UcA-nv-Bzl" secondAttribute="leading" id="TwA-dz-qAV"/>
                             <constraint firstItem="UcA-nv-Bzl" firstAttribute="trailing" secondItem="tJq-O7-UxR" secondAttribute="trailing" constant="16" id="g3E-js-azh"/>
-                            <constraint firstItem="xY6-qr-1wr" firstAttribute="centerY" secondItem="Ph9-0M-Lw5" secondAttribute="centerY" id="xCb-lR-Sle"/>
+                            <constraint firstItem="xY6-qr-1wr" firstAttribute="top" secondItem="UcA-nv-Bzl" secondAttribute="top" id="lMW-ww-97H"/>
+                            <constraint firstItem="UcA-nv-Bzl" firstAttribute="trailing" secondItem="xY6-qr-1wr" secondAttribute="trailing" id="xWD-PH-Aqp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UcA-nv-Bzl"/>
                     </view>
@@ -136,13 +137,6 @@
                                                             <color key="textColor" name="grey"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="syS-Gc-c6b">
-                                                            <rect key="frame" x="106" y="8" width="15" height="15"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="15" id="7bw-Aw-zub"/>
-                                                                <constraint firstAttribute="height" constant="15" id="DF6-qs-4mc"/>
-                                                            </constraints>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -152,9 +146,7 @@
                                                         <constraint firstItem="PTC-pu-AEo" firstAttribute="top" secondItem="CEV-Wf-EFn" secondAttribute="bottom" constant="1" id="G3r-zV-Nqd"/>
                                                         <constraint firstItem="CEV-Wf-EFn" firstAttribute="centerX" secondItem="Hdt-37-YIM" secondAttribute="centerX" id="SiR-z0-jxh"/>
                                                         <constraint firstItem="CEV-Wf-EFn" firstAttribute="centerY" secondItem="Hdt-37-YIM" secondAttribute="centerY" multiplier="0.75" id="cGc-2m-zf3"/>
-                                                        <constraint firstItem="syS-Gc-c6b" firstAttribute="top" secondItem="Hdt-37-YIM" secondAttribute="top" constant="8" id="iAd-cV-AbQ"/>
                                                         <constraint firstItem="PTC-pu-AEo" firstAttribute="centerX" secondItem="Hdt-37-YIM" secondAttribute="centerX" id="mN8-Ab-cpN"/>
-                                                        <constraint firstAttribute="trailing" secondItem="syS-Gc-c6b" secondAttribute="trailing" constant="8" id="pRc-Lb-egs"/>
                                                         <constraint firstAttribute="trailing" secondItem="PTC-pu-AEo" secondAttribute="trailing" id="vY6-Ng-8YK"/>
                                                     </constraints>
                                                 </view>
@@ -167,7 +159,6 @@
                                             <constraint firstItem="Hdt-37-YIM" firstAttribute="leading" secondItem="OJO-El-hfe" secondAttribute="leading" constant="8" id="ncu-5R-G09"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="inWalletImageView" destination="syS-Gc-c6b" id="WZN-Tl-yu9"/>
                                             <outlet property="tokenImageView" destination="CEV-Wf-EFn" id="fqg-NM-7A9"/>
                                             <outlet property="tokenNameLabel" destination="PTC-pu-AEo" id="GcT-go-JDV"/>
                                             <outlet property="tokenSymbolLabel" destination="dEe-s9-evG" id="6aA-Wg-7bm"/>
@@ -204,7 +195,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checked" width="119" height="114"/>
         <namedColor name="grey">
             <color red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

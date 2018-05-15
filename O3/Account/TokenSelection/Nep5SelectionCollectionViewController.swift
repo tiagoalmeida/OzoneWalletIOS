@@ -53,11 +53,6 @@ class Nep5SelectionCollectionViewController: UIViewController, UICollectionViewD
         }
 
         cell.data = filteredTokens[indexPath.row]
-        if (UserDefaultsManager.selectedNEP5Token![filteredTokens[indexPath.row].tokenHash]) != nil {
-            cell.inWalletImageView.isHidden = false
-        } else {
-            cell.inWalletImageView.isHidden = true
-        }
         return cell
     }
 
@@ -75,29 +70,7 @@ class Nep5SelectionCollectionViewController: UIViewController, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? TokenGridCell,
-            let token = cell.data else {
-                fatalError("Undefined Collection view behavior")
-        }
-        DispatchQueue.main.async {
-            if cell.inWalletImageView.isHidden {
-                cell.inWalletImageView.isHidden = false
-                UserDefaultsManager.selectedNEP5Token![token.tokenHash] = token
-                NotificationCenter.default.post(name: Notification.Name("AddedNewToken"), object: nil)
-                    Answers.logCustomEvent(withName: "Added New Token",
-                                           customAttributes: ["Token Name": token.name,
-                                                              "Num Tokens": UserDefaultsManager.selectedNEP5Token?.keys.count as Any,
-                                                              "Which Tokens": UserDefaultsManager.selectedNEP5Token?.description as Any])
-            } else {
-                cell.inWalletImageView.isHidden = true
-                UserDefaultsManager.selectedNEP5Token?.removeValue(forKey: token.tokenHash)
-                NotificationCenter.default.post(name: Notification.Name("AddedNewToken"), object: nil)
-                Answers.logCustomEvent(withName: "Removed Token",
-                                       customAttributes: ["Token Name": token.name,
-                                                          "Num Tokens": UserDefaultsManager.selectedNEP5Token?.keys.count as Any,
-                                                          "Which Tokens": UserDefaultsManager.selectedNEP5Token?.description as Any])
-            }
-        }
+
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

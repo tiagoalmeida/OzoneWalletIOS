@@ -108,7 +108,7 @@ class O3TabBarController: UITabBarController {
         let tokenSale = UIAlertAction(title: TabbarStrings.tokenSalesTitle, style: .default) { _ in
             self.tokenSaleTapped()
         }
-        if O3Cache.gasBalance() > 0 || O3Cache.neoBalance() > 0 {
+        if O3Cache.gas().value > 0.0 || O3Cache.neo().value > 0 {
             actionSheet.addAction(tokenSale)
         }
 

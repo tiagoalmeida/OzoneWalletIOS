@@ -114,7 +114,7 @@ public class O3Client {
 
         var queryString = String(format: "?i=%@", interval)
         for asset in assets {
-            queryString += String(format: "&%@=%@", asset.symbol, asset.balance.description)
+            queryString += String(format: "&%@=%@", asset.symbol, asset.value.description)
         }
         queryString += String(format: "&currency=%@", UserDefaultsManager.referenceFiatCurrency.rawValue)
 
@@ -203,6 +203,24 @@ public class O3Client {
         }
     }
 
+    func getAccountState(address: String, completion: @escaping(O3ClientResult<AccountState>) -> Void) {
+        let endpoint = "https://platform.o3.network/api/v1/neo/\(address)/balances"
+        sendRequest(endpoint, method: .GET, data: nil, noBaseURL: true) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let response):
+                let decoder = JSONDecoder()
+                guard let dictionary = response["result"] as? JSONDictionary,
+                    let data = try? JSONSerialization.data(withJSONObject: dictionary["data"] as Any, options: .prettyPrinted),
+                    let accountState = try? decoder.decode(AccountState.self, from: data) else {
+                         return
+                }
+                completion(.success(accountState))
+            }
+        }
+    }
+
     func getTokenSales(completion: @escaping(O3ClientResult<TokenSales>) -> Void) {
         var endpoint = "https://cdn.o3.network/data/tokensales.json"
         #if PRIVATENET || TESTNET
@@ -215,7 +233,6 @@ public class O3Client {
             case .success(let response):
                 let decoder = JSONDecoder()
                 guard let data = try? JSONSerialization.data(withJSONObject: response, options: .prettyPrinted),
-
                     let liveSales = try? decoder.decode(TokenSales.self, from: data) else {
                         return
                 }

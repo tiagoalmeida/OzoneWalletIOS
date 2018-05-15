@@ -26,7 +26,7 @@ extension ScrollableGraphView {
         linePlot.adaptAnimationType = ScrollableGraphViewAnimationType.easeOut
         linePlot.animationDuration = 0.5
 
-        graphView.backgroundFillColor = ThemeManager.currentThemeIndex == 0 ? O3.Theme.light.backgroundColor : O3.Theme.dark.backgroundColor
+        graphView.backgroundFillColor = UserDefaultsManager.theme.backgroundColor
         graphView.dataPointSpacing = UIScreen.main.bounds.size.width / 71
         graphView.rightmostPointPadding = 0
         graphView.leftmostPointPadding = 0
